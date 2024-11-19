@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen overflow-y-auto`}
+        className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen overflow-y-auto `}
       >
         {children}
         <GlobalNavBar />

@@ -19,6 +19,7 @@ export default {
           500: "#667085",
           400: "#9DA4AE",
         },
+        placeholder: "B6B3B3",
         // 브라운
         brown: {
           200: "#B6B3B3",
@@ -26,6 +27,7 @@ export default {
         // 오렌지
         orange: {
           700: "#FF6200",
+          500: "#FF6F1E",
         },
         // 그린
         green: {
@@ -36,6 +38,7 @@ export default {
       fontSize: {
         // Logo
         logo: "60px", // 로고
+        mainLogo: "28px",
         // Heading
         h1: "25px", // 큰 제목
         h2: "20px", // 중간 제목

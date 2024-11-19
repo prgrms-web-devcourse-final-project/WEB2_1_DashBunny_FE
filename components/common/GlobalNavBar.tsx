@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-
 import { usePathname } from "next/navigation"
 import HomeNavEmptyIcon from "../icons/iconComponents/HomeNavEmptyIcon"
 import HomeNavFillIcon from "../icons/iconComponents/HomeNavFillIcon"
@@ -57,9 +56,9 @@ export default function GlobalNavBar() {
   if (!shouldShowNav) return null
 
   return (
-    <div className=" fixed bottom-0 max-w-[400px] w-full mx-auto h-[60px]">
+    <div className="bg-white fixed bottom-0 max-w-[400px] w-full mx-auto h-[60px]">
       <nav>
-        <ul className="grid grid-cols-5 w-full border-t  border-gray-200">
+        <ul className="grid grid-cols-5 w-full border-t border-gray-200">
           {menu.map((item) => (
             <li key={item.href} className="flex flex-col items-center justify-center py-2">
               <Link href={item.href} className="flex flex-col items-center">

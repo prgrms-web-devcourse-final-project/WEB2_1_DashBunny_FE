@@ -2,17 +2,27 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import ColorButton from "../common/ColorButton"
+import HomeNavEmptyIcon from "../icons/iconComponents/HomeNavEmptyIcon"
+import useForm from "@/hooks/useForm"
+import { carrier } from "../../constants"
+import { UserInformation } from "@/types/userInfo"
+import validateLogin from "@/validation/UserInfoValidation"
 
 export default function UserInfoForm() {
   const [step, setStep] = useState(1)
-  const [form, setForm] = useState({
-    name: "",
-    birthFirst: "",
-    birthLast: "",
-    phone: "",
-    carrier: "SKT 알뜰폰",
-  })
+  // const [form, setForm] = useState<UserInformation>({
+  //   carrier: "",
+  //   birthNum: "",
+  //   genNum: "",
+  //   phoneNumber: "",
+  //   name: "",
+  // })
 
+  const login = useForm<UserInformation>({
+    initialValues: { carrier: "skt", phoneNumber: "", birthNum: "", genNum: "", name: "" },
+    validate: validateLogin,
+  })
   //   const handleSubmit = (e: React.FormEvent) => {
   //     e.preventDefault()
   //     if (step < 4) setStep((prev) => prev + 1)
@@ -51,7 +61,7 @@ export default function UserInfoForm() {
                 <div className="relative">
                   <label className="text-sm text-gray-500">통신사</label>
                   <button className="w-full p-4 border rounded-lg text-left flex justify-between items-center">
-                    {form.carrier}
+                    {login.values.carrier}
                     ⬇️
                   </button>
                 </div>
@@ -71,7 +81,7 @@ export default function UserInfoForm() {
                     onKeyDown={handleKeyDown}
                     type="tel"
                     className="w-full p-4 border rounded-lg"
-                    value={form.phone}
+                    value={login.values.phoneNumber}
                     onChange={onChangeHandler("phone")}
                   />
                 </div>
@@ -131,10 +141,11 @@ export default function UserInfoForm() {
             </motion.div>
           </div>
         </AnimatePresence>
-
-        <button type="submit" className="  p-4 bg-[#FF6200] text-white text-lg">
-          {step === 4 ? "본인 인증하기" : "확인"}
-        </button>
+        <ColorButton
+          onClick={() => null}
+          size="large"
+          text={step === 4 ? "본인 인증하기" : "확인"}
+        />
       </form>
     </div>
   )
