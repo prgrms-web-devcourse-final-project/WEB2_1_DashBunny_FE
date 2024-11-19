@@ -1,11 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const Navigation = () => {
-  const MenuLayout =
-    "flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500"; //메뉴 레이아웃 잡기
+  const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500`; //메뉴 레이아웃 잡기
+  const SelectMenu = `flex items-center p-1 w-full my-1 h-16 rounded-xl bg-white font-semibold text-gray-500 border-2 border-BunnyOrange `; //선택시 레이아웃
   const Line = "bg-gray-200 h-0.5 w-[230px] my-5"; //라인
   const ImageProp = "object-contain mx-3";
+  const pathname = usePathname();
+
+  useEffect(() => {
+    console.log(pathname);
+  }, [pathname]);
 
   return (
     <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl min-h-screen realtive">
@@ -24,7 +33,7 @@ const Navigation = () => {
       <div>
         <div className={Line} />
         <Link href="/">
-          <div className={MenuLayout}>
+          <div className={pathname === "/" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/Dashboard.svg"
               alt="Dashboard Icon"
@@ -36,7 +45,7 @@ const Navigation = () => {
           </div>
         </Link>
         <Link href="/user">
-          <div className={MenuLayout}>
+          <div className={pathname === "/user" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/User.svg"
               alt="User Icon"
@@ -48,7 +57,7 @@ const Navigation = () => {
           </div>
         </Link>
         <Link href="/shop">
-          <div className={MenuLayout}>
+          <div className={pathname === "/shop" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/shop.svg"
               alt="shop Icon"
@@ -60,7 +69,7 @@ const Navigation = () => {
           </div>
         </Link>
         <Link href="/coupon">
-          <div className={MenuLayout}>
+          <div className={pathname === "/coupon" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/coupon.svg"
               alt="coupon Icon"
@@ -72,7 +81,7 @@ const Navigation = () => {
           </div>
         </Link>
         <Link href="/notice">
-          <div className={MenuLayout}>
+          <div className={pathname === "/notice" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/notice.svg"
               alt="notice Icon"
@@ -84,7 +93,7 @@ const Navigation = () => {
           </div>
         </Link>
         <Link href="/review">
-          <div className={MenuLayout}>
+          <div className={pathname === "/review" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/review.svg"
               alt="review Icon"
@@ -96,7 +105,7 @@ const Navigation = () => {
           </div>
         </Link>
         <Link href="/report">
-          <div className={MenuLayout}>
+          <div className={pathname === "/report" ? SelectMenu : MenuLayout}>
             <Image
               src="/Icon/warning.svg"
               alt="warning Icon"
