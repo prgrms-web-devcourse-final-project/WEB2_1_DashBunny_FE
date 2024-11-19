@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 const Navigation = () => {
   const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500`; //메뉴 레이아웃 잡기
@@ -11,10 +10,6 @@ const Navigation = () => {
   const Line = "bg-gray-200 h-0.5 w-[230px] my-5"; //라인
   const ImageProp = "object-contain mx-3";
   const pathname = usePathname();
-
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
 
   return (
     <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl min-h-screen realtive">

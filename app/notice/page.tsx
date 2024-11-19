@@ -1,5 +1,13 @@
+import NoticeHeader from "@/components/notice/NoticeHeader";
+import NoticeContent from "@/components/notice/NoticeContent";
+
 const Notice = () => {
-  return <h1>공지 관리</h1>;
+  return (
+    <div className="w-full p-11">
+      <NoticeHeader />
+      <NoticeContent />
+    </div>
+  );
 };
 
 export default Notice;
