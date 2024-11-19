@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Navigation = () => {
   const MenuLayout =
@@ -22,76 +23,90 @@ const Navigation = () => {
       </div>
       <div>
         <div className={Line} />
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/Dashboard.svg"
-            alt="Dashboard Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />
-          대시보드
-        </div>
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/User.svg"
-            alt="User Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />{" "}
-          고객관리
-        </div>
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/shop.svg"
-            alt="shop Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />{" "}
-          가게관리
-        </div>
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/coupon.svg"
-            alt="coupon Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />{" "}
-          쿠폰관리
-        </div>
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/notice.svg"
-            alt="notice Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />{" "}
-          공지관리
-        </div>
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/review.svg"
-            alt="review Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />{" "}
-          리뷰관리
-        </div>
-        <div className={MenuLayout}>
-          <Image
-            src="/Icon/warning.svg"
-            alt="warning Icon"
-            width={30}
-            height={30}
-            className={ImageProp}
-          />{" "}
-          신고 및 문의 관리
-        </div>
+        <Link href="/">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/Dashboard.svg"
+              alt="Dashboard Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />
+            대시보드
+          </div>
+        </Link>
+        <Link href="/user">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/User.svg"
+              alt="User Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />{" "}
+            고객관리
+          </div>
+        </Link>
+        <Link href="/shop">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/shop.svg"
+              alt="shop Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />{" "}
+            가게관리
+          </div>
+        </Link>
+        <Link href="/coupon">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/coupon.svg"
+              alt="coupon Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />{" "}
+            쿠폰관리
+          </div>
+        </Link>
+        <Link href="/notice">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/notice.svg"
+              alt="notice Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />{" "}
+            공지관리
+          </div>
+        </Link>
+        <Link href="/review">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/review.svg"
+              alt="review Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />{" "}
+            리뷰관리
+          </div>
+        </Link>
+        <Link href="/report">
+          <div className={MenuLayout}>
+            <Image
+              src="/Icon/warning.svg"
+              alt="warning Icon"
+              width={30}
+              height={30}
+              className={ImageProp}
+            />{" "}
+            신고 및 문의 관리
+          </div>
+        </Link>
       </div>
       <div>
         <div className={Line} />
