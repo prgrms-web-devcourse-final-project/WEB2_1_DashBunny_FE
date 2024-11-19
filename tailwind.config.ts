@@ -36,17 +36,18 @@ export default {
       fontSize: {
         // Logo
         logo: "60px", // 로고
-
         // Heading
         h1: "25px", // 큰 제목
         h2: "20px", // 중간 제목
         h3: "18px", // 작은 제목
+        button: "19px",
 
         // Body
         lg: "17px", // 큰 본문
         md: "16px", // 기본 본문
         sm: "15px", // 작은 본문
         xs: "13px", // 매우 작은 본문
+        xxs: "11px",
       },
     },
   },

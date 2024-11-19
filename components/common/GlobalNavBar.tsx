@@ -3,39 +3,73 @@
 import Link from "next/link"
 
 import { usePathname } from "next/navigation"
+import HomeNavEmptyIcon from "../icons/iconComponents/HomeNavEmptyIcon"
+import HomeNavFillIcon from "../icons/iconComponents/HomeNavFillIcon"
+import SaveHeartNavEmptyIcon from "../icons/iconComponents/SaveHeartNavEmptyIcon"
+import SaveHeartNavFillIcon from "../icons/iconComponents/SaveHeartNavFillIcon"
+import ShortsNavEmptyIcon from "../icons/iconComponents/ShortsNavEmptyIcon"
+import ShortsNavFillIcon from "../icons/iconComponents/ShortsNavFillIcon"
+import OrderHistoryNavEmptyIcon from "../icons/iconComponents/OrderHistoryNavEmptyIcon"
+import OrderHistoryNavFillIcon from "../icons/iconComponents/OrderHistoryNavFillIcon"
+import MyPageEmptyIcon from "../icons/iconComponents/MyPageEmptyIcon"
+import MyPageFillIcon from "../icons/iconComponents/MyPageFillIcon"
 
+//@=> rn보고 고도화가능?
 const menu = [
   {
-    href: "/",
-    icon: <HomeIcon />,
-    clickedIcon: <HomeFillIcon />,
+    href: "/main",
+    icon: <HomeNavEmptyIcon />,
+    clickedIcon: <HomeNavFillIcon />,
+    title: "홈",
   },
   {
-    href: "/search",
-    icon: <SearchIcon />,
-    clickedIcon: <SearchFillIcon />,
+    href: "/wishList",
+    icon: <SaveHeartNavEmptyIcon />,
+    clickedIcon: <SaveHeartNavFillIcon />,
+    title: "찜",
   },
   {
-    href: "/new",
-    icon: <NewIcon />,
-    clickedIcon: <NewFillIcon />,
+    href: "/shorts",
+    icon: <ShortsNavEmptyIcon />,
+    clickedIcon: <ShortsNavFillIcon />,
+    title: "쇼츠",
+  },
+  {
+    href: "/orderList",
+    icon: <OrderHistoryNavEmptyIcon />,
+    clickedIcon: <OrderHistoryNavFillIcon />,
+    title: "주문내역",
+  },
+  {
+    href: "/myPage",
+    icon: <MyPageEmptyIcon />,
+    clickedIcon: <MyPageFillIcon />,
+    title: "마이페이지",
   },
 ]
-export default function Navbar() {
+export default function GlobalNavBar() {
   const pathName = usePathname()
   //   const { data: session } = useSession()
   //   const user = session?.user
 
+  // menu에 있는 경로들과 현재 경로 비교
+  const shouldShowNav = menu.some((item) => item.href === pathName)
+  if (!shouldShowNav) return null
+
   return (
-    <div className="flex justify-between items-center px-6">
-      <Link href="/">
-        <h1 className="text-3xl font-bold">Instantgram</h1>
-      </Link>
+    <div className=" fixed bottom-0 max-w-[400px] w-full mx-auto h-[60px]">
       <nav>
-        <ul className="flex gap-4 items-center p-4">
+        <ul className="grid grid-cols-5 w-full border-t  border-gray-200">
           {menu.map((item) => (
-            <li key={item.href}>
-              <Link href={item.href}>{pathName === item.href ? item.clickedIcon : item.icon}</Link>
+            <li key={item.href} className="flex flex-col items-center justify-center py-2">
+              <Link href={item.href} className="flex flex-col items-center">
+                {pathName === item.href ? item.clickedIcon : item.icon}
+                <span
+                  className={`text-xxs font-semibold text-center whitespace-nowrap ${pathName === item.href ? "text-orange-700" : "text-gray-400"}`}
+                >
+                  {item.title}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import "./globals.css"
+import GlobalNavBar from "@/components/common/GlobalNavBar"
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -24,6 +25,7 @@ export default function RootLayout({
         className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen overflow-y-auto`}
       >
         {children}
+        <GlobalNavBar />
       </body>
     </html>
   )
