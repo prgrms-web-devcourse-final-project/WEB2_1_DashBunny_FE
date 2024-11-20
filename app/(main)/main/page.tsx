@@ -9,7 +9,7 @@ export default function MainPage() {
     <main>
       <Header />
       <AddressBar />
-      <SearchBar />
+      <SearchBar placeholder="무엇을 찾으시나요?" />
       <CategoryNav />
       <RestaurantList />
     </main>

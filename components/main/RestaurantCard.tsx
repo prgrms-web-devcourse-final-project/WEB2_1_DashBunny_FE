@@ -2,7 +2,6 @@ import Image from "next/image"
 import RatingStarIcon from "../icons/iconComponents/RatingStarIcon"
 import CouponBadge from "./CouponBadge"
 import Link from "next/link"
-import WishButton from "../wishList/WishButton"
 import { Store } from "@/shared/model/restaurant"
 import { usePathname } from "next/navigation"
 import SaveHeartNavFillIcon from "../icons/iconComponents/SaveHeartNavFillIcon"
@@ -22,27 +21,15 @@ export default function RestaurantCard({
     <Link href={`/restaurant/${store_id}`}>
       <div className="flex gap-4 py-2 relative">
         <Image
-          width={100}
-          height={100}
+          width={84}
+          height={84}
           src={store_image}
           alt={store_name}
-          className="w-[100px] h-[100px] rounded-lg object-cover"
+          className="w-[84px] h-[84px] rounded-lg object-cover"
         />
         <div>
           <div className=" flex items-center justify-between">
-            <h3 className="text-lg font-extrabold text-black-700">{store_name}</h3>{" "}
-            {pathName == "/wishList" && (
-              // <WishButton is_wish={true} user_id="imUser" store_id={store_id} />
-              <button
-                onClick={(e) => {
-                  e.preventDefault() // preventDefault 추가
-                  e.stopPropagation()
-                }}
-                className=" absolute left-80 p-2 rounded-full"
-              >
-                <SaveHeartNavFillIcon />
-              </button>
-            )}
+            <h3 className="text-lg font-extrabold text-black-700">{store_name}</h3>
           </div>
           <div className="flex items-center gap-1 mt-1">
             <RatingStarIcon />
@@ -54,6 +41,18 @@ export default function RestaurantCard({
           </div>
           <CouponBadge amount={discount_price} />
         </div>
+        {pathName == "/wishList" && (
+          // <WishButton is_wish={true} user_id="imUser" store_id={store_id} />
+          <button
+            onClick={(e) => {
+              e.preventDefault() // preventDefault 추가
+              e.stopPropagation()
+            }}
+            className="relative left-4"
+          >
+            <SaveHeartNavFillIcon />
+          </button>
+        )}
       </div>
     </Link>
   )

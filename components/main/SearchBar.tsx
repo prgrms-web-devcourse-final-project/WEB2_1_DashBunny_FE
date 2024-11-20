@@ -1,14 +1,17 @@
 import InputGlassesIcon from "../icons/iconComponents/InputGlassesIcon"
-
-export default function SearchBar() {
+interface SearchBarProps {
+  height?: "high" | "low"
+  placeholder: string
+}
+export default function SearchBar({ height, placeholder }: SearchBarProps) {
   return (
-    <div className="relative">
+    <div className={`relative ${height === "low" && "px-4"}`}>
       <input
         type="search"
-        placeholder="무엇을 찾으시나요?"
-        className="w-full h-12 pl-6 py-3 rounded-full border border-orange-700 outline-none placeholder-placeholder"
+        placeholder={placeholder}
+        className={`${height === "low" ? "h-10 placeholder:text-xs" : "h-12"} w-full pl-6 py-3 rounded-full border border-orange-700 outline-none placeholder-placeholder placeholder:text-sm font-medium`}
       />
-      <button className="absolute right-7 top-3.5">
+      <button className={`${height === "low" ? "right-8 top-3" : "right-7 top-3.5"} absolute `}>
         <InputGlassesIcon />
       </button>
     </div>
