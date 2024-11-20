@@ -5,7 +5,7 @@ import SaveHeartEmptyIcon from "@/components/icons/iconComponents/SaveHeartEmpty
 import { RestaurantHeader } from "@/components/restaurant/Header"
 import { MenuItem } from "@/components/restaurant/MenuItem"
 import Link from "next/link"
-
+//추가@=> 사진밑에 닿으면 뒤로가기, 가게명, 하트 일렬로 sticky
 export default function RestaurantDetail() {
   return (
     <div className="pb-24">

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import localFont from "next/font/local"
 import "./globals.css"
 import GlobalNavBar from "@/components/common/GlobalNavBar"
+import ReactQueryConfigContext from "@/context/ReactQueryConfigContext"
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -24,7 +25,7 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen overflow-y-auto `}
       >
-        {children}
+        <ReactQueryConfigContext>{children}</ReactQueryConfigContext>
         <GlobalNavBar />
       </body>
     </html>

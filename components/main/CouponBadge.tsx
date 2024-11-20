@@ -25,14 +25,14 @@ export default function CouponBadge({ amount }: CouponBadgeProps) {
   const style = getCouponStyle(amount)
 
   return (
-    <p
+    <span
       className={`
-          font-semibold text-nowrap mt-1 py-1 px-3 
+          inline-block font-semibold mt-2 py-1 px-3 
           ${style.background} ${style.text} 
           rounded-full text-xs h-7
         `}
     >
       {amount.toLocaleString()}원 쿠폰
-    </p>
+    </span>
   )
 }

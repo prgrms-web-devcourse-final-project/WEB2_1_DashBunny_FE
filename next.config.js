@@ -15,6 +15,11 @@ const nextConfig = {
     })
     return config
   },
+  images: {
+    dangerouslyAllowSVG: true,
+
+    domains: ["placehold.co"],
+  },
 }
 
 module.exports = nextConfig
