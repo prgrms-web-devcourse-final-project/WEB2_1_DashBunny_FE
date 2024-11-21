@@ -1,6 +1,21 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { fetchUsers } from "@/lib/api";
+import { UserType } from "@/types/user";
 
 const User = () => {
+  const [users, setUsers] = useState<UserType[]>();
+
+  useEffect(() => {
+    fetchUsers().then((data) => {
+      //고객 불러오기 api
+      console.log(data);
+      setUsers(data);
+    });
+  }, []);
+
   return (
     <>
       <section>
@@ -26,7 +41,7 @@ const User = () => {
           <div className="flex items-center">
             <p className="font-bold text-2xl">DashBunny Members</p>
             <p className="border shadow rounded-xl w-20 text-center font-semibold text-gray-500 ml-auto">
-              {45} users
+              {users && users.length} users
             </p>
           </div>
           <p className="text-gray-400 font-semibold">
@@ -34,11 +49,27 @@ const User = () => {
           </p>
         </section>
         <section className="border-y flex p-5 h-10 items-center text-gray-400 font-semibold">
-          <p className="w-1/3">Name</p>
-          <p className="w-1/4">Role</p>
-          <p className="w-1/4">Email address</p>
-          <p>Registration Date</p>
+          <p className="w-1/6 text-center">Name</p>
+          <p className="w-1/4 text-center">Role</p>
+          <p className="w-1/4 text-center">Email address</p>
+          <p className="w-1/6 text-center">Registration Date</p>
         </section>
+        {users &&
+          users.map((value, i) => (
+            <section key={i} className="border-b p-5 flex items-center h-16">
+              <div className="w-1/6 flex flex-col items-center">
+                <p className="font-bold text-md">{value.name}</p>
+                <p className="text-sm text-gray-500">{value.phone}</p>
+              </div>
+              <div className="w-1/4 flex justify-center">
+                <p className="border rounded-xl shadow p-2 text-sm font-semibold">
+                  {value.role}
+                </p>
+              </div>
+              <p className="w-1/4 text-center">{value.email}</p>
+              <p className="w-1/6 text-center">{value.createdDate}</p>
+            </section>
+          ))}
       </main>
     </>
   );

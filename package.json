@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sentry/nextjs": "^8",
     "@toast-ui/react-editor": "^3.2.3",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
