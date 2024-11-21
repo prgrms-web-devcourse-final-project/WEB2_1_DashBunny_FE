@@ -18,6 +18,8 @@ export default {
           700: "#384250",
           500: "#667085",
           400: "#9DA4AE",
+          300: "#EEECEC",
+          200: "#F9FAFB",
         },
         placeholder: "B6B3B3",
         // 브라운

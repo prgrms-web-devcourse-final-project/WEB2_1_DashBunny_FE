@@ -11,7 +11,6 @@ export default function OrderList() {
   }
   return (
     <section className=" mt-4">
-      <Divider />
       {orderList!.map((order, index) => (
         <>
           <OrderCard key={index} {...order} />

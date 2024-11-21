@@ -31,7 +31,7 @@ export default function RestaurantCard({
           <div className=" flex items-center justify-between">
             <h3 className="text-lg font-extrabold text-black-700">{store_name}</h3>
           </div>
-          <div className="flex items-center gap-1 mt-1">
+          <div className="flex items-center gap-1 ">
             <RatingStarIcon />
             <span className="text-lg font-semibold text-black-700">{rating}</span>
             <span className="text-black-500 text-sm font-medium">({review_count})</span>
@@ -48,7 +48,7 @@ export default function RestaurantCard({
               e.preventDefault() // preventDefault 추가
               e.stopPropagation()
             }}
-            className="relative left-4"
+            className="absolute left-[340px] top-9"
           >
             <SaveHeartNavFillIcon />
           </button>

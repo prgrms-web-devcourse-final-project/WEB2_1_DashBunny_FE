@@ -1,8 +1,6 @@
 "use client"
 import { useGetWishList } from "@/app/wishList/hooks/useGetWishList"
-import React from "react"
 import RestaurantCard from "../main/RestaurantCard"
-import { div } from "framer-motion/client"
 import Divider from "../common/Divider"
 
 export default function WishRestaurantList() {

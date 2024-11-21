@@ -27,7 +27,7 @@ export default function CouponBadge({ amount }: CouponBadgeProps) {
   return (
     <span
       className={`
-          inline-block font-semibold mt-2 py-1 px-3 
+          inline-block font-semibold mt-1 py-1 px-3 
           ${style.background} ${style.text} 
           rounded-full text-xs h-7
         `}

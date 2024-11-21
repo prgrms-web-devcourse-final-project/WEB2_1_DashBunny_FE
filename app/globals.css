@@ -5,5 +5,5 @@
 html,
 body {
   height: 100%;
-  font-family: Pretendard;
+  font-family: var(--font-pretendard);
 }

@@ -1,6 +1,5 @@
 "use client"
 import { useGetRestaurantListByCategory } from "@/app/(main)/main/hooks/useGetRestaurantListByCategory"
-import React from "react"
 import RestaurantCard from "./RestaurantCard"
 
 export default function RestaurantList() {
