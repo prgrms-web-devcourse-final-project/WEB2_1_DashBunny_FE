@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const Navigation = () => {
   const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500`; //메뉴 레이아웃 잡기
-  const SelectMenu = `flex items-center p-1 w-full my-1 h-16 rounded-xl bg-white font-semibold text-gray-500 border-2 border-BunnyOrange `; //선택시 레이아웃
+  const SelectMenu = `flex items-center p-1 w-full my-1 h-16 rounded-xl bg-white font-semibold text-gray-500 border-2 `; //선택시 레이아웃
   const Line = "bg-gray-200 h-0.5 w-[230px] my-5"; //라인
   const ImageProp = "object-contain mx-3";
   const pathname = usePathname();
