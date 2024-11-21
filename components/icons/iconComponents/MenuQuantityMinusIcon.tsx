@@ -1,4 +1,4 @@
-import MenuQuantityMinus from "../svg/MenuQuantityMinus.svg"
+import Minus from "../svg/Minus.svg"
 export default function MenuQuantityMinusIcon() {
-  return <MenuQuantityMinus className=" w-[14px] h-[14px]" />
+  return <Minus className=" w-[18px] h-[18px]" />
 }

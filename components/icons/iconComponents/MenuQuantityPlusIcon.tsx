@@ -1,4 +1,4 @@
-import MenuQuantityPlus from "../svg/MenuQuantityPlus.svg"
+import Plus from "../svg/Plus.svg"
 export default function MenuQuantityPlusIcon() {
-  return <MenuQuantityPlus className=" w-[14px] h-[14px]" />
+  return <Plus className=" w-[18px] h-[18px]" />
 }
