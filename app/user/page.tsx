@@ -7,14 +7,19 @@ import { UserType } from "@/types/user";
 
 const User = () => {
   const [users, setUsers] = useState<UserType[]>();
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchUsers().then((data) => {
       //고객 불러오기 api
-      console.log(data);
       setUsers(data);
+      setLoading(false);
     });
   }, []);
+
+  if (Loading) {
+    <div>로딩중...</div>;
+  }
 
   return (
     <>
@@ -36,7 +41,7 @@ const User = () => {
           </div>
         </div>
       </section>
-      <main className="border h-[80vh] mt-5 rounded-2xl">
+      <main className="border min-h-[80vh] mt-5 rounded-2xl">
         <section className="p-6">
           <div className="flex items-center">
             <p className="font-bold text-2xl">DashBunny Members</p>
@@ -49,14 +54,19 @@ const User = () => {
           </p>
         </section>
         <section className="border-y flex p-5 h-10 items-center text-gray-400 font-semibold">
+          <p className="w-12 text-center">ID</p>
           <p className="w-1/6 text-center">Name</p>
           <p className="w-1/4 text-center">Role</p>
           <p className="w-1/4 text-center">Email address</p>
           <p className="w-1/6 text-center">Registration Date</p>
         </section>
-        {users &&
+        {Loading ? (
+          <div className="text-center">로딩중..</div>
+        ) : (
+          users &&
           users.map((value, i) => (
             <section key={i} className="border-b p-5 flex items-center h-16">
+              <p className="text-sm text-center w-12">{i + 1}</p>
               <div className="w-1/6 flex flex-col items-center">
                 <p className="font-bold text-md">{value.name}</p>
                 <p className="text-sm text-gray-500">{value.phone}</p>
@@ -69,7 +79,8 @@ const User = () => {
               <p className="w-1/4 text-center">{value.email}</p>
               <p className="w-1/6 text-center">{value.createdDate}</p>
             </section>
-          ))}
+          ))
+        )}
       </main>
     </>
   );
