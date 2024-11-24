@@ -53,12 +53,12 @@ export default function GlobalNavBar() {
 
   // menu에 있는 경로들과 현재 경로 비교
   const shouldShowNav = menu.some((item) => item.href === pathName)
-  if (!shouldShowNav) return null
+  if (!shouldShowNav && pathName !== "/") return null
 
   return (
     <div className="bg-white fixed bottom-0 max-w-[400px] w-full mx-auto h-[60px]">
       <nav>
-        <ul className="grid grid-cols-5 w-full border-t border-gray-200">
+        <ul className="grid grid-cols-5 w-full border-x border-t border-gray-200">
           {menu.map((item) => (
             <li key={item.href} className="flex flex-col items-center justify-center py-2">
               <Link href={item.href} className="flex flex-col items-center">

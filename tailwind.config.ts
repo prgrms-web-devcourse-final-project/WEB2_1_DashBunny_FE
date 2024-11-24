@@ -45,6 +45,7 @@ export default {
       fontSize: {
         // Logo
         logo: "60px", // 로고
+        coupon: "32px",
         mainLogo: "28px",
         // Heading
         h1: "25px", // 큰 제목

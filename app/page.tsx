@@ -1,14 +1,20 @@
-import Image from "next/image"
+import AddressBar from "@/components/main/AddressBar"
+import CategoryNav from "@/components/main/CategoryNav"
+import Header from "@/components/main/Header"
+import SearchBar from "@/components/main/SearchBar"
+import FoodCategoryList from "./src/components/FoodCategoryList"
+import BottomBannerItem from "./src/components/BottomBannerItem"
 
 export default function Home() {
   return (
-    <>
-      <Image
-        width={550}
-        height={708}
-        alt=""
-        src="https://product-image.kurly.com/hdims/resize/%5E%3E720x%3E936/cropcenter/720x936/quality/85/src/product/image/a4400043-79de-4ab7-9fdc-7f40eee8e347.jpg"
-      />
-    </>
+    <main>
+      <div className="p-5 ">
+        <Header />
+        <AddressBar />
+        <SearchBar placeholder="무엇을 찾으시나요?" />
+        <FoodCategoryList />
+      </div>
+      <BottomBannerItem />
+    </main>
   )
 }
