@@ -13,9 +13,11 @@ export default function LoginPage() {
           카카오로 로그인
         </button>
 
-        <button className="w-[342px] h-14 rounded-full bg-white border border-gray-300 text-black font-bold text-md">
-          휴대폰 번호로 로그인
-        </button>
+        <Link href="/auth/sign-in/phone-sign-in">
+          <div className="w-[342px] h-14 rounded-full bg-white border border-gray-300 text-black font-bold text-md flex items-center justify-center">
+            휴대폰 번호로 로그인
+          </div>
+        </Link>
       </div>
 
       <Link href="/auth/sign-up">

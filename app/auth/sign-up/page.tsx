@@ -17,7 +17,7 @@ export default function LoginPage() {
         </Link>
 
         <Link
-          href="/auth/sign-up/phone-signin"
+          href="/auth/sign-up/phone-signup"
           className="w-[342px] h-14 rounded-full bg-white border border-gray-300 text-black font-bold text-md  flex items-center justify-center"
         >
           <p>휴대폰 번호로 회원가입</p>

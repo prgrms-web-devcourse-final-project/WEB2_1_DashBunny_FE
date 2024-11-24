@@ -27,14 +27,16 @@ export default function InfoForm({
       </label>
       <input
         type="text"
-        className={`w-full ${label === "" && "text-center "} p-4 border rounded-md ${touched && errorMessage && "border-red-500"} ${label === "" && "px-2"}`}
+        className={`w-full outline-none ${label === "" && "text-center "} p-4 border rounded-md ${touched && errorMessage && "border-red-500"} ${label === "" && "px-2"}`}
         maxLength={maxLength}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
         {...props}
       />
-      {touched && errorMessage && <p className="text-red-500 text-xs absolute">{errorMessage}</p>}
+      {touched && errorMessage && (
+        <p className="text-red-500 text-nowrap text-xs absolute overflow-visible">{errorMessage}</p>
+      )}
     </div>
   )
 }

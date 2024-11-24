@@ -39,21 +39,15 @@ export default function UserInfoForm() {
 
   return (
     <div className="p-6 flex flex-col h-full">
-      <h1 className="text-2xl font-bold mb-6">
+      <h1 className="text-2xl font-bold mb-6 whitespace-pre-wrap">
         {step === 1
-          ? "이름을 입력해주세요"
+          ? "이름을\n입력해주세요"
           : step === 2
-            ? "생년월일을 입력해주세요"
+            ? "생년월일포함\n앞 7자리를 입력해주세요"
             : step === 3
-              ? "핸드폰 번호를 입력해주세요"
-              : ""}
+              ? "휴대폰 번호를\n입력해주세요"
+              : "정보가 맞다면\n인증하기 버튼을 눌러주세요"}
       </h1>
-      {step >= 4 && (
-        <h1 className="text-2xl font-bold mb-6">
-          정보가 맞다면 <br />
-          인증하기 버튼을 눌러주세요
-        </h1>
-      )}
 
       <form onSubmit={handleSubmit} className="h-full">
         <div className="flex flex-col gap-2 mb-4">
