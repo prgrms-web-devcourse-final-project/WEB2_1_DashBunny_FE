@@ -7,14 +7,14 @@ import BottomBannerItem from "./src/components/BottomBannerItem"
 
 export default function Home() {
   return (
-    <main>
-      <div className="p-5 ">
+    <>
+      <main className="p-5 ">
         <Header />
         <AddressBar />
         <SearchBar placeholder="무엇을 찾으시나요?" />
         <FoodCategoryList />
-      </div>
+      </main>
       <BottomBannerItem />
-    </main>
+    </>
   )
 }

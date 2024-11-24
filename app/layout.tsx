@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
         className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen overflow-y-auto `}
       >

@@ -4,8 +4,9 @@ import { useState, useEffect } from "react"
 import { Address } from "../../../address-search/src/components/AddressSearchInput"
 import ColorButton from "@/components/common/ColorButton"
 import { useAddressStore } from "@/shared/store/useAddressStore"
-import { SearchAddress, useManageAddress } from "../hooks/useManageAddress"
+import { useManageAddress } from "../hooks/useManageAddress"
 import { useRouter } from "next/navigation"
+import { AddedAddress } from "../model/addedAddress"
 
 export default function DetailAddressInputForm() {
   const router = useRouter()
@@ -22,13 +23,14 @@ export default function DetailAddressInputForm() {
   const saveAddressHandler = () => {
     if (!selectedAddress) return
 
-    const newAddress = {
-      marker: "Sub" as const,
+    const newAddress: AddedAddress = {
+      marker: "Sub",
       addressData: {
         roadAddress: selectedAddress.roadAddress,
         jibunAddress: selectedAddress.jibunAddress,
         detailAddress,
       },
+      id: Date.now().toString(),
     }
     saveAddress(newAddress)
     router.push("/address") // 저장 후 이동할 페이지
