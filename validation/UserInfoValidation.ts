@@ -1,13 +1,8 @@
 import { UserInformation } from "@/types/userInfo"
 
-export default function validateLogin({
-  carrier,
-  name,
-  phoneNumber,
-  birthNum,
-  genNum,
-}: UserInformation) {
+export default function validateLogin({ name, phoneNumber, birth, genNum }: UserInformation) {
   const birthRegex = /^([0-9][0-9])(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/
+  //정규식을 만족하는지, 100년 이내인지 체크
   const isValidBirth = (birth: string) => {
     if (!birthRegex.test(birth)) return false
 
@@ -20,35 +15,31 @@ export default function validateLogin({
 
     return true
   }
-  const carrierRegex = /^(skt|kt|lg u\+|skt 알뜰폰|kt 알뜰폰|lg u\+ 알뜰폰)$/
+
   const numberRegex = /^[1-4]$/
   const phoneRegex = /^010\d{8}$/
   const nameRegex = /^[가-힣]{2,4}|[a-zA-Z]{2,10}$/
   type ValidationErrors = {
     [K in keyof UserInformation]: string
   }
+  //유저정보 에러 초기값 객체. 에러가 없으면 키의 값은 빈문자열
   const errors: ValidationErrors = {
-    birthNum: "",
+    birth: "",
     genNum: "",
     phoneNumber: "",
-    carrier: "",
     name: "",
   }
 
-  if (!isValidBirth(birthNum.toString())) {
-    errors.birthNum = "올바른 생년월일을 입력하세요"
+  if (!isValidBirth(birth.toString()) || !numberRegex.test(genNum)) {
+    errors.birth = "올바른 생년월일을 입력하세요"
   }
 
-  if (!numberRegex.test(genNum.toString())) {
-    errors.genNum = "올바른 성별을 선택하세요"
+  if (!numberRegex.test(genNum)) {
+    errors.genNum = " "
   }
 
   if (!phoneRegex.test(phoneNumber)) {
     errors.phoneNumber = "올바른 휴대폰 번호를 입력하세요"
-  }
-
-  if (!carrierRegex.test(carrier)) {
-    errors.carrier = "통신사를 선택하세요"
   }
 
   if (!nameRegex.test(name)) {

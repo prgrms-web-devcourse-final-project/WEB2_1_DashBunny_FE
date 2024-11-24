@@ -7,8 +7,8 @@ export default function layout({
 }>) {
   return (
     <>
-      <Header title="주문하기" previousRoute="/main" />
-      {children}
+      <Header title="주소 설정" previousRoute="/main" />
+      <div className="px-5">{children}</div>
     </>
   )
 }

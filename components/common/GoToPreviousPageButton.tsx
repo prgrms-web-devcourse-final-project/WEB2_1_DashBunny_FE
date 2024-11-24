@@ -8,7 +8,7 @@ type GoToPreviousPageButtonProps = {
 export default function GoToPreviousPageButton({ previousRoute }: GoToPreviousPageButtonProps) {
   const router = useRouter()
   return (
-    <button type="button" onClick={() => router.back()} className="absolute left-4">
+    <button type="button" onClick={() => router.push(previousRoute)} className="absolute left-4">
       <PreviousPageArrowIcon />
     </button>
   )

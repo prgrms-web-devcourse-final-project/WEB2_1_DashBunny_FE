@@ -25,8 +25,8 @@ export default function OrderCard({
         />
         <div className="w-full justify-between flex items-center">
           <div>
-            <h3 className="font-semibold text-black-700 text-h2">{storeName}</h3>
-            <p className="text-black-500 mt-1 text-sm">{paymentPrice.toLocaleString()}원</p>
+            <h3 className="font-semibold text-black-700 text-[19px]">{storeName}</h3>
+            <p className="text-black-600 mt-1 text-lg">{paymentPrice.toLocaleString()}원</p>
           </div>
           <GoToDetailPageArrowIcon />
         </div>

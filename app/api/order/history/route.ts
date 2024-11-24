@@ -1,6 +1,6 @@
 import { OrderHistory } from "@/app/orderList/model/order"
 
-export const dummyOrderHistory: OrderHistory[] = [
+const dummyOrderHistory: OrderHistory[] = [
   {
     orderDate: "9. 16 (월)",
     orderStatus: "배달중",

@@ -7,3 +7,15 @@ body {
   height: 100%;
   font-family: var(--font-pretendard);
 }
+@layer utilities {
+  /* 크롬, 사파리, 오페라, 엣지 */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* IE, 파이어폭스 */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE, 엣지 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
+}

@@ -38,6 +38,9 @@ export default {
           700: "#388058",
           200: "#E6FEF0",
         },
+        gray: {
+          200: "#F5F5F5",
+        },
       },
       fontSize: {
         // Logo
