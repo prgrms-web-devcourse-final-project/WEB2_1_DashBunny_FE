@@ -1,13 +1,28 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { ShopType } from "@/types/types";
+import { fetchShop } from "@/lib/api";
 
 const Shop = () => {
-  const Line = "bg-gray-200 h-0.5 w-full my-5"; //라인
   const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl"; //버튼 css
-  const FontStyle = "text-gray-500 font-semibold w-1/6 text-center";
+  const FontStyle =
+    "text-gray-500 font-semibold w-1/6 flex items-center justify-center";
+
+  const [shop, setShop] = useState<ShopType[]>();
+  const [Loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchShop().then((data) => {
+      setShop(data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <>
-      <div className="w-full flex">
+      <div className="w-full flex ">
         <button className={ButtonProp}>영업중</button>
         <button className={ButtonProp}> 영업종료</button>
         <button className={ButtonProp}> 등록신청</button>
@@ -29,6 +44,7 @@ const Shop = () => {
       <section className="flex flex-col my-10 h-full">
         <main>
           <div className="w-full bg-gray-100 h-12 border border-b-4 rounded-t-2xl flex items-center p-2">
+            <p className={`${FontStyle} w-16`}>ID</p>
             <p className={FontStyle}>가게 정보</p>
             <p className={FontStyle}> 영업 정보</p>
             <p className={FontStyle}> 가게 소개</p>
@@ -36,8 +52,43 @@ const Shop = () => {
             <p className={FontStyle}> 등록 상태</p>
             <p className={FontStyle}> 등록/폐업 날짜</p>
           </div>
-          <div className="w-full border h-[65vh]">
-            {/* 데이터가 들어와서 렌더링 되는곳  */}
+          <div className="w-full border min-h-[65vh]">
+            {Loading ? (
+              <div>데이터 불러오는중..</div>
+            ) : (
+              shop?.map((shops, i) => (
+                <>
+                  <div
+                    key={shops.storeId}
+                    className="flex border-b-2 p-2 trasition hover:bg-gray-200 "
+                  >
+                    <p className={`${FontStyle} w-16`}>{i + 1}</p>
+                    <div className="flex w-1/6 items-center justify-center">
+                      <Image
+                        src={shops.storeLogo}
+                        alt="storeLogo"
+                        width={70}
+                        height={70}
+                        className="object-cover rounded-full mx-3"
+                      />
+                      <div>
+                        <p className="font-bold">{shops.storeName}</p>
+                        <p className="text-gray-400 font-semibold">
+                          {shops.contactNumber}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-1/6 flex items-center justify-center">
+                      <div className="w-4  h-4 rounded-full bg-green-400"></div>
+                    </div>
+                    <p className={FontStyle}>{shops.description}</p>
+                    <p className={FontStyle}>{shops.address}</p>
+                    <p className={FontStyle}>{shops.storeStatus}</p>
+                    <p className={FontStyle}>{shops.approvedDate}</p>
+                  </div>
+                </>
+              ))
+            )}
           </div>
         </main>
       </section>

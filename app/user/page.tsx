@@ -1,25 +1,12 @@
-"use client";
-
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { fetchUsers } from "@/lib/api";
-import { UserType } from "@/types/user";
+import { UserType } from "@/types/types";
 
-const User = () => {
-  const [users, setUsers] = useState<UserType[]>();
-  const [Loading, setLoading] = useState(true);
+const User = async () => {
+  const users: UserType[] = await fetchUsers();
 
-  useEffect(() => {
-    fetchUsers().then((data) => {
-      //고객 불러오기 api
-      setUsers(data);
-      setLoading(false);
-    });
-  }, []);
-
-  if (Loading) {
-    <div>로딩중...</div>;
-  }
+  const userBox = "border-b p-5 flex items-center h-16";
+  const userBox2 = "border-b p-5 flex items-center h-16 bg-gray-100";
 
   return (
     <>
@@ -60,12 +47,9 @@ const User = () => {
           <p className="w-1/4 text-center">Email address</p>
           <p className="w-1/6 text-center">Registration Date</p>
         </section>
-        {Loading ? (
-          <div className="text-center">로딩중..</div>
-        ) : (
-          users &&
+        {users &&
           users.map((value, i) => (
-            <section key={i} className="border-b p-5 flex items-center h-16">
+            <div key={i} className={i % 2 === 0 ? userBox : userBox2}>
               <p className="text-sm text-center w-12">{i + 1}</p>
               <div className="w-1/6 flex flex-col items-center">
                 <p className="font-bold text-md">{value.name}</p>
@@ -78,9 +62,8 @@ const User = () => {
               </div>
               <p className="w-1/4 text-center">{value.email}</p>
               <p className="w-1/6 text-center">{value.createdDate}</p>
-            </section>
-          ))
-        )}
+            </div>
+          ))}
       </main>
     </>
   );
