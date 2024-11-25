@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import RatingStarIcon from "../icons/iconComponents/RatingStarIcon"
 import CouponBadge from "./CouponBadge"

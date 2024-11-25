@@ -7,6 +7,7 @@ import useForm from "@/hooks/useForm"
 import { UserInformation } from "@/types/userInfo"
 import validateLogin from "@/validation/UserInfoValidation"
 import InfoForm from "../common/InfoForm"
+import Link from "next/link"
 
 export default function UserInfoForm() {
   //@=> 예외처리 더 필요함. 엔터 치면 다음 스텝으로 넘어가벼려서..
@@ -125,12 +126,13 @@ export default function UserInfoForm() {
             />
           </AnimatePresence>
         </div>
-
-        <ColorButton
-          onClick={() => null}
-          size="large"
-          text={step === 4 ? "본인 인증하기" : "확인"}
-        />
+        <Link href="/auth/message-authentication">
+          <ColorButton
+            onClick={() => null}
+            size="large"
+            text={step === 4 ? "본인 인증하기" : "확인"}
+          />
+        </Link>
       </form>
     </div>
   )

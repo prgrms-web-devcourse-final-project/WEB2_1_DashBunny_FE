@@ -1,12 +1,11 @@
-import UserInfoForm from "@/components/auth/UserInfoForm"
 import Header from "@/components/common/Header"
-import React from "react"
+import MessageAuthenticationForm from "./MessageAuthenticationForm"
 
 export default function page() {
   return (
     <>
       <Header previousRoute="/auth/sign-up" type="exit" />
-      <UserInfoForm />
+      <MessageAuthenticationForm />
     </>
   )
 }

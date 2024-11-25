@@ -1,15 +1,22 @@
+// GoToPreviousPageButton.tsx
 "use client"
 import { useRouter } from "next/navigation"
-import React from "react"
-import PreviousPageArrowIcon from "../icons/iconComponents/PreviousPageArrow"
+import React, { ReactNode } from "react"
+
 type GoToPreviousPageButtonProps = {
   previousRoute: string
+  icon: ReactNode
 }
-export default function GoToPreviousPageButton({ previousRoute }: GoToPreviousPageButtonProps) {
+
+export default function GoToPreviousPageButton({
+  previousRoute,
+  icon,
+}: GoToPreviousPageButtonProps) {
   const router = useRouter()
+
   return (
     <button type="button" onClick={() => router.push(previousRoute)} className="absolute left-4">
-      <PreviousPageArrowIcon />
+      {icon}
     </button>
   )
 }
