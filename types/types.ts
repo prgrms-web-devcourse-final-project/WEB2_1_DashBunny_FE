@@ -22,3 +22,18 @@ export interface ShopType {
   location: string;
   approvedDate: string; //원래는 Date임
 }
+
+export interface CouponType {
+  couponId: number;
+  couponName: string;
+  couponType: string;
+  discountPrice: number;
+  discountType: string;
+  minOrderPrice: number;
+  maximumDiscount: number;
+  maxIssuance: null | number;
+  expiredDate: string;
+  downloadStartDate: string;
+  couponStatus: string;
+  couponDescription: string;
+}
