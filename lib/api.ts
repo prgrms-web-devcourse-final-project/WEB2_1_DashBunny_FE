@@ -7,3 +7,8 @@ export async function fetchShop() {
   const response = await fetch("/api/shop");
   return response.json();
 }
+
+export async function fetchCoupon() {
+  const response = await fetch("http://localhost:3000/api/coupon");
+  return response.json();
+}

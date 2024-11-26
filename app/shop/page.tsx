@@ -13,6 +13,7 @@ const Shop = () => {
 
   const [shop, setShop] = useState<ShopType[]>();
   const [Loading, setLoading] = useState(true);
+  const [Modal, setModal] = useState(false);
 
   useEffect(() => {
     fetchShop().then((data) => {
@@ -20,6 +21,10 @@ const Shop = () => {
       setLoading(false);
     });
   }, []);
+
+  const ModalHandler = () => {
+    setModal((prev) => !prev);
+  };
 
   return (
     <>
@@ -43,7 +48,7 @@ const Shop = () => {
       </div>
 
       <section className="flex flex-col my-10 h-full static">
-        {/* <ShopModal /> */}
+        {Modal && <ShopModal ModalHandler={ModalHandler} />}
         <main>
           <div className="w-full bg-gray-100 h-12 border border-b-4 rounded-t-2xl flex items-center p-2">
             <p className={`${FontStyle} w-16`}>ID</p>
@@ -62,6 +67,7 @@ const Shop = () => {
                 <div
                   key={i}
                   className="flex border-b-2 p-2 trasition hover:bg-gray-200 "
+                  onClick={() => ModalHandler()}
                 >
                   <p className={`${FontStyle} w-16`}>{i + 1}</p>
                   <div className="flex w-1/6 items-center justify-center">

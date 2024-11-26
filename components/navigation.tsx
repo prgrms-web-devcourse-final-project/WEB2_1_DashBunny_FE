@@ -3,34 +3,52 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react"; // useState import 추가
+import { useState } from "react";
 
 const Navigation = () => {
-  const [isNavVisible, setIsNavVisible] = useState(true); // 네비게이션 표시 여부 상태 추가
-  const MenuLayout =
-    "flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500"; //메뉴 레이아웃 잡기
-  const SelectMenu =
-    "flex items-center p-1 w-full my-1 h-16 rounded-xl bg-white font-semibold text-gray-500 border-2 "; //선택시 레이아웃
+  const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500`; //메뉴 레이아웃 잡기
+  const SelectMenu = `flex items-center p-1 w-full my-1 h-16 rounded-xl bg-white font-semibold text-gray-500 border-2 `; //선택시 레이아웃
   const Line = "bg-gray-200 h-0.5 w-[230px] my-5"; //라인
   const ImageProp = "object-contain mx-3";
   const pathname = usePathname();
 
-  // 네비게이션 보이기/숨기기 토글 함수
-  const toggleNavVisibility = () => {
-    setIsNavVisible((prev) => !prev);
+  const [Nav, setNav] = useState(true);
+
+  const NavOn = () => {
+    setNav((prev) => !prev);
   };
 
   return (
-    <div className="static">
-      <button
-        onClick={toggleNavVisibility} // 버튼 클릭 시 토글 함수 실행
-        className="p-2 bg-gray-200 rounded-xl mb-4 bottom-[10%] absolute"
-      >
-        {isNavVisible ? "네비게이션 숨기기" : "네비게이션 보이기"}
-      </button>
-
-      {isNavVisible && ( // 네비게이션이 보이는 상태일 때만 표시
-        <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl min-h-screen realtive">
+    <div className="flex flex-col static min-h-screen">
+      {Nav ? (
+        <button
+          className="left-[180px] top-[10px] absolute border p-1 rounded-xl"
+          onClick={() => NavOn()}
+        >
+          <Image
+            src="/Icon/sidebar.svg"
+            alt="sidebar Icon"
+            width={20}
+            height={20}
+            className={ImageProp}
+          />
+        </button>
+      ) : (
+        <button
+          className="left-[10px] top-[10px] absolute border p-1 rounded-xl"
+          onClick={() => NavOn()}
+        >
+          <Image
+            src="/Icon/sidebar.svg"
+            alt="sidebar Icon"
+            width={20}
+            height={20}
+            className={ImageProp}
+          />
+        </button>
+      )}
+      {Nav && (
+        <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl h-full realtive">
           <header className="text-3xl font-bold mb-5 text-BunnyOrange">
             DASH
           </header>
