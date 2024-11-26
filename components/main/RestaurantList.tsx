@@ -6,10 +6,10 @@ export default function RestaurantList() {
   const { data: restaurants, isLoading, isError } = useGetRestaurantListByCategory()
   if (isLoading) return <div>loading</div>
   return (
-    <section className="">
+    <>
       {restaurants!.map((restaurant, index) => (
-        <RestaurantCard key={index} {...restaurant} />
+        <RestaurantCard key={restaurant.storeId} {...restaurant} />
       ))}
-    </section>
+    </>
   )
 }

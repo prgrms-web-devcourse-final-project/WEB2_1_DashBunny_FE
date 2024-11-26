@@ -2,7 +2,7 @@
 import SearchGlassesGrayIcon from "@/components/icons/iconComponents/SearchGlassesGrayIcon"
 import React, { useState } from "react"
 import AddressSearchResults from "./AddressSearchResults"
-import { useGetRestaurantListByCategory } from "../hooks/useGetRestaurantListByCategory"
+import { useGetAddressListByKeyword } from "../hooks/useGetAddressListByKeyword"
 import Divider from "@/components/common/Divider"
 import SearchGuide from "./SearchGuide"
 import { useRouter } from "next/navigation"
@@ -15,8 +15,8 @@ export interface Address {
 export default function AddressSearchInput() {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("")
-
-  const { data, isError, isLoading } = useGetRestaurantListByCategory(searchTerm)
+  //@=>주소검색debounce
+  const { data, isError, isLoading } = useGetAddressListByKeyword(searchTerm)
   const setSelectedAddress = useAddressStore((state) => state.setSelectedAddress)
   const selectedAddress = useAddressStore((state) => state.selectedAddress)
 

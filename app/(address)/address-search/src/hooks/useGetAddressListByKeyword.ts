@@ -2,7 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { getJusoApi } from "../api/getJusoApi"
 import { JusoApiResponse } from "../model/addressResponse"
 
-export const useGetRestaurantListByCategory = (
+export const useGetAddressListByKeyword = (
   keyword: string,
 ): UseQueryResult<JusoApiResponse, Error> => {
   console.log(keyword)

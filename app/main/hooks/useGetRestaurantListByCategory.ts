@@ -1,8 +1,10 @@
-import { Store } from "@/shared/model/restaurant"
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { getRestaurantListByCategory } from "../api/restaurantList"
 
-export const useGetRestaurantListByCategory = (): UseQueryResult<Store[], Error> => {
+export const useGetRestaurantListByCategory = (): UseQueryResult<
+  UsersStoreListResponseDto[],
+  Error
+> => {
   return useQuery({
     queryKey: ["restaurantList"],
     queryFn: getRestaurantListByCategory,

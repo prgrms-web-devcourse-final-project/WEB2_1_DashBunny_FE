@@ -6,9 +6,9 @@ interface ApiError {
   message: string
   code: string
 }
-export const getWishList = async (): Promise<Store[]> => {
+export const getWishList = async (): Promise<UsersStoreListResponseDto[]> => {
   try {
-    const response = await api.get<Store[]>("/users/wishList")
+    const response = await api.get<UsersStoreListResponseDto[]>("/users/wishList")
     return response.data
   } catch (error) {
     if (axios.isAxiosError(error)) {

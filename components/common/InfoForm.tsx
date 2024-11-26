@@ -9,6 +9,7 @@ interface UserInformation
   errorMessage: string
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   touched?: boolean
+  ref?: React.RefObject<HTMLInputElement>
 }
 export default function InfoForm({
   label,
@@ -18,6 +19,7 @@ export default function InfoForm({
   errorMessage,
   onBlur,
   touched,
+  ref,
   ...props
 }: UserInformation) {
   return (
@@ -32,6 +34,7 @@ export default function InfoForm({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        ref={ref}
         {...props}
       />
       {touched && errorMessage && (

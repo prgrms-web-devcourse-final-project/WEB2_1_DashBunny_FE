@@ -2,8 +2,8 @@
 name: DashBunny_ Issue_Template
 about: 대쉬버니 이슈 생성 시 사용할 템플릿
 title: 이슈번호 - 기능유형 - 기능이름
-labels: ''
-assignees: ''
+labels: ""
+assignees: ""
 ---
 
 ## 만들고자 하는 기능

@@ -20,12 +20,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  //@=> 세션 및 주소 관리를 auth.js로 하자.
   return (
     <html lang="ko">
-      <body
-        className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen overflow-y-auto `}
-      >
-        <ReactQueryConfigContext>{children}</ReactQueryConfigContext>
+      <body className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen`}>
+        <ReactQueryConfigContext>
+          <div className="overflow-auto w-full h-full no-scrollbar">{children}</div>
+        </ReactQueryConfigContext>
         <GlobalNavBar />
       </body>
     </html>

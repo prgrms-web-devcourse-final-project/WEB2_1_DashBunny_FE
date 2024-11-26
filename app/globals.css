@@ -7,15 +7,15 @@ body {
   height: 100%;
   font-family: var(--font-pretendard);
 }
+/* globals.css에 직접 추가하여 테스트 */
 @layer utilities {
-  /* 크롬, 사파리, 오페라, 엣지 */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  /* 더 높은 specificity를 위해 */
+  html .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
   }
 
-  /* IE, 파이어폭스 */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE, 엣지 */
-    scrollbar-width: none; /* 파이어폭스 */
+  html .no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
   }
 }

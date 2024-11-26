@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import { PluginCreator } from "tailwindcss/types/config"
 
 export default {
   content: [
@@ -62,5 +63,18 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: any) {
+      const newUtilities = {
+        ".no-scrollbar::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".no-scrollbar": {
+          "-ms-overflow-style": "none",
+          scrollbarWidth: "none",
+        },
+      }
+      addUtilities(newUtilities)
+    },
+  ],
 } satisfies Config

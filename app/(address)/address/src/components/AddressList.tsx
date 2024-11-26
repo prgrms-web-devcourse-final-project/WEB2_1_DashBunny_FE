@@ -2,11 +2,11 @@
 import MapPinColorIcon from "@/components/icons/iconComponents/MapPinColorIcon"
 import { useManageAddress } from "../../../address-save/src/hooks/useManageAddress"
 import Divider from "@/components/common/Divider"
-import MapPinIcon from "@/components/icons/iconComponents/MapPinIcon"
 import MapPinEmptyIcon from "@/components/icons/iconComponents/MapPinEmptyIcon"
 
 export default function AddressList() {
-  const { address, clearAddress, deleteAddress, updateAddress } = useManageAddress()
+  const { getItem, deleteAddress, updateAddress } = useManageAddress()
+  const address = getItem("address") ?? []
   const sortedAddress = [...address].sort((a, b) => {
     if (a.marker === "Main" && b.marker !== "Main") {
       return -1 // a가 앞에
@@ -17,13 +17,14 @@ export default function AddressList() {
     // 둘 다 Main이 아니거나 둘 다 Main일 때, date 기준으로 정렬
     return new Date(a.id).getTime() - new Date(b.id).getTime()
   })
+
   return (
     <div className="flex flex-col ">
       {sortedAddress.map(({ addressData, id, marker }, index) => (
         <div key={index} className="pt-7">
           <div className="flex items-start gap-2">
             {marker === "Main" ? <MapPinColorIcon /> : <MapPinEmptyIcon />}
-            <div className="border w-[300px]">
+            <div className=" w-[300px]">
               <div className="flex items-center gap-2 relative">
                 <span
                   className={`text-black-900 ${addressData.detailAddress.length > 6 && "whitespace-pre-wrap"} text-md font-semibold`}
