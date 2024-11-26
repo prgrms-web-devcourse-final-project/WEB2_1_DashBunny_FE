@@ -22,14 +22,14 @@ const Navigation = () => {
     <div className="flex flex-col static min-h-screen">
       {Nav ? (
         <button
-          className="left-[10px] top-[10px] absolute border p-1 rounded-xl"
+          className="left-[180px] top-[10px] absolute border p-1 rounded-xl"
           onClick={() => NavOn()}
         >
           <Image
             src="/Icon/sidebar.svg"
             alt="sidebar Icon"
-            width={25}
-            height={25}
+            width={20}
+            height={20}
             className={ImageProp}
           />
         </button>
@@ -41,8 +41,8 @@ const Navigation = () => {
           <Image
             src="/Icon/sidebar.svg"
             alt="sidebar Icon"
-            width={25}
-            height={25}
+            width={20}
+            height={20}
             className={ImageProp}
           />
         </button>
