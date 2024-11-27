@@ -12,10 +12,10 @@ export default function OrderList() {
   return (
     <section className=" mt-4">
       {orderList!.map((order, index) => (
-        <>
+        <div key={index}>
           <OrderCard key={index} {...order} />
           <Divider />
-        </>
+        </div>
       ))}
     </section>
   )

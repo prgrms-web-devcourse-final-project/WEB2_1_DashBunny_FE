@@ -12,12 +12,12 @@ export default function WishRestaurantList() {
     <main className="mt-2">
       <div className="space-y-2">
         {stores!.map((store) => (
-          <>
-            <div key={store.storeId} className="flex flex-col gap-2 pl-5">
+          <div key={store.storeId}>
+            <div className="flex flex-col gap-2 pl-5">
               <RestaurantCard key={store.storeId} {...store} />
             </div>
             <Divider />
-          </>
+          </div>
         ))}
       </div>
     </main>

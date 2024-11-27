@@ -1,8 +1,8 @@
 import Header from "@/components/main/Header"
 import SearchBar from "@/components/main/SearchBar"
-import FoodCategoryList from "./src/components/FoodCategoryList"
 import BottomBannerItem from "./src/components/BottomBannerItem"
 import dynamic from "next/dynamic"
+import FoodCategoryList from "./main/components/FoodeCategoryList"
 
 const DynamicAddressBar = dynamic(() => import("@/components/main/DynamicAddressBar"), {
   ssr: false,

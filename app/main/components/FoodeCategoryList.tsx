@@ -15,12 +15,22 @@ export default function FoodCategoryList() {
 
   // 처음에 보여줄 10개의 상품 박스
   const initialBoxes = tenCategories.map((category, index) => (
-    <FoodCategoryButton key={index} category={category.name} image={category.imageUrl} />
+    <FoodCategoryButton
+      key={index}
+      category={category.name}
+      image={category.imageUrl}
+      searchParamCategory={category.key}
+    />
   ))
 
   // 더보기 클릭 시 추가될 2개의 상품 박스
   const additionalBoxes = restCategories.map((category, index) => (
-    <FoodCategoryButton key={index} category={category.name} image={category.imageUrl} />
+    <FoodCategoryButton
+      key={index}
+      category={category.name}
+      image={category.imageUrl}
+      searchParamCategory={category.key}
+    />
   ))
 
   return (

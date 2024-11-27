@@ -1,4 +1,5 @@
 // useSearchAddress.ts
+import { main } from "framer-motion/client"
 import { AddedAddress } from "../model/addedAddress"
 
 export interface Address {
@@ -12,8 +13,8 @@ export interface SearchAddress {
   addressData: Address
 }
 
+export const LOCAL_STORAGE_KEY = "address"
 export const useManageAddress = () => {
-  const LOCAL_STORAGE_KEY = "address"
   const setItem = (key: string) => (value: AddedAddress[]) => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value))
@@ -31,7 +32,22 @@ export const useManageAddress = () => {
       return null // 에러 발생 시 명시적으로 null 리턴
     }
   }
-
+  const getMainAddress = (): string | null => {
+    try {
+      const addresses = getItem(LOCAL_STORAGE_KEY)
+      if (!addresses) return null
+      const mainAddress = addresses?.find((address) => address.marker === "Main")
+      if (mainAddress) {
+        const realAddress =
+          mainAddress.addressData.roadAddress + mainAddress.addressData.detailAddress
+        return realAddress || null
+      }
+      return null
+    } catch (error) {
+      console.log(error)
+      return null
+    }
+  }
   //주소 저장
   const saveAddress = ({ addressData, id }: AddedAddress) => {
     // 1. api 응답이 아니라면 리턴
@@ -100,5 +116,6 @@ export const useManageAddress = () => {
     deleteAddress,
     updateAddress,
     clearAddress,
+    getMainAddress,
   }
 }

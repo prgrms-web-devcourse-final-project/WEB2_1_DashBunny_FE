@@ -4,10 +4,16 @@ interface FoodCategoryButtonProps {
   category: string
   image: string
   onClick?: () => void
+  searchParamCategory: string
 }
-export default function FoodCategoryButton({ category, image, onClick }: FoodCategoryButtonProps) {
+export default function FoodCategoryButton({
+  category,
+  image,
+  onClick,
+  searchParamCategory,
+}: FoodCategoryButtonProps) {
   return (
-    <Link href={`/main`}>
+    <Link href={`/main/${searchParamCategory}`}>
       <div className=" h-[82px] w-16 flex flex-col items-center justify-between">
         <Image src={image} width={56} height={56} alt={category} />
         <div className="text-[14px] text-black-700 text-center font-bold">{category}</div>

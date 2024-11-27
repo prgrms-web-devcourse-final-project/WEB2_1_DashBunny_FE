@@ -3,6 +3,7 @@ import localFont from "next/font/local"
 import "./globals.css"
 import GlobalNavBar from "@/components/common/GlobalNavBar"
 import ReactQueryConfigContext from "@/context/ReactQueryConfigContext"
+import { AddressInitializer } from "@/context/AddressContext"
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -22,10 +23,12 @@ export default function RootLayout({
 }>) {
   //@=> 세션 및 주소 관리를 auth.js로 하자.
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning={true}>
       <body className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen`}>
         <ReactQueryConfigContext>
-          <div className="overflow-auto w-full h-full no-scrollbar">{children}</div>
+          <AddressInitializer>
+            <div className="overflow-auto w-full h-full no-scrollbar">{children}</div>
+          </AddressInitializer>
         </ReactQueryConfigContext>
         <GlobalNavBar />
       </body>

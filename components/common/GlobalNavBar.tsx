@@ -53,7 +53,7 @@ export default function GlobalNavBar() {
 
   // menu에 있는 경로들과 현재 경로 비교
   const shouldShowNav = menu.some((item) => item.href === pathName)
-  if (!shouldShowNav && pathName !== "/main") return null
+  if (!shouldShowNav && !pathName.includes("/main")) return null
 
   return (
     <div className="bg-white fixed bottom-0 max-w-[400px] w-full mx-auto h-[60px]">

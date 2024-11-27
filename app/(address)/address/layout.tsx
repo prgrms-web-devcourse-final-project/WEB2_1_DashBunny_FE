@@ -7,7 +7,7 @@ export default function layout({
 }>) {
   return (
     <>
-      <Header title="주소 설정" previousRoute="/main" type="prev" />
+      <Header title="주소 설정" previousRoute="/" type="prev" />
       <div className="px-5">{children}</div>
     </>
   )
