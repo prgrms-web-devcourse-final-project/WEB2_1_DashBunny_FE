@@ -80,32 +80,54 @@ const Coupon = () => {
                         <p className="text-xl font-bold mx-2">쿠폰 상세정보</p>
                       </div>
                       <div className="border-4 p-5 flex flex-col items-center justify-center">
-                        <div className="flex gap-40 items-center justify-center">
+                        <div className="flex items-center justify-center gap-10 2xl:gap-40">
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-xl">할인금액</p>
-                            <p>{value.discountPrice}</p>
+                            <p className="font-bold text-sm 2xl:text-xl">
+                              할인금액
+                            </p>
+                            <p className="text-sm 2xl:text-xl">
+                              {value.discountPrice}
+                            </p>
                           </div>
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-xl">최소 주문 금액</p>
-                            <p>{value.minOrderPrice}</p>
+                            <p className="font-bold text-sm 2xl:text-xl">
+                              최소 주문 금액
+                            </p>
+                            <p className="text-sm 2xl:text-xl">
+                              {value.minOrderPrice}
+                            </p>
                           </div>
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-xl">최대 주문 금액</p>
-                            <p>{value.maxIssuance}</p>
+                            <p className="font-bold text-sm 2xl:text-xl">
+                              최대 주문 금액
+                            </p>
+                            <p className="text-sm 2xl:text-xl">
+                              {value.maxIssuance}
+                            </p>
                           </div>
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-xl">발급한도</p>
-                            <p>{value.maxIssuance}</p>
+                            <p className="font-bold text-sm 2xl:text-xl ">
+                              발급한도
+                            </p>
+                            <p className="text-sm 2xl:text-xl">
+                              {value.maxIssuance}
+                            </p>
                           </div>
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-xl">쿠폰 만료일</p>
-                            <p>{value.expiredDate}</p>
+                            <p className="font-bold text-sm 2xl:text-xl">
+                              쿠폰 만료일
+                            </p>
+                            <p className="text-sm 2xl:text-xl">
+                              {value.expiredDate}
+                            </p>
                           </div>
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-xl">
+                            <p className="font-bold text-sm 2xl:text-xl">
                               쿠폰 다운로드 시작일
                             </p>
-                            <p>{value.downloadStartDate}</p>
+                            <p className="text-sm 2xl:text-xl">
+                              {value.downloadStartDate}
+                            </p>
                           </div>
                         </div>
                       </div>

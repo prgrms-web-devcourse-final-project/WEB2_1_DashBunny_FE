@@ -112,7 +112,6 @@ const CreateCoupon = () => {
           </>
         )}
 
-        <div className={Line}></div>
         <div className="flex justify-center items-center my-10">
           <button className="bg-BunnyOrange p-2 w-96 rounded-xl border shadow font-bold">
             쿠폰 발급하기

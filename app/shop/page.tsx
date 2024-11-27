@@ -9,7 +9,7 @@ import ShopModal from "@/components/shop/ShopModal";
 const Shop = () => {
   const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl"; //버튼 css
   const FontStyle =
-    "text-gray-500 font-semibold w-1/6 flex items-center justify-center";
+    "text-gray-500 font-semibold w-1/6 flex items-center justify-center text-sm 2xl:text-base";
 
   const [shop, setShop] = useState<ShopType[]>();
   const [Loading, setLoading] = useState(true);
@@ -79,8 +79,10 @@ const Shop = () => {
                       className="object-cover rounded-full mx-3"
                     />
                     <div>
-                      <p className="font-bold">{shops.storeName}</p>
-                      <p className="text-gray-400 font-semibold">
+                      <p className="font-bold text-sm 2xl:text-base">
+                        {shops.storeName}
+                      </p>
+                      <p className="text-gray-400 font-semibold text-sm 2xl:text-base">
                         {shops.contactNumber}
                       </p>
                     </div>
