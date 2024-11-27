@@ -37,3 +37,12 @@ export interface CouponType {
   couponStatus: string;
   couponDescription: string;
 }
+
+export interface NoticeType {
+  noticeId: number;
+  noticeTitle: string;
+  noticeContent: string;
+  createdDate: string | Date;
+  target: string;
+  viewCount: number;
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -38,7 +40,23 @@ const Notice = () => {
             </button>
           </Link>
         </div>
-        <div className="bg-slate-100 w-full h-8 border-b-2 border-gray-500"></div>
+        <div className="bg-slate-50 w-full h-10 border-b-2 border-gray-300 flex">
+          <p className="w-20 flex items-center justify-center text-sm 2xl:text-base font-bold text-gray-400">
+            No
+          </p>
+          <p className="w-1/3 flex items-center justify-center text-sm 2xl:text-base font-bold text-gray-400">
+            제목
+          </p>
+          <p className="w-1/3 flex items-center justify-center text-sm 2xl:text-base font-bold text-gray-400">
+            공지 대상
+          </p>
+          <p className="w-1/3 flex items-center justify-center text-sm 2xl:text-base font-bold text-gray-400">
+            작성일자
+          </p>
+          <p className="w-20 flex items-center justify-center text-sm 2xl:text-base font-bold text-gray-400">
+            조회수
+          </p>
+        </div>
         <main className="w-full h-[68vh] border-b-4">
           {/* 데이터가 들어올 곳 */}
         </main>
