@@ -6,9 +6,11 @@ export async function fetchUsers() {
 }
 
 //가게 api
-export async function fetchShop() {
+export async function fetchShop(status: String, page: Number, size: Number) {
   // 전체 가게 정보 불러오기
-  const response = await fetch("/api/store");
+  const response = await fetch(
+    `/api/store?status=${status}&page=${page}&size=${size}`
+  );
   return response.json();
 }
 
@@ -36,6 +38,15 @@ export async function rejectShop(storeID: String, reason: String) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ reason: reason }),
+  });
+}
+
+export async function apprvoeClosureShop(storeID: String) {
+  const response = await fetch(`api/store/closure/approve/${storeID}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }
 

@@ -4,7 +4,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactKakaoMap from "../nextJsKakaoMap";
 import { ShopType } from "@/types/types";
-import { fetchShopById, approveShop, rejectShop } from "@/lib/api";
+import {
+  fetchShopById,
+  approveShop,
+  rejectShop,
+  apprvoeClosureShop,
+} from "@/lib/api";
 
 const ShopModal = ({
   setModal,
@@ -46,6 +51,12 @@ const ShopModal = ({
 
   const rejectResaon = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReason(e.target.value);
+  };
+
+  const approveClosure = (ShopID: String | null) => {
+    if (ShopID) {
+      approveClosure(ShopID);
+    }
   };
 
   return (
@@ -128,10 +139,21 @@ const ShopModal = ({
                 </button>
                 <button
                   className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                  onClick={() => rejectShopButoon(selectedShopID, reason)}
+                  onClick={() => rejectShopButoon(selectedShopID, reason)} //거절 사유 창을 따로 만들어야함
                 >
                   <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
                   가게 등록 거절
+                </button>
+              </div>
+            )}
+            {shopByID?.storeStatus === "CLOSURE_PENDING" && (
+              <div className="w-full flex items-center justify-center p-5">
+                <button
+                  className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
+                  onClick={() => approveClosure(selectedShopID)} //거절 사유 창을 따로 만들어야함
+                >
+                  <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
+                  폐업 신청 승인
                 </button>
               </div>
             )}

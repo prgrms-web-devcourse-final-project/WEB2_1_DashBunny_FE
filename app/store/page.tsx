@@ -14,10 +14,10 @@ const Shop = () => {
   const [shop, setShop] = useState<ShopType[]>();
   const [Loading, setLoading] = useState(true);
   const [Modal, setModal] = useState(false);
-  const [seletedShopID, setSeletedShopID] = useState<String | any>(null);
+  const [seletedShopID, setSeletedShopID] = useState<String | null>(null);
 
   useEffect(() => {
-    fetchShop().then((data) => {
+    fetchShop("ENTIRE", 1, 10).then((data) => {
       setShop(data);
       setLoading(false);
     });
