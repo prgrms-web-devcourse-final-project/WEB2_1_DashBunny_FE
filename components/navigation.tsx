@@ -89,7 +89,7 @@ const Navigation = () => {
                 고객관리
               </div>
             </Link>
-            <Link href="/shop">
+            <Link href="/store">
               <div className={pathname === "/store" ? SelectMenu : MenuLayout}>
                 <Image
                   src="/Icon/shop.svg"
