@@ -35,8 +35,8 @@ export interface CouponType {
   discountPrice: number;
   discountType: string;
   minOrderPrice: number;
-  maximumDiscount: number;
-  maxIssuance: null | number;
+  maximumDiscount: null | number; //선착순일때만 들어가는 값, 일반 쿠폰일때는 null
+  maxIssuance: null | number; //선착순일때만 들어가는 값, 일반 쿠폰일때는 null
   expiredDate: string;
   downloadStartDate: string;
   couponStatus: string;

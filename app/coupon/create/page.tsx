@@ -3,11 +3,10 @@
 import { useState } from "react";
 
 const CreateCoupon = () => {
-  const [couponType, setCouponType] = useState<String>("일반 쿠폰");
-  const [discountUnit, setDiscountUnit] = useState<String>("KRW");
+  const [couponType, setCouponType] = useState<string>("일반 쿠폰");
+  const [discountUnit, setDiscountUnit] = useState<string>("KRW");
 
   const CouponTypeButton = "border p-3 w-1/3 rounded-xl bg-gray-300";
-  const Line = "bg-gray-200 h-0.5 w-full mt-auto"; //라인
   const FontStyle = "mr-auto font-semibold mb-1 text-lg";
 
   return (

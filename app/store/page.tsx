@@ -14,7 +14,7 @@ const Shop = () => {
   const [shop, setShop] = useState<ShopType[]>();
   const [Loading, setLoading] = useState(true);
   const [Modal, setModal] = useState(false);
-  const [seletedShopID, setSeletedShopID] = useState<String | null>(null);
+  const [seletedShopID, setSeletedShopID] = useState<string | null>(null);
 
   useEffect(() => {
     fetchShop("ENTIRE", 1, 10).then((data) => {
@@ -23,7 +23,7 @@ const Shop = () => {
     });
   }, []);
 
-  const ModalHandler = (ShopID: String) => {
+  const ModalHandler = (ShopID: string) => {
     setSeletedShopID(ShopID); //모달에게 줄 단독 Shop
     setModal((prev) => !prev); // 모달이 열리도록
   };
