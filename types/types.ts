@@ -10,16 +10,21 @@ export interface UserType {
 
 export interface ShopType {
   storeId: string;
+  storeName: string;
+  contactNumber: string;
+  address: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  category: string[];
+  storeRegistrationDocs: string;
+  storeLogo: string;
+  storeBannerImage: string;
+
+  userName: string;
   userId: number;
   operationId: number;
-  storeName: string;
   storeStatus: string;
-  description: string;
-  contactNumber: string;
-  storeLogo: string;
-  Field: string;
-  address: string;
-  location: string;
   approvedDate: string; //원래는 Date임
 }
 
@@ -42,7 +47,7 @@ export interface NoticeType {
   noticeId: number;
   noticeTitle: string;
   noticeContent: string;
-  createdDate: string | Date;
+  createdDate: string;
   target: string;
   viewCount: number;
 }

@@ -2,9 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { NoticeType } from "@/types/types";
+import { fetchNotice } from "@/lib/api";
+import { useEffect, useState } from "react";
 
 const Notice = () => {
   const Line = "bg-gray-200 h-0.5 w-full my-5"; //라인
+  const [noticeData, setNoticeData] = useState<NoticeType[]>();
+
+  useEffect(() => {
+    fetchNotice().then((data) => {
+      setNoticeData(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log(noticeData);
+  }, [noticeData]);
 
   return (
     <>
@@ -33,14 +47,17 @@ const Notice = () => {
       <section>
         <div className="flex items-center mb-5">
           <p className="font-semibold text-2xl ">전체 공지</p>
-          <p className="font-semibold text-2xl mx-3 text-BunnyOrange"> {11}</p>
+          <p className="font-semibold text-2xl mx-3 text-BunnyOrange">
+            {" "}
+            {noticeData?.length}
+          </p>
           <Link href="/notice/write" className="ml-auto">
             <button className="border shadow w-40 p-2 rounded-xl font-semibold hover:bg-BunnyOrange transition-color transform duration-300 ease-in-out">
               공지 작성하기
             </button>
           </Link>
         </div>
-        <div className="bg-slate-50 w-full h-10 border-b-2 border-gray-300 flex">
+        <div className="bg-slate-50 w-full h-10 border-b-2 border-gray-300 flex p-2">
           <p className="w-20 flex items-center justify-center text-sm 2xl:text-base font-bold text-gray-400">
             No
           </p>
@@ -57,8 +74,25 @@ const Notice = () => {
             조회수
           </p>
         </div>
-        <main className="w-full h-[68vh] border-b-4">
-          {/* 데이터가 들어올 곳 */}
+        <main className="w-full min-h-[68vh] border-b-4">
+          {noticeData &&
+            noticeData.map((notice, i) => (
+              <div className="flex p-2 border-b-2">
+                <p className="w-20 flex items-center justify-center">{i + 1}</p>
+                <p className="w-1/3 flex items-center justify-center font-bold">
+                  {notice.noticeTitle}
+                </p>
+                <p className="w-1/3 flex items-center justify-center">
+                  {notice.target}
+                </p>
+                <p className="w-1/3 flex items-center justify-center">
+                  {notice.createdDate}
+                </p>
+                <p className="w-20 flex items-center justify-center">
+                  {notice.viewCount}
+                </p>
+              </div>
+            ))}
         </main>
       </section>
     </>

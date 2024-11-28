@@ -3,7 +3,13 @@
 import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
-const ReactKakaoMap = () => {
+const ReactKakaoMap = ({
+  latitude,
+  longitude,
+}: {
+  latitude: number;
+  longitude: number;
+}) => {
   const apiKey: string | undefined = process.env.NEXT_PUBLIC_KAKAO_KEY;
   const [scriptLoad, setScriptLoad] = useState<boolean>(false);
 
@@ -22,7 +28,7 @@ const ReactKakaoMap = () => {
     <div>
       {scriptLoad ? (
         <Map
-          center={{ lat: 33.5563, lng: 126.79581 }}
+          center={{ lat: latitude, lng: longitude }}
           style={{ width: "45vw", height: "40vh" }}
           level={3}
         >
