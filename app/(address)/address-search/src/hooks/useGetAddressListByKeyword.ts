@@ -9,8 +9,8 @@ export const useGetAddressListByKeyword = (
   return useQuery({
     queryKey: ["juso", keyword],
     queryFn: () => getJusoApi(keyword),
-    staleTime: 1000 * 60 * 5, // 5분
-    gcTime: 1000 * 60 * 30, // 30분
+    staleTime: 1000,
+    gcTime: 1000,
     retry: 1,
     refetchOnWindowFocus: false,
   })

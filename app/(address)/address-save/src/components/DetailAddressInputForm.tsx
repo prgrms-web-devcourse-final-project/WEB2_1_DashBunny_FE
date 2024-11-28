@@ -7,13 +7,14 @@ import { useAddressStore } from "@/shared/store/useAddressStore"
 import { useManageAddress } from "../hooks/useManageAddress"
 import { useRouter } from "next/navigation"
 import { AddedAddress } from "../model/addedAddress"
+import { useSendAddress } from "../hooks/useSendAddress"
 
 export default function DetailAddressInputForm() {
   const router = useRouter()
   const [detailAddress, setDetailAddress] = useState("")
   const { saveAddress } = useManageAddress()
   const selectedAddress = useAddressStore((state) => state.selectedAddress)
-
+  const { sendAddressMutation } = useSendAddress()
   useEffect(() => {
     if (!selectedAddress) {
       router.push("/address-search")
@@ -23,8 +24,7 @@ export default function DetailAddressInputForm() {
   const saveAddressHandler = () => {
     if (!selectedAddress) return
 
-    const newAddress: AddedAddress = {
-      marker: "Sub",
+    const newAddress: Omit<AddedAddress, "marker"> = {
       addressData: {
         roadAddress: selectedAddress.roadAddress,
         jibunAddress: selectedAddress.jibunAddress,
@@ -33,11 +33,14 @@ export default function DetailAddressInputForm() {
       id: Date.now().toString(),
     }
     saveAddress(newAddress)
+    const address = newAddress.addressData.roadAddress + newAddress.addressData.detailAddress
+    sendAddressMutation.mutate(address)
+
     router.push("/address") // 저장 후 이동할 페이지
   }
 
   if (!selectedAddress) return null
-
+  //메인주소 서버요청
   return (
     <>
       <div className="my-10">

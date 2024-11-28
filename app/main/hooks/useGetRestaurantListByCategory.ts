@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { getRestaurantListByCategory } from "../api/restaurantList"
+import { UsersStoreListResponseDto } from "@/types/Store"
 
 export const useGetRestaurantListByCategory = (
   category: string,

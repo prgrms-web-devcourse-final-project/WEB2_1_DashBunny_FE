@@ -1,13 +1,14 @@
-import ColorButton from "@/components/common/ColorButton"
 import Divider from "@/components/common/Divider"
-import Header from "@/components/common/Header"
-import MapPinColorIcon from "@/components/icons/iconComponents/MapPinColorIcon"
 import React from "react"
-import PaymentButton from "./components/PaymentButton"
-import Image from "next/image"
-import QuantityButton from "@/components/common/QuantityButton"
+import PaymentButton from "./src/components/PaymentButton"
 import { Select } from "@/components/common/Selector"
-
+import dynamic from "next/dynamic"
+import OrderSheet from "./src/components/OrderSheet"
+import { useDetailStoreData } from "./src/hook/useGetCartState"
+const DynamicCartAddress = dynamic(() => import("./src/components/CartAddress"), {
+  ssr: false,
+  loading: () => <div>loading...</div>,
+})
 const OrderSummary = () => {
   const paymentOptions = [
     { value: "card", label: "카드 결제" },
@@ -23,55 +24,9 @@ const OrderSummary = () => {
   return (
     <div className="p-4">
       {/* Address Section */}
-      <div className="px-4 pb-4 p">
-        <div className="flex gap-2">
-          <MapPinColorIcon />
-          <div>
-            <h2 className="font-semibold text-h3 inline-block">기장군 일광읍 해송3로 18</h2>
-            <span className="text-sm text-black-600"> (으)로 배달</span>
-            <p className="text-[14px] text-black-600">부산광역시 기장군 일광읍 해송3로 18</p>
-          </div>
-        </div>
-      </div>
+      <DynamicCartAddress />
       <Divider />
-      {/* Restaurant Name */}
-      <div className="p-5 border-b ">
-        <h1 className="font-semibold text-h3 text-black-700">세이고우&왕알타코야끼</h1>
-      </div>
-
-      {/* Order Items */}
-      <div className="p-5 space-y-4">
-        {/* Item 1 */}
-        <div className="flex items-center gap-3">
-          <Image
-            width={73}
-            height={73}
-            src="https://placehold.co/73x73"
-            alt="Menu item"
-            className="w-[73px] h-[73px] rounded-md object-cover"
-          />
-          <div className="flex-1">
-            <p className="font-md text-black-700">참깨빵위에 양상추</p>
-            <p className="text-h3 font-bold text-black-700">19,500원</p>
-          </div>
-          <QuantityButton />
-        </div>
-        {/* Item 1 */}
-        <div className="flex items-center gap-3">
-          <Image
-            width={73}
-            height={73}
-            src="https://placehold.co/73x73"
-            alt="Menu item"
-            className="w-[73px] h-[73px] rounded-md object-cover"
-          />
-          <div className="flex-1">
-            <p className="font-md text-black-700">화덕 마르게리따 산마르자노 플럼토마토</p>
-            <p className="text-h3 font-bold text-black-700">19,500원</p>
-          </div>
-          <QuantityButton />
-        </div>
-      </div>
+      <OrderSheet />
       <Divider />
       {/* Store Request */}
       <div className="p-5">

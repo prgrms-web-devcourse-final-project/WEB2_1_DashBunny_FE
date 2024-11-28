@@ -1,5 +1,6 @@
 import { api } from "@/shared/axios/axiosInstance"
 import { Store } from "@/shared/model/restaurant"
+import { UsersStoreListResponseDto } from "@/types/Store"
 import axios, { AxiosError } from "axios"
 // API 에러 타입
 interface ApiError {
@@ -12,7 +13,7 @@ export const getRestaurantListByCategory = async (
 ): Promise<UsersStoreListResponseDto[]> => {
   try {
     const response = await api.get<UsersStoreListResponseDto[]>(
-      `/users/store/${category}?address=${address}`,
+      `/users/stores/${category}?address=${address}`,
     )
     return response.data
   } catch (error) {

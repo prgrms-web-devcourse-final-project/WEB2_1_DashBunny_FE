@@ -1,5 +1,4 @@
-// useSearchAddress.ts
-import { main } from "framer-motion/client"
+import { useEffect, useState } from "react"
 import { AddedAddress } from "../model/addedAddress"
 
 export interface Address {
@@ -15,6 +14,13 @@ export interface SearchAddress {
 
 export const LOCAL_STORAGE_KEY = "address"
 export const useManageAddress = () => {
+  const [addresses, setAddresses] = useState<AddedAddress[]>([])
+
+  useEffect(() => {
+    const storedAddresses = getItem(LOCAL_STORAGE_KEY) ?? []
+    setAddresses(storedAddresses)
+  }, [])
+
   const setItem = (key: string) => (value: AddedAddress[]) => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value))
@@ -49,7 +55,7 @@ export const useManageAddress = () => {
     }
   }
   //주소 저장
-  const saveAddress = ({ addressData, id }: AddedAddress) => {
+  const saveAddress = ({ addressData, id }: Omit<AddedAddress, "marker">) => {
     // 1. api 응답이 아니라면 리턴
     if (!addressData.roadAddress) return
     // 2. 주소가 없으면 빈 값 반환
@@ -70,6 +76,11 @@ export const useManageAddress = () => {
       id,
       addressData,
     }
+    // console.log(newAddress.marker)
+    // if (newAddress.marker === "Main") {
+    //   const address = newAddress.addressData.roadAddress + newAddress.addressData.detailAddress
+
+    // }
     // 6. 주소 목록 업데이트 (최대 5개까지)
     const updatedAddresses = [newAddress, ...prevAddresses].slice(0, 5)
     // 7. 저장
@@ -79,8 +90,9 @@ export const useManageAddress = () => {
   // 검색어 삭제
   const deleteAddress = (id: string) => {
     const prevAddresses = getItem(LOCAL_STORAGE_KEY) ?? []
-    const newAddress = prevAddresses.filter((item) => item.id !== id)
-    setItem(LOCAL_STORAGE_KEY)(newAddress)
+    const newAddresses = prevAddresses.filter((item) => item.id !== id)
+    setItem(LOCAL_STORAGE_KEY)(newAddresses)
+    setAddresses(newAddresses) // 상태 업데이트로 리렌더링 트리거
   }
 
   // 메인 주소 변경

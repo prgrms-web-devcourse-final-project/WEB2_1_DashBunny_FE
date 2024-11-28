@@ -1,5 +1,5 @@
 "use client"
-import ColorButton from "../../../components/common/ColorButton"
+import ColorButton from "../../../../components/common/ColorButton"
 interface PaymentButtonProps {
   text: string
 }

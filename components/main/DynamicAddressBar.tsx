@@ -2,10 +2,24 @@
 import Link from "next/link"
 import MainAddressSelectorArrowIcon from "../icons/iconComponents/MainAddressSelectorArrowIcon"
 import { useManageAddress } from "@/app/(address)/address-save/src/hooks/useManageAddress"
+import { useSendAddress } from "@/app/(address)/address-save/src/hooks/useSendAddress"
+import { useEffect, useRef } from "react"
 
 export default function DynamicAddressBar() {
   const { getItem } = useManageAddress()
   const mainAddress = getItem("address")?.find((item) => item.marker === "Main")
+  const { sendAddressMutation } = useSendAddress()
+  const address =
+    mainAddress?.addressData.roadAddress ?? "" + mainAddress?.addressData.detailAddress
+
+  const prevAddressRef = useRef(address)
+
+  useEffect(() => {
+    if (address !== prevAddressRef.current) {
+      sendAddressMutation.mutate(address)
+      prevAddressRef.current = address
+    }
+  }, [address, sendAddressMutation])
   return (
     <Link href="/address">
       <div className=" py-2">

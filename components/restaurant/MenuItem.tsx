@@ -20,9 +20,15 @@ export const MenuItem = ({ name, price, description, image }: MenuItemProps) => 
           <p className="text-black-500 text-sm font-medium">{description}</p>
         </div>
         <div className="relative w-24 h-24">
-          <Image src={kfc} alt={name} className="w-full h-full object-cover rounded-lg" />
-          <div className="absolute -bottom-2 left-7">
-            <QuantityButton />
+          <Image
+            width={96}
+            height={96}
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover rounded-lg"
+          />
+          <div className="absolute -bottom-1 left-[30px] ">
+            <QuantityButton menuId={1} initialQuantity={0} />
           </div>
         </div>
       </div>

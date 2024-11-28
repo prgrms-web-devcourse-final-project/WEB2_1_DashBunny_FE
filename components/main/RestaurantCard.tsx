@@ -5,6 +5,7 @@ import CouponBadge from "./CouponBadge"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SaveHeartNavFillIcon from "../icons/iconComponents/SaveHeartNavFillIcon"
+import { UsersStoreListResponseDto } from "@/types/Store"
 
 export default function RestaurantCard({
   storeId,

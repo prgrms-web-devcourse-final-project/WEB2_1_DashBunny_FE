@@ -3,7 +3,8 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:@typescript-eslint/recommended",
-    "prettier" // 이걸 마지막에 추가
+    "prettier", // 이걸 마지막에 추가
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "plugins": [
     "@next/next",

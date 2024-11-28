@@ -9,15 +9,23 @@ interface RestaurantHeaderProps {
   rating: number
   minOrderAmount: number
   deliveryFee: number
+  storeImage: string
 }
 export const RestaurantHeader = ({
   name,
   rating,
   minOrderAmount,
   deliveryFee,
+  storeImage,
 }: RestaurantHeaderProps) => (
   <div className="mb-4">
-    <Image src={bigkfc} alt="KFC" className="w-full h-56 object-cover" />
+    <Image
+      src={storeImage}
+      alt="KFC"
+      width={400}
+      height={224}
+      className="w-full h-56 object-cover"
+    />
     <div className="px-4 space-y-4">
       <div className="flex items-center pt-3">
         <div className="flex-1" />

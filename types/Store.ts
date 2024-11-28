@@ -1,4 +1,4 @@
-interface UsersStoreResponseDto {
+export interface UsersStoreDetailResponseDto {
   storeId: string
   storeName: string
   rating: number
@@ -14,7 +14,7 @@ interface UsersStoreResponseDto {
   usersMenus: UsersMenuDto[]
 }
 
-interface UsersStoreListResponseDto {
+export interface UsersStoreListResponseDto {
   storeId: string
   storeLogo: string
   storeName: string
@@ -27,13 +27,13 @@ interface UsersStoreListResponseDto {
   status: StoreStatus
 }
 
-interface UsersMenuGroupDto {
+export interface UsersMenuGroupDto {
   groupId: number
   groupName: string
   menus: UsersMenuDto[]
 }
 
-interface UsersMenuDto {
+export interface UsersMenuDto {
   menuId: number
   menuName: string
   price: number
@@ -43,7 +43,7 @@ interface UsersMenuDto {
   isSoldOut: boolean
 }
 
-enum StoreStatus {
+export enum StoreStatus {
   OPEN = "OPEN",
   CLOSED = "CLOSED",
 }

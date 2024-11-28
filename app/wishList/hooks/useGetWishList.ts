@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { getWishList } from "../api/wishListApi"
+import { UsersStoreListResponseDto } from "@/types/Store"
 
 export const useGetWishList = (): UseQueryResult<UsersStoreListResponseDto[], Error> => {
   return useQuery({
