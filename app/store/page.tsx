@@ -14,7 +14,7 @@ const Shop = () => {
   const [shop, setShop] = useState<ShopType[]>();
   const [Loading, setLoading] = useState(true);
   const [Modal, setModal] = useState(false);
-  const [seletedShopID, setSeletedShopID] = useState<String | null>(null);
+  const [seletedShopID, setSeletedShopID] = useState<String | any>(null);
 
   useEffect(() => {
     fetchShop().then((data) => {
@@ -51,7 +51,7 @@ const Shop = () => {
 
       <section className="flex flex-col my-10 h-full static">
         {Modal && (
-          <ShopModal setModal={setModal} seletedShopID={seletedShopID} />
+          <ShopModal setModal={setModal} selectedShopID={seletedShopID} />
         )}
         <main>
           <div className="w-full bg-gray-100 h-12 border border-b-4 rounded-t-2xl flex items-center p-2">
