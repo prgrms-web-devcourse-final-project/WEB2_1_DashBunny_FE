@@ -1,13 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CreateCoupon = () => {
-  const [couponType, setCouponType] = useState<string>("일반 쿠폰");
-  const [discountUnit, setDiscountUnit] = useState<string>("KRW");
+  const [couponType, setCouponType] = useState<string>("Regula");
+  const [discountUnit, setDiscountUnit] = useState<string>("FIXED");
+  const [formData, setFormData] = useState({
+    couponName: " ",
+    couponDescription: " ",
+    couponType: "Regula",
+    discountPrice: 0,
+    discountType: " ",
+    minOrderPrice: 0,
+    expiredDate: " ",
+    // downloadStartDate: null,
+    // maxIssuance: null,
+  });
 
   const CouponTypeButton = "border p-3 w-1/3 rounded-xl bg-gray-300";
   const FontStyle = "mr-auto font-semibold mb-1 text-lg";
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    //쿠폰 타입을 formData에 넣어주기
+    setFormData((prev) => ({
+      ...prev,
+      couponType: couponType,
+    }));
+  }, [couponType]);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      discountType: discountUnit,
+    }));
+  }, [discountUnit]);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   return (
     <>
@@ -15,21 +55,35 @@ const CreateCoupon = () => {
       <main className="flex flex-col items-center h-[900px] overflow-y-auto">
         <section className="flex flex-col w-2/3 items-center">
           <p className={FontStyle}>쿠폰이름</p>
-          <input className="border w-full h-12 rounded-xl p-2 outline-none" />
+          <input
+            name="couponName"
+            className="border w-full h-12 rounded-xl p-2 outline-none"
+            onChange={handleInputChange}
+          />
+        </section>
+        <section className="flex flex-col w-2/3 items-center">
+          <p className={FontStyle}>쿠폰 설명</p>
+          <input
+            name="couponDescription"
+            className="border w-full h-12 rounded-xl p-2 outline-none"
+            onChange={handleInputChange}
+          />
         </section>
         {/* 쿠폰 유형 선택 */}
         <section className="flex flex-col w-2/3 items-center my-10">
           <p className={FontStyle}>쿠폰 유형 선택</p>
           <div className="flex w-full gap-32 items-center justify-center">
             <button
+              name="couponType"
               className={CouponTypeButton}
-              onClick={() => setCouponType("일반 쿠폰")}
+              onClick={() => setCouponType("Regula")}
             >
               일반 쿠폰
             </button>
             <button
+              name="couponType"
               className={CouponTypeButton}
-              onClick={() => setCouponType("선착순 쿠폰")}
+              onClick={() => setCouponType("FirstCome")}
             >
               선착순 쿠폰
             </button>
@@ -40,13 +94,17 @@ const CreateCoupon = () => {
           <div className="w-full flex flex-col items-center">
             <p className={FontStyle}>할인 금액</p>
             <div className="w-full flex justify-between border h-12 rounded-xl p-2">
-              <input className="w-11/12 outline-none" />
+              <input
+                name="discountPrice"
+                className="w-11/12 outline-none"
+                onChange={handleInputChange}
+              />
               <select
                 className="outline-none text-center font-bold border-l-2  w-20 text-gray-500"
                 onChange={(e) => setDiscountUnit(e.target.value)}
               >
-                <option value="KRW">KRW</option>
-                <option value="%">%</option>
+                <option value="FIXED">KRW</option>
+                <option value="PERCENT">%</option>
               </select>
             </div>
           </div>
@@ -68,7 +126,11 @@ const CreateCoupon = () => {
           <div className="w-full">
             <p className={FontStyle}>최소 주문 금액</p>
             <div className="flex items-center border h-12 rounded-xl p-2 justify-between">
-              <input className="h-full outline-none w-11/12" />
+              <input
+                name="minOrderPrice"
+                className="h-full outline-none w-11/12"
+                onChange={handleInputChange}
+              />
               <p className="border-l-2 w-20 h-7 text-center flex items-center justify-center font-bold text-gray-500">
                 원 이상
               </p>
@@ -79,21 +141,25 @@ const CreateCoupon = () => {
           <div className="w-full">
             <p className={FontStyle}>쿠폰 만료 기한</p>
             <input
+              name="expiredDate"
               type="date"
               className="border w-full h-12 rounded-xl p-2"
-            ></input>
+              onChange={handleInputChange}
+            />
           </div>
         </section>
 
-        {couponType === "선착순 쿠폰" && (
+        {couponType === "FirstCome" && (
           <>
             <section className="flex w-2/3 my-10">
               <div className="w-full">
                 <p className={FontStyle}>쿠폰 다운로드 시작일</p>
                 <input
+                  name="downloadStartDate"
                   type="date"
                   className="border w-full h-12 rounded-xl p-2"
-                ></input>
+                  onChange={handleInputChange}
+                />
               </div>
             </section>
 
@@ -101,7 +167,11 @@ const CreateCoupon = () => {
               <div className="w-full">
                 <p className={FontStyle}>발급 한도</p>
                 <div className="w-full flex border h-12 rounded-xl justify-between items-center p-2">
-                  <input className="outline-none w-11/12" />
+                  <input
+                    name="maxIssuance"
+                    className="outline-none w-11/12"
+                    onChange={handleInputChange}
+                  />
                   <p className="items-center justify-center w-12 font-bold h-12 flex text-gray-500">
                     장
                   </p>
