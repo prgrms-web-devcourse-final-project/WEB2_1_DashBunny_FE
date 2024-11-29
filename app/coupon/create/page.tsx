@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createCoupon } from "@/lib/api";
 
 const CreateCoupon = () => {
-  const [couponType, setCouponType] = useState<string>("Regula");
-  const [discountUnit, setDiscountUnit] = useState<string>("FIXED");
   const [formData, setFormData] = useState({
     couponName: " ",
     couponDescription: " ",
@@ -13,8 +12,9 @@ const CreateCoupon = () => {
     discountType: " ",
     minOrderPrice: 0,
     expiredDate: " ",
-    // downloadStartDate: null,
-    // maxIssuance: null,
+    maximumDiscount: null, // 선착순 쿠폰일때 생기는 값
+    downloadStartDate: null, // 선착순 쿠폰일때 생기는 값
+    maxIssuance: null, //선착순 쿠폰일때 생기는 값
   });
 
   const CouponTypeButton = "border p-3 w-1/3 rounded-xl bg-gray-300";
@@ -30,20 +30,12 @@ const CreateCoupon = () => {
     }));
   };
 
-  useEffect(() => {
-    //쿠폰 타입을 formData에 넣어주기
+  const handleButtonClick = (name: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      couponType: couponType,
+      [name]: value,
     }));
-  }, [couponType]);
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      discountType: discountUnit,
-    }));
-  }, [discountUnit]);
+  };
 
   useEffect(() => {
     console.log(formData);
@@ -54,14 +46,14 @@ const CreateCoupon = () => {
       <p className="text-BunnyOrange font-semibold text-2xl">쿠폰 생성하기</p>
       <main className="flex flex-col items-center h-[900px] overflow-y-auto">
         <section className="flex flex-col w-2/3 items-center">
-          <p className={FontStyle}>쿠폰이름</p>
+          <p className={FontStyle}>쿠폰 이름</p>
           <input
             name="couponName"
             className="border w-full h-12 rounded-xl p-2 outline-none"
             onChange={handleInputChange}
           />
         </section>
-        <section className="flex flex-col w-2/3 items-center">
+        <section className="flex flex-col w-2/3 items-center my-10">
           <p className={FontStyle}>쿠폰 설명</p>
           <input
             name="couponDescription"
@@ -76,14 +68,14 @@ const CreateCoupon = () => {
             <button
               name="couponType"
               className={CouponTypeButton}
-              onClick={() => setCouponType("Regula")}
+              onClick={() => handleButtonClick("couponType", "Regula")}
             >
               일반 쿠폰
             </button>
             <button
               name="couponType"
               className={CouponTypeButton}
-              onClick={() => setCouponType("FirstCome")}
+              onClick={() => handleButtonClick("couponType", "FirstCome")}
             >
               선착순 쿠폰
             </button>
@@ -100,8 +92,10 @@ const CreateCoupon = () => {
                 onChange={handleInputChange}
               />
               <select
+                name="discountType"
                 className="outline-none text-center font-bold border-l-2  w-20 text-gray-500"
-                onChange={(e) => setDiscountUnit(e.target.value)}
+                onChange={handleInputChange}
+                value={formData.discountType}
               >
                 <option value="FIXED">KRW</option>
                 <option value="PERCENT">%</option>
@@ -109,7 +103,7 @@ const CreateCoupon = () => {
             </div>
           </div>
         </section>
-        {discountUnit === "%" && (
+        {formData.discountType === "PERCENT" && (
           <section className="flex w-2/3 my-10">
             <div className="w-full">
               <p className={FontStyle}>최대 할인 금액</p>
@@ -149,7 +143,7 @@ const CreateCoupon = () => {
           </div>
         </section>
 
-        {couponType === "FirstCome" && (
+        {formData.couponType === "FirstCome" && (
           <>
             <section className="flex w-2/3 my-10">
               <div className="w-full">
@@ -182,7 +176,10 @@ const CreateCoupon = () => {
         )}
 
         <div className="flex justify-center items-center my-10">
-          <button className="bg-BunnyOrange p-2 w-96 rounded-xl border shadow font-bold">
+          <button
+            className="bg-BunnyOrange p-2 w-96 rounded-xl border shadow font-bold"
+            onClick={() => createCoupon(formData)}
+          >
             쿠폰 발급하기
           </button>
         </div>

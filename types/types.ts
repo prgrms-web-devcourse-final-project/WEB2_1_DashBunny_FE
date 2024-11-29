@@ -38,10 +38,11 @@ export interface CouponType {
   maximumDiscount: null | number; //선착순일때만 들어가는 값, 일반 쿠폰일때는 null
   maxIssuance: null | number; //선착순일때만 들어가는 값, 일반 쿠폰일때는 null
   expiredDate: string;
-  downloadStartDate: string;
+  downloadStartDate: null | string;
   couponStatus: string;
   couponDescription: string;
 }
+export type CreateCouponRequest = Omit<CouponType, "couponId" | "couponStatus">; //쿠폰 생성할때
 
 export interface NoticeType {
   noticeId: number;

@@ -1,4 +1,5 @@
 import { CouponType } from "@/types/types";
+import { CreateCouponRequest } from "@/types/types";
 
 //유저api
 export async function fetchUsers() {
@@ -67,7 +68,8 @@ export async function fetchCoupon() {
   return response.json();
 }
 
-export async function createCoupon(couponData: CouponType) {
+export async function createCoupon(couponData: CreateCouponRequest) {
+  //프론트 측에서 빈 값 못넘기도록 하자
   //쿠폰 생성(선착순 , 일반)
   await fetch("/api/admin/coupon", {
     method: "POST",
