@@ -1,5 +1,5 @@
 export type PhoneSignUpInfo = {
-  phoneNumber: string
+  phone: string
   password: string
   passwordConfirm: string
 }

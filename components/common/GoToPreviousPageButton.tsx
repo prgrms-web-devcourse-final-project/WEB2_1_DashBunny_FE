@@ -15,7 +15,7 @@ export default function GoToPreviousPageButton({
   const router = useRouter()
 
   return (
-    <button type="button" onClick={() => router.push(previousRoute)} className="absolute left-4">
+    <button type="button" onClick={() => router.back()} className="absolute left-4">
       {icon}
     </button>
   )

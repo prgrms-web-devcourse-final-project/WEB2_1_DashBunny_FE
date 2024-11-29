@@ -9,6 +9,7 @@ import InfoForm from "@/components/common/InfoForm"
 import ColorButton from "@/components/common/ColorButton"
 import { PhoneSignUpInfo } from "@/types/phoneSignUp"
 import validateSignUp from "@/validation/PhoneSignUpValidation"
+import Link from "next/link"
 
 export default function PhoneSignUpForm() {
   //@=> 예외처리 더 필요함. 엔터 치면 다음 스텝으로 넘어가벼려서..
@@ -16,16 +17,16 @@ export default function PhoneSignUpForm() {
 
   const login = useForm<PhoneSignUpInfo>({
     initialValues: {
-      phoneNumber: "",
+      phone: "",
       password: "",
       passwordConfirm: "",
     },
     validate: validateSignUp,
   })
-
+  console.log(login.values)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (step < 3) setStep((prev) => prev + 1)
+    if (step < 4) setStep((prev) => prev + 1)
   }
 
   const createKeyDownHandler =
@@ -47,7 +48,7 @@ export default function PhoneSignUpForm() {
             ? "비밀번호를\n입력해주세요"
             : step === 3
               ? "비밀번호를\n다시 입력해주세요"
-              : "입력하신 정보가 맞다면\n회원가입 버튼을 눌러주세요"}
+              : ""}
       </h1>
       {step >= 4 && (
         <h1 className="text-2xl font-bold mb-6">
@@ -109,22 +110,23 @@ export default function PhoneSignUpForm() {
 
             <InfoForm
               onKeyDown={createKeyDownHandler(1)}
-              errorMessage={login.errors.phoneNumber}
+              errorMessage={login.errors.phone}
               label="휴대폰 번호"
               maxLength={11}
-              onChange={login.getTextInputProps("phoneNumber").onChange}
-              value={login.getTextInputProps("phoneNumber").value}
-              onBlur={login.getTextInputProps("phoneNumber").onBlur}
-              touched={login.touched.phoneNumber}
+              onChange={login.getTextInputProps("phone").onChange}
+              value={login.getTextInputProps("phone").value}
+              onBlur={login.getTextInputProps("phone").onBlur}
+              touched={login.touched.phone}
             />
           </AnimatePresence>
         </div>
-
-        <ColorButton
-          onClick={() => null}
-          size="large"
-          text={step === 4 ? "본인 인증하기" : "확인"}
-        />
+        <Link href="/auth/sign-up/user-info">
+          <ColorButton
+            onClick={() => {}}
+            size="large"
+            text={step === 4 ? "본인 인증하기" : "확인"}
+          />
+        </Link>
       </form>
     </div>
   )

@@ -1,10 +1,6 @@
 import { PhoneSignUpInfo } from "@/types/phoneSignUp"
 
-export default function validateSignUp({
-  phoneNumber,
-  password,
-  passwordConfirm,
-}: PhoneSignUpInfo) {
+export default function validateSignUp({ phone, password, passwordConfirm }: PhoneSignUpInfo) {
   const phoneNumberRegex = /^010-?([0-9]{4})-?([0-9]{4})$/
 
   const passwordRegex =
@@ -20,7 +16,7 @@ export default function validateSignUp({
   }
   //유저정보 에러 초기값 객체. 에러가 없으면 키의 값은 빈문자열
   const errors: ValidationErrors = {
-    phoneNumber: "",
+    phone: "",
     password: "",
     passwordConfirm: "",
   }
@@ -31,8 +27,8 @@ export default function validateSignUp({
   if (!validatePasswordConfirm(password, passwordConfirm)) {
     errors.passwordConfirm = "비밀번호가 일치하지 않습니다."
   }
-  if (!phoneNumberRegex.test(phoneNumber)) {
-    errors.phoneNumber = "올바른 휴대폰 번호를 입력하세요"
+  if (!phoneNumberRegex.test(phone)) {
+    errors.phone = "올바른 휴대폰 번호를 입력하세요"
   }
   return errors
 }

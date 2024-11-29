@@ -34,7 +34,7 @@ export default function InfoForm({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        ref={ref}
+        // ref={ref}
         {...props}
       />
       {touched && errorMessage && (

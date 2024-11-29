@@ -19,7 +19,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         groupName: "인기메뉴",
         menus: [
           {
-            menuId: 1001,
+            menuId: "1001",
             menuName: "황금올리브치킨",
             price: 18000,
             menuContent: "바삭하고 고소한 올리브유 치킨",
@@ -28,7 +28,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
             isSoldOut: false,
           },
           {
-            menuId: 1002,
+            menuId: "1002",
             menuName: "허니갈릭치킨",
             price: 19000,
             menuContent: "달콤한 꿀과 갈릭의 완벽한 조화",
@@ -43,7 +43,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         groupName: "사이드메뉴",
         menus: [
           {
-            menuId: 1003,
+            menuId: "1003",
             menuName: "치즈볼",
             price: 5000,
             menuContent: "모짜렐라 치즈가 가득한 치즈볼",
@@ -56,7 +56,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
     ],
     usersMenus: [
       {
-        menuId: 1001,
+        menuId: "1001",
         menuName: "황금올리브치킨",
         price: 18000,
         menuContent: "바삭하고 고소한 올리브유 치킨",
@@ -65,7 +65,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         isSoldOut: false,
       },
       {
-        menuId: 1002,
+        menuId: "1002",
         menuName: "허니갈릭치킨",
         price: 19000,
         menuContent: "달콤한 꿀과 갈릭의 완벽한 조화",
@@ -74,7 +74,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         isSoldOut: false,
       },
       {
-        menuId: 1003,
+        menuId: "1003",
         menuName: "치즈볼",
         price: 5000,
         menuContent: "모짜렐라 치즈가 가득한 치즈볼",
@@ -102,7 +102,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         groupName: "프리미엄 피자",
         menus: [
           {
-            menuId: 2001,
+            menuId: "2001",
             menuName: "슈퍼슈프림",
             price: 25000,
             menuContent: "풍성한 토핑이 가득한 피자의 왕",
@@ -111,7 +111,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
             isSoldOut: false,
           },
           {
-            menuId: 2002,
+            menuId: "2002",
             menuName: "불고기피자",
             price: 23000,
             menuContent: "한국인의 입맛에 딱 맞는 불고기피자",
@@ -126,7 +126,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         groupName: "사이드메뉴",
         menus: [
           {
-            menuId: 2003,
+            menuId: "2003",
             menuName: "파스타",
             price: 8000,
             menuContent: "알덴테로 삶은 크림파스타",
@@ -139,7 +139,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
     ],
     usersMenus: [
       {
-        menuId: 2001,
+        menuId: "2001",
         menuName: "슈퍼슈프림",
         price: 25000,
         menuContent: "풍성한 토핑이 가득한 피자의 왕",
@@ -148,7 +148,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         isSoldOut: false,
       },
       {
-        menuId: 2002,
+        menuId: "2002",
         menuName: "불고기피자",
         price: 23000,
         menuContent: "한국인의 입맛에 딱 맞는 불고기피자",
@@ -157,7 +157,7 @@ export const detailedStoreData: UsersStoreDetailResponseDto[] = [
         isSoldOut: false,
       },
       {
-        menuId: 2003,
+        menuId: "2003",
         menuName: "파스타",
         price: 8000,
         menuContent: "알덴테로 삶은 크림파스타",
