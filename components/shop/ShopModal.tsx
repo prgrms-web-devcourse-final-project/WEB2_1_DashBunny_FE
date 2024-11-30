@@ -7,8 +7,8 @@ import { ShopType } from "@/types/types";
 import {
   fetchShopById,
   approveShop,
-  rejectShop,
-  apprvoeClosureShop,
+  // rejectShop,
+  approveClosureShop,
 } from "@/lib/api";
 
 const ShopModal = ({
@@ -16,11 +16,11 @@ const ShopModal = ({
   selectedShopID,
 }: {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedShopID: String | null;
+  selectedShopID: string | null;
 }) => {
   const [shopByID, setShopByID] = useState<ShopType>();
   const [Loading, setLoading] = useState(true);
-  const [reason, setReason] = useState<String>("");
+  // const [reason, setReason] = useState<string>("");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -35,27 +35,27 @@ const ShopModal = ({
       setShopByID(data);
       setLoading(false);
     });
-  }, []);
+  }, [selectedShopID]);
 
-  const approveShopButton = (ShopID: String | null) => {
+  const approveShopButton = (ShopID: string | null) => {
     if (ShopID) {
       approveShop(ShopID);
     }
   };
 
-  const rejectShopButoon = (ShopID: String | null, reason: String) => {
-    if (ShopID) {
-      rejectShop(ShopID, reason);
-    }
-  };
+  // const rejectShopButoon = (ShopID: string | null, reason: string) => {
+  //   if (ShopID) {
+  //     rejectShop(ShopID, reason);
+  //   }
+  // };
 
-  const rejectResaon = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReason(e.target.value);
-  };
+  // const rejectResaon = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setReason(e.target.value);
+  // };
 
-  const approveClosure = (ShopID: String | null) => {
+  const approveClosure = (ShopID: string | null) => {
     if (ShopID) {
-      approveClosure(ShopID);
+      approveClosureShop(ShopID);
     }
   };
 
@@ -139,7 +139,7 @@ const ShopModal = ({
                 </button>
                 <button
                   className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                  onClick={() => rejectShopButoon(selectedShopID, reason)} //거절 사유 창을 따로 만들어야함
+                  // onClick={() => rejectShopButoon(selectedShopID, reason)} //거절 사유 창을 따로 만들어야함
                 >
                   <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
                   가게 등록 거절

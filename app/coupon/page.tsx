@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { fetchCoupon } from "@/lib/api";
 import { CouponType } from "@/types/types";
 import { useEffect, useState } from "react";
@@ -23,7 +22,6 @@ const Coupon = () => {
     console.log(couponID);
   };
 
-  const Line = "bg-gray-200 h-0.5 w-full my-5"; //라인
   const NavText = "w-1/4 font-semibold text-md text-center ";
 
   return (

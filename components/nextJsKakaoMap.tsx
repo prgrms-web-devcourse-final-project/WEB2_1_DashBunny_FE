@@ -22,7 +22,7 @@ const ReactKakaoMap = ({
     script.addEventListener("load", () => {
       setScriptLoad(true);
     });
-  }, []);
+  }, [apiKey]);
 
   return (
     <div>

@@ -77,7 +77,7 @@ const Notice = () => {
         <main className="w-full min-h-[68vh] border-b-4">
           {noticeData &&
             noticeData.map((notice, i) => (
-              <div className="flex p-2 border-b-2">
+              <div className="flex p-2 border-b-2" key={i}>
                 <p className="w-20 flex items-center justify-center">{i + 1}</p>
                 <p className="w-1/3 flex items-center justify-center font-bold">
                   {notice.noticeTitle}

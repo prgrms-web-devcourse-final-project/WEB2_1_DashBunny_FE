@@ -1,5 +1,3 @@
-import Editor from "@/components/notice/write/Editor";
-
 const NoticeWrite = () => {
   return (
     <>
