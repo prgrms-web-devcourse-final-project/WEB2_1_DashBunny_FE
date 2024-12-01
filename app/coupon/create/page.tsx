@@ -108,7 +108,11 @@ const CreateCoupon = () => {
             <div className="w-full">
               <p className={FontStyle}>최대 할인 금액</p>
               <div className="flex items-center border h-12 rounded-xl p-2 justify-between">
-                <input className="h-full outline-none w-11/12" />
+                <input
+                  name="maximumDiscount"
+                  className="h-full outline-none w-11/12"
+                  onChange={handleInputChange}
+                />
                 <p className="border-l-2 w-20 h-7 text-center flex items-center justify-center font-bold text-gray-500">
                   원
                 </p>

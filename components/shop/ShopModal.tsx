@@ -78,7 +78,7 @@ const ShopModal = ({
             <div className="relative w-full h-60">
               {shopByID && (
                 <Image
-                  src={shopByID.storeBannerImage}
+                  src={shopByID.storeBannerImage || "/Icon/NoIMG_detail.svg"}
                   alt="Image"
                   layout="fill"
                   objectFit="cover"
@@ -95,7 +95,7 @@ const ShopModal = ({
                     {shopByID?.userName}
                   </p>
                   <p className="text-gray-500 font-semibold">
-                    {shopByID?.contactNumber}
+                    {shopByID?.contactNumber || "등록된 번호가 없습니다."}
                   </p>
                 </div>
               </div>
@@ -104,7 +104,7 @@ const ShopModal = ({
             <div className="border-b-2 p-5">
               <p className="text-2xl font-bold mx-2">사장님 말씀</p>
               <p className="p-5 font-semibold text-xl text-gray-500">
-                {shopByID?.description}
+                {shopByID?.description || "등록된 소개글이 없습니다."}
               </p>
             </div>
             <div className="border-b-2">
