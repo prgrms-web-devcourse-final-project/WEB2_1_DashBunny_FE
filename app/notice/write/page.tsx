@@ -27,10 +27,6 @@ const NoticeWrite = () => {
     );
   };
 
-  useEffect(() => {
-    console.log(formdata);
-  }, [formdata]);
-
   return (
     <div className="flex flex-col items-center justify-center p-5">
       <div className="w-full flex mb-10 border-2 rounded-xl">
