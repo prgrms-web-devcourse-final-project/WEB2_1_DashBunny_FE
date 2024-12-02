@@ -1,14 +1,17 @@
+"use client";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+
+const QuillNoSSRWrapper = dynamic(() => import(`react-quill`), {
+  ssr: false,
+  loading: () => <p>Loading</p>,
+});
+
 const NoticeWrite = () => {
-  return (
-    <>
-      <div className="p-10 flex flex-col items-center">
-        <input
-          placeholder="제목을 입력하세요."
-          className="p-5 w-1/2 text-3xl"
-        />
-      </div>
-    </>
-  );
+  const [value, setValue] = useState("");
+
+  return <div></div>;
 };
 
 export default NoticeWrite;
