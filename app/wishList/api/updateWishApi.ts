@@ -1,19 +1,20 @@
 import { api } from "@/shared/axios/axiosInstance"
-import { User } from "@/types/userInfo"
 import axios, { AxiosError } from "axios"
 // API 에러 타입
 interface ApiError {
   message: string
   code: string
 }
-export const getUserInfo = async (): Promise<User> => {
+interface updateWishListDto {
+  storeId: string
+}
+export const updateWishApi = async ({ storeId }: updateWishListDto): Promise<void> => {
   try {
-    const response = await api.get<User>(`/user/currentUser`)
-    return response.data
+    await api.post<void>(`/user/wishModification?storeId=${storeId}`)
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ApiError>
-      throw new Error(axiosError.response?.data?.message || "유저정보 조회 실패")
+      throw new Error(axiosError.response?.data?.message || "찜 업데이트 실패")
     }
     throw error
   }

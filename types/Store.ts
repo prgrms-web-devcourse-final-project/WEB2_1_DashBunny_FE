@@ -12,6 +12,7 @@ export interface UsersStoreDetailResponseDto {
   storeStatus: StoreStatus
   usersMenuGroup: UsersMenuGroupDto[]
   usersMenus: UsersMenuDto[]
+  wishStatus: boolean
 }
 
 export interface UsersStoreListResponseDto {

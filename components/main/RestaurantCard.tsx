@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SaveHeartNavFillIcon from "../icons/iconComponents/SaveHeartNavFillIcon"
 import { UsersStoreListResponseDto } from "@/types/Store"
+import { useUpdateWish } from "@/app/wishList/hooks/useUpdateWish"
 
 export default function RestaurantCard({
   storeId,
@@ -17,7 +18,7 @@ export default function RestaurantCard({
   storeLogo,
 }: UsersStoreListResponseDto) {
   const pathName = usePathname()
-
+  const { updateWishMutation } = useUpdateWish()
   return (
     <Link href={`/restaurant/${storeId}`}>
       <div className="flex gap-4 py-2 relative">
@@ -48,6 +49,7 @@ export default function RestaurantCard({
             onClick={(e) => {
               e.preventDefault() // preventDefault 추가
               e.stopPropagation()
+              updateWishMutation.mutate({ storeId })
             }}
             className="absolute left-[340px] top-9"
           >

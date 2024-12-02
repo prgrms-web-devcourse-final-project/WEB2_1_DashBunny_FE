@@ -10,7 +10,7 @@ interface MenuItemProps {
   price: number
   description: string
   image: string
-  menuId: string
+  menuId: number
   storeId: string
 }
 export const MenuItem = ({ name, price, description, image, menuId, storeId }: MenuItemProps) => {
