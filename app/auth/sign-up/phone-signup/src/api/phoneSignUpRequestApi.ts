@@ -9,7 +9,7 @@ interface PhoneSignUpRequestDto {
 export const phoneSignUpRequestApi = async (formData: PhoneSignUpRequestDto) => {
   console.log(formData)
   try {
-    const response = await api.post("/api/auth/signUp", formData)
+    const response = await api.post("/auth/signUp", formData)
     return response.data
   } catch (error) {
     throw error

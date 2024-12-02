@@ -9,6 +9,8 @@ import React from "react"
 import { useDetailStoreData } from "../hooks/useDetailStoreData"
 import GoToBackButton from "@/components/common/GoToPreviousPageButton"
 import { UsersMenuDto, UsersMenuGroupDto } from "@/types/Store"
+import SaveHeartFillIcon from "@/components/icons/iconComponents/SaveHeartFillIcon"
+import { useUpdateWish } from "@/app/wishList/hooks/useUpdateWish"
 interface DetailStoreProps {
   pathname: string
 }
@@ -18,6 +20,7 @@ export default function DetailStore({ pathname }: DetailStoreProps) {
 
   const menus: UsersMenuDto[] =
     detailStoreData?.usersMenuGroup.flatMap((group) => group.menus) ?? []
+  const { updateWishMutation } = useUpdateWish()
 
   if (isLoading) return <div>로딩중...</div>
   return (
@@ -25,9 +28,16 @@ export default function DetailStore({ pathname }: DetailStoreProps) {
       <header className=" mx-auto fixed top-0 w-[400px] left-0 right-0  z-10 p-[10px] flex justify-between">
         <div className=" flex justify-between items-center w-full ">
           <GoToBackButton icon={<PreviousPageArrowIcon />} />
-          <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
-            <SaveHeartEmptyIcon />
-          </div>
+          <button
+            className="flex items-center justify-center w-10 h-10 bg-white rounded-full hover:bg-gray-50"
+            onClick={(e) => {
+              e.preventDefault() // preventDefault 추가
+              e.stopPropagation()
+              updateWishMutation.mutate({ storeId: detailStoreData?.storeId ?? "" })
+            }}
+          >
+            {detailStoreData?.wishStatus ? <SaveHeartFillIcon /> : <SaveHeartEmptyIcon />}
+          </button>
         </div>
       </header>
       <RestaurantHeader

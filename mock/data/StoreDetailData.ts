@@ -12,6 +12,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
   minimumOrderPrice: 15000,
   ownerCouponId: 1234,
   storeStatus: StoreStatus.OPEN,
+  wishStatus: true,
   usersMenuGroup: [
     {
       groupId: 1,

@@ -187,16 +187,16 @@ export default function PhoneSignUpForm() {
             />
           </AnimatePresence>
         </div>
-        {/* <ColorButton
+        <ColorButton
           onClick={onSubmitHandler}
           size="large"
           text={`${step < 6 ? "확인" : "본인 인증하기"}`}
-        /> */}
-        <ColorButton
+        />
+        {/* <ColorButton
           onClick={() => router.push("/auth/message-authentication")}
           size="large"
           text={`${step < 6 ? "확인" : "본인 인증하기"}`}
-        />
+        /> */}
       </form>
     </div>
   )

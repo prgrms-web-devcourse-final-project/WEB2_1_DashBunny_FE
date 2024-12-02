@@ -10,6 +10,7 @@ export const wishList = [
     maxDeliveryTime: "40",
     discountPrice: 2000,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_002",
@@ -22,6 +23,7 @@ export const wishList = [
     maxDeliveryTime: "45",
     discountPrice: 3000,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_003",
@@ -34,6 +36,7 @@ export const wishList = [
     maxDeliveryTime: "35",
     discountPrice: 1500,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_004",
@@ -46,6 +49,7 @@ export const wishList = [
     maxDeliveryTime: "50",
     discountPrice: 2500,
     status: "CLOSED",
+    wishStatus: true,
   },
   {
     storeId: "store_005",
@@ -58,6 +62,7 @@ export const wishList = [
     maxDeliveryTime: "30",
     discountPrice: 1000,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_006",
@@ -70,6 +75,7 @@ export const wishList = [
     maxDeliveryTime: "40",
     discountPrice: 2000,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_007",
@@ -82,6 +88,7 @@ export const wishList = [
     maxDeliveryTime: "55",
     discountPrice: 3500,
     status: "CLOSED",
+    wishStatus: true,
   },
   {
     storeId: "store_008",
@@ -94,6 +101,7 @@ export const wishList = [
     maxDeliveryTime: "45",
     discountPrice: 2500,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_009",
@@ -106,6 +114,7 @@ export const wishList = [
     maxDeliveryTime: "35",
     discountPrice: 1500,
     status: "OPEN",
+    wishStatus: true,
   },
   {
     storeId: "store_010",
@@ -118,5 +127,6 @@ export const wishList = [
     maxDeliveryTime: "50",
     discountPrice: 3000,
     status: "CLOSED",
+    wishStatus: true,
   },
 ]

@@ -1,13 +1,14 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
-import { getWishList } from "../api/wishListApi"
+import { getWishListApi } from "../api/getWishListApi"
 import { UsersStoreListResponseDto } from "@/types/Store"
 
 export const useGetWishList = (): UseQueryResult<UsersStoreListResponseDto[], Error> => {
+  console.log("실행됨")
   return useQuery({
     queryKey: ["wishList"],
-    queryFn: getWishList,
-    staleTime: 1000 * 60 * 5, // 5분
-    gcTime: 1000 * 60 * 30, // 30분
+    queryFn: getWishListApi,
+    staleTime: 1000,
+    gcTime: 1000,
     retry: 1,
     refetchOnWindowFocus: false,
   })
