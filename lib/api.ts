@@ -112,3 +112,8 @@ export async function fetchNotice() {
   // "http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/notice"
   return response.json(); //response 객체에서 body 부분을 json 객체로 가져온다
 }
+
+export async function fetchNoticeDetail(noticeId: string | number) {
+  const response = await fetch(`/api/notice/${noticeId}`);
+  return response.json();
+}

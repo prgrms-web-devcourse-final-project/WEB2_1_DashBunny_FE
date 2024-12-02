@@ -80,7 +80,7 @@ const Shop = () => {
                       alt="storeLogo"
                       width={70}
                       height={70}
-                      className="object-cover rounded-full mx-3"
+                      className="rounded-full mx-3"
                     />
                     <div>
                       <p className="font-bold text-sm 2xl:text-base">
@@ -92,7 +92,11 @@ const Shop = () => {
                     </div>
                   </div>
                   <div className="w-1/6 flex items-center justify-center">
-                    <div className="w-4  h-4 rounded-full bg-green-400"></div>
+                    {shops.storeStatus === "OPEN" ? (
+                      <div className="w-4  h-4 rounded-full bg-green-400"></div>
+                    ) : (
+                      <div className="w-4  h-4 rounded-full bg-red-600"></div>
+                    )}
                   </div>
                   <p className={FontStyle}>
                     {shops.description || "등록된 소개가 없습니다."}

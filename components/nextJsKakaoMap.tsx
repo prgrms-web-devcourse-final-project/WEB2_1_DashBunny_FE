@@ -32,7 +32,7 @@ const ReactKakaoMap = ({
           style={{ width: "45vw", height: "40vh" }}
           level={3}
         >
-          <MapMarker position={{ lat: 33.5563, lng: 126.79581 }}></MapMarker>
+          <MapMarker position={{ lat: latitude, lng: longitude }}></MapMarker>
         </Map>
       ) : (
         <div></div>
