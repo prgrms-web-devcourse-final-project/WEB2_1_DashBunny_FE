@@ -3,7 +3,7 @@ import { authenticationNumber } from "@/types/authentication"
 export default function AuthenticationNumberValidation({
   authenticationNumber,
 }: authenticationNumber) {
-  const pattern = /^\d{4}$/
+  const pattern = /^\d{6}$/
 
   const errors: authenticationNumber = {
     authenticationNumber: "",

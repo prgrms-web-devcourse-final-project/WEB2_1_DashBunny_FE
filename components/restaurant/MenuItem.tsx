@@ -43,9 +43,9 @@ export const MenuItem = ({ name, price, description, image, menuId, storeId }: M
               alt={name}
               className="w-full h-full object-cover rounded-lg"
             />
-            <div className="absolute -bottom-1 left-[30px] ">
+            {/* <div className="absolute -bottom-1 left-[30px] ">
               <QuantityButton menuId={1} initialQuantity={0} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

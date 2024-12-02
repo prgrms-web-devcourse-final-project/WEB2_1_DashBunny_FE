@@ -25,7 +25,6 @@ export default function PhoneSignInForm() {
     validate: validateSignIn,
   })
   const { postPhoneSignInMutation } = usePostPhoneSignIn()
-  console.log(login.values)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (step < 3) setStep((prev) => prev + 1)
@@ -102,7 +101,11 @@ export default function PhoneSignInForm() {
           </AnimatePresence>
         </div>
 
-        <ColorButton onClick={() => null} size="large" text={step >= 2 ? "로그인" : "다음"} />
+        <ColorButton
+          onClick={() => handleSubmit}
+          size="large"
+          text={step >= 2 ? "로그인" : "다음"}
+        />
       </form>
     </div>
   )

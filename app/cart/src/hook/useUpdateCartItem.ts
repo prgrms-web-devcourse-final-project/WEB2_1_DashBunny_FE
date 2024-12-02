@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query"
-import { updateCartState } from "../api/updateCartState"
+import { updateCartData } from "../api/cart"
 
-export const useUpdateCartState = () => {
+export const useUpdateCartItem = () => {
   const patchCartState = useMutation({
-    mutationFn: updateCartState,
+    mutationFn: updateCartData,
 
     onError: (error, variables, context) => {
       console.log(error)
@@ -20,3 +20,8 @@ export const useUpdateCartState = () => {
 
   return { patchCartState }
 }
+/**
+ * 쿼리키를 const로 선언하고
+ * 장바구니 관려 react query를 한곳에서 관리하면
+ *
+ */

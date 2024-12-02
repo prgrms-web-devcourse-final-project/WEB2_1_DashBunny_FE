@@ -37,10 +37,15 @@ function useForm<T>({ initialValues, validate }: UseFormProps<T>) {
     setErrors(newErrors)
   }, [validate, values])
 
+  //에러가 없고, 모든 폼이 클릭되었다면 true를 리턴한다.
+  const isValid =
+    Object.values(errors).every((error) => error === "") &&
+    Object.values(touched).every((touched) => touched === true)
+
   //객체의 값,
   //해당 폼의 에러메시지,
   //해당 폼의 작성여부,
   //각각의 텍스트 인풋에 대한 props:{값, 값 변경 함수, 작성체크 함수}리턴.
-  return { values, touched, errors, getTextInputProps }
+  return { values, touched, errors, getTextInputProps, isValid }
 }
 export default useForm

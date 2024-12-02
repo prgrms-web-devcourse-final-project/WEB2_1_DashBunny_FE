@@ -1,37 +1,52 @@
 "use client"
-import React from "react"
-import Image from "next/image"
-import QuantityButton from "@/components/common/QuantityButton"
-import { useDetailStoreData } from "../hook/useGetCartState"
+
+import Divider from "@/components/common/Divider"
+import MenuList from "./MenuList"
+import { Select } from "@/components/common/Selector"
+import { couponOptions, paymentOptions } from "@/mock/data/CartData"
+import PriceSummary from "./PriceSummary"
+import PaymentButton from "./PaymentButton"
+import { useGetCartItem } from "../hook"
 
 export default function OrderSheet() {
-  const { data: cartData, isLoading, isError } = useDetailStoreData()
-  if (isLoading) return <div>Loading...</div>
+  const { data, isError, isLoading } = useGetCartItem()
   return (
     <>
-      <div className="p-5 border-b ">
-        <h1 className="font-semibold text-h3 text-black-700">{cartData?.storeName}</h1>
+      <MenuList />
+      <Divider />
+      {/* Store Request */}
+      <div className="p-5">
+        <p className="text-black-700 text-h3 font-semibold">가게 요청사항</p>
+        <input
+          type="text"
+          placeholder="예) 견과류 빼주세요"
+          className="w-full mt-2 p-2 bg-gray-50 rounded-md"
+        />
       </div>
-      <div className="p-5 space-y-4">
-        {cartData?.cartItems.map((item) => {
-          return (
-            <div className="flex items-center gap-3" key={item.cartItemId}>
-              <Image
-                width={73}
-                height={73}
-                src={item?.menuImage}
-                alt="Menu item"
-                className="w-[73px] h-[73px] rounded-md object-cover"
-              />
-              <div className="flex-1">
-                <p className="font-md text-black-700">{item.menuName}</p>
-                <p className="text-h3 font-bold text-black-700">{item.price}</p>
-              </div>
-              <QuantityButton menuId={item.menuId} initialQuantity={item.quantity} />
-            </div>
-          )
-        })}
+      <Divider />
+      {/* Payment Method */}
+      <div className="p-5">
+        <div className="flex flex-col gap-3 justify-start items-start">
+          <p className="text-black-700 text-h3 font-semibold">결제수단</p>
+          <Select options={paymentOptions} />
+        </div>
       </div>
+      <Divider />
+      {/* Coupon */}
+      <div className="p-5 ">
+        <div className="flex flex-col gap-3 justify-start   items-start">
+          <p className="text-black-700 text-h3 font-semibold">쿠폰</p>
+          <Select options={couponOptions} />
+        </div>
+      </div>
+      <Divider />
+      {/* Price Summary */}
+      <PriceSummary />
+      {/* Footer Notice */}
+      <div className="p-4 text-xs text-gray-500 space-y-1">
+        <p>• 개인정보 제3자 제공 내용 및 결제에 동의합니다.</p>
+      </div>
+      <PaymentButton text="19500원 결제하기" />
     </>
   )
 }

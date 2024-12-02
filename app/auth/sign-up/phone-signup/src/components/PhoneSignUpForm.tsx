@@ -4,36 +4,52 @@ import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 import useForm from "@/hooks/useForm"
-
 import InfoForm from "@/components/common/InfoForm"
 import ColorButton from "@/components/common/ColorButton"
 import { PhoneSignUpInfo } from "@/types/phoneSignUp"
 import validateSignUp from "@/validation/PhoneSignUpValidation"
-import Link from "next/link"
+import { usePhoneSignUpMutation } from "../hooks/usePhoneSignUpMutaion"
+import { useRouter } from "next/navigation"
 
 export default function PhoneSignUpForm() {
+  const router = useRouter()
   //@=> 예외처리 더 필요함. 엔터 치면 다음 스텝으로 넘어가벼려서..
   const [step, setStep] = useState(1)
-
   const login = useForm<PhoneSignUpInfo>({
     initialValues: {
+      name: "",
+      birth: "",
+      genNum: "",
       phone: "",
       password: "",
       passwordConfirm: "",
     },
     validate: validateSignUp,
   })
-  console.log(login.values)
-  const handleSubmit = (e: React.FormEvent) => {
+  const { postPhoneSignUpRequest } = usePhoneSignUpMutation(login.values.phone)
+
+  const handleForm = (e: React.FormEvent) => {
     e.preventDefault()
-    if (step < 4) setStep((prev) => prev + 1)
+  }
+  const onSubmitHandler = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (step < 6) setStep((prev) => prev + 1)
+    if (!login.isValid) {
+      return console.log("error", login.errors)
+    }
+    postPhoneSignUpRequest.mutate({
+      name: login.values.name,
+      phone: login.values.phone,
+      birthday: login.values.birth + "-" + login.values.genNum,
+      password: login.values.password,
+    })
   }
 
   const createKeyDownHandler =
     (currentStep: number) => (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         e.preventDefault()
-        if (step === currentStep && step < 4) {
+        if (step === currentStep && step < 6) {
           setStep((prev) => prev + 1)
         }
       }
@@ -43,27 +59,25 @@ export default function PhoneSignUpForm() {
     <div className="p-6 flex flex-col h-full">
       <h1 className="text-2xl font-bold mb-6 whitespace-pre-wrap">
         {step === 1
-          ? "휴대폰 번호를\n입력해주세요"
+          ? "이름을\n입력해주세요"
           : step === 2
-            ? "비밀번호를\n입력해주세요"
+            ? "휴대폰 번호를\n입력해주세요"
             : step === 3
-              ? "비밀번호를\n다시 입력해주세요"
-              : ""}
+              ? "주민번호 앞 7자리를\n입력해주세요"
+              : step === 4
+                ? "비밀번호를\n입력해주세요"
+                : step === 5
+                  ? "비밀번호를 다시 \n입력해주세요"
+                  : "정보가 맞다면\n인증하기 버튼을 눌러주세요"}
       </h1>
-      {step >= 4 && (
-        <h1 className="text-2xl font-bold mb-6">
-          정보가 맞다면 <br />
-          인증하기 버튼을 눌러주세요
-        </h1>
-      )}
 
-      <form onSubmit={handleSubmit} className="h-full">
+      <form className="h-full" onSubmit={handleForm}>
         <div className="flex flex-col gap-2 mb-4">
           <AnimatePresence mode="popLayout">
             {/* Phone Number Section */}
-            {step >= 3 && (
+            {step >= 5 && (
               <motion.div
-                key="phone-section"
+                key="phone-confirm-section"
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
@@ -71,7 +85,7 @@ export default function PhoneSignUpForm() {
               >
                 <InfoForm
                   type="password"
-                  onKeyDown={createKeyDownHandler(3)}
+                  onKeyDown={createKeyDownHandler(5)}
                   errorMessage={login.errors.passwordConfirm}
                   label="비밀번호 확인"
                   maxLength={20}
@@ -84,9 +98,9 @@ export default function PhoneSignUpForm() {
             )}
 
             {/* Birth Registration Section */}
-            {step >= 2 && (
+            {step >= 4 && (
               <motion.div
-                key="birth-section"
+                key="password-section"
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
@@ -94,7 +108,7 @@ export default function PhoneSignUpForm() {
               >
                 <InfoForm
                   type="password"
-                  onKeyDown={createKeyDownHandler(2)}
+                  onKeyDown={createKeyDownHandler(4)}
                   errorMessage={login.errors.password}
                   label="비밀번호"
                   maxLength={20}
@@ -106,27 +120,83 @@ export default function PhoneSignUpForm() {
               </motion.div>
             )}
 
-            {/* Name Section */}
+            {step >= 3 && (
+              <motion.div
+                key="birth-section"
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex gap-2 items-start">
+                  <InfoForm
+                    onKeyDown={createKeyDownHandler(3)}
+                    errorMessage={login.errors.birth}
+                    label="주민등록번호"
+                    maxLength={6}
+                    onChange={login.getTextInputProps("birth").onChange}
+                    value={login.getTextInputProps("birth").value}
+                    onBlur={login.getTextInputProps("birth").onBlur}
+                    touched={login.touched.birth}
+                  />
 
+                  <div className="pt-4">-</div>
+                  <InfoForm
+                    onKeyDown={createKeyDownHandler(3)}
+                    errorMessage={login.errors.genNum}
+                    label=""
+                    maxLength={1}
+                    onChange={login.getTextInputProps("genNum").onChange}
+                    value={login.getTextInputProps("genNum").value}
+                    onBlur={login.getTextInputProps("genNum").onBlur}
+                    touched={login.touched.genNum}
+                  />
+                  <p className="text-xxs tracking-widest pt-5">●●●●●●</p>
+                </div>
+              </motion.div>
+            )}
+            {step >= 2 && (
+              <motion.div
+                key="phone-section"
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.3 }}
+              >
+                <InfoForm
+                  onKeyDown={createKeyDownHandler(2)}
+                  errorMessage={login.errors.phone}
+                  label="휴대폰 번호"
+                  maxLength={11}
+                  onChange={login.getTextInputProps("phone").onChange}
+                  value={login.getTextInputProps("phone").value}
+                  onBlur={login.getTextInputProps("phone").onBlur}
+                  touched={login.touched.phone}
+                />
+              </motion.div>
+            )}
             <InfoForm
               onKeyDown={createKeyDownHandler(1)}
-              errorMessage={login.errors.phone}
-              label="휴대폰 번호"
-              maxLength={11}
-              onChange={login.getTextInputProps("phone").onChange}
-              value={login.getTextInputProps("phone").value}
-              onBlur={login.getTextInputProps("phone").onBlur}
-              touched={login.touched.phone}
+              errorMessage={login.errors.name}
+              label="이름"
+              maxLength={12}
+              onChange={login.getTextInputProps("name").onChange}
+              value={login.getTextInputProps("name").value}
+              onBlur={login.getTextInputProps("name").onBlur}
+              touched={login.touched.name}
             />
           </AnimatePresence>
         </div>
-        <Link href="/auth/sign-up/user-info">
-          <ColorButton
-            onClick={() => {}}
-            size="large"
-            text={step === 4 ? "본인 인증하기" : "확인"}
-          />
-        </Link>
+        {/* <ColorButton
+          onClick={onSubmitHandler}
+          size="large"
+          text={`${step < 6 ? "확인" : "본인 인증하기"}`}
+        /> */}
+        <ColorButton
+          onClick={() => router.push("/auth/message-authentication")}
+          size="large"
+          text={`${step < 6 ? "확인" : "본인 인증하기"}`}
+        />
       </form>
     </div>
   )

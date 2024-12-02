@@ -13,7 +13,7 @@ export default function CartAddress() {
         <MapPinColorIcon />
         <div>
           <h2 className="font-semibold text-h3 inline-block">
-            {address}
+            울산광역시 중구 종가로 313 우정동
             <span className="text-sm text-black-600"> (으)로 배달</span>
           </h2>
         </div>

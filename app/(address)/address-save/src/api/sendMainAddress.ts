@@ -10,7 +10,6 @@ export const sendMainAddress = async (address: string): Promise<void> => {
   try {
     await api.post<string>(`/users/stores/checking?address=${address}`)
   } catch (error) {
-    console.log("🚀 ~ sendMainAddress ~ address:", address)
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ApiError>
       throw new Error(axiosError.response?.data?.message || "주소 데이터 전송 실패")

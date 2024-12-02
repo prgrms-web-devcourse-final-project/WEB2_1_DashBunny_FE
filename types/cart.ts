@@ -15,3 +15,19 @@ export interface CartItem {
   quantity: number
   totalPrice: number
 }
+export const emptyCart: CartData = {
+  userId: 0,
+  storeName: "",
+  cartItems: [],
+  deliveryFee: 0,
+  totalAmount: 0,
+}
+export const emptyCartItem: CartItem = {
+  cartItemId: 0,
+  menuId: 0,
+  menuName: "",
+  menuImage: "",
+  price: 0,
+  quantity: 0,
+  totalPrice: 0,
+}

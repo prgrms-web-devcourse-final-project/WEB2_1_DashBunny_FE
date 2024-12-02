@@ -4,7 +4,7 @@ export default function validateSignIn({ phone, password }: PhoneSignInInfo) {
   const phoneNumberRegex = /^010-?([0-9]{4})-?([0-9]{4})$/
 
   const passwordRegex =
-    /^(?=(.*[a-z])|.*[A-Z]|.*[!@#$%^&*(),.?":{}|<>])(?=(.*[A-Z])|.*[!@#$%^&*(),.?":{}|<>]|.*[a-z])(?=.*\S).{12,20}$/
+    /^(?=(.*[a-z])|.*[A-Z]|.*[!@#$%^&*(),.?":{}|<>])(?=(.*[A-Z])|.*[!@#$%^&*(),.?":{}|<>]|.*[a-z])(?=.*\S).{8,20}$/
 
   type ValidationErrors = {
     [K in keyof PhoneSignInInfo]: string
@@ -16,7 +16,7 @@ export default function validateSignIn({ phone, password }: PhoneSignInInfo) {
   }
 
   if (!passwordRegex.test(password)) {
-    errors.password = "비밀번호는 12~20자리의 영문 대소문자, 숫자, 특수문자를 포함해야 합니다."
+    errors.password = "비밀번호는 8~20자리의 영문 대소문자, 숫자, 특수문자를 포함해야 합니다."
   }
 
   if (!phoneNumberRegex.test(phone)) {

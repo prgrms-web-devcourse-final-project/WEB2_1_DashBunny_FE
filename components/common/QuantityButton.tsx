@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import MenuQuantityMinusIcon from "../icons/iconComponents/MenuQuantityMinusIcon"
 import MenuQuantityPlusIcon from "../icons/iconComponents/MenuQuantityPlusIcon"
 import TrashIcon from "../icons/iconComponents/TrashIcon"
-import { useUpdateCartState } from "@/app/cart/src/hook/useUpdateCartState"
+import { useUpdateCartItem } from "@/app/cart/src/hook"
 
 interface QuantityButtonProps {
   size?: "small" | "large"
@@ -19,11 +19,11 @@ export default function QuantityButton({
 }: QuantityButtonProps) {
   const QUANTITY_CALCULATION = { PLUS: "PLUS", MINUS: "MINUS" }
   const [quantity, setQuantity] = useState(initialQuantity)
-  const { patchCartState } = useUpdateCartState()
+  const { patchCartState } = useUpdateCartItem()
   const patchCartStateHandler = (type: string) => {
     patchCartState.mutate({
       menuId: menuId,
-      quantity: type === QUANTITY_CALCULATION.PLUS ? quantity + 1 : quantity - 1,
+      quantity: type === QUANTITY_CALCULATION.PLUS ? 1 : -1,
     })
   }
   const handleQuantityPlus = () => {

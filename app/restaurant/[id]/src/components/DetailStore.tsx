@@ -7,7 +7,7 @@ import { MenuItem } from "@/components/restaurant/MenuItem"
 import Link from "next/link"
 import React from "react"
 import { useDetailStoreData } from "../hooks/useDetailStoreData"
-import GoToBackButton from "@/components/common/GoToBackButton"
+import GoToBackButton from "@/components/common/GoToPreviousPageButton"
 import { UsersMenuDto, UsersMenuGroupDto } from "@/types/Store"
 interface DetailStoreProps {
   pathname: string
@@ -46,13 +46,19 @@ export default function DetailStore({ pathname }: DetailStoreProps) {
               price={menu.price}
               description={menu.menuContent}
               image={menu.menuImage}
+              menuId={menu.menuId}
+              storeId={detailStoreData?.storeId ?? ""}
             />
           )
         })}
       </div>
-      <div className="p-3 bg-white fixed bottom-0 max-w-[400px] w-full mx-auto flex justify-center items-center ">
-        <ColorButton onClick={() => null} size="large" text={"19500원 · 장바구니 보기"} />
-      </div>
+      <Link
+        href="/cart"
+        className="p-3 bg-white fixed bottom-0 max-w-[400px] w-full mx-auto flex justify-center items-center "
+      >
+        {/* <ColorButton onClick={() => null} size="large" text={"19500원 · 장바구니 보기"} /> */}
+        <ColorButton onClick={() => null} size="large" text={"장바구니 보기"} />
+      </Link>
     </div>
   )
 }

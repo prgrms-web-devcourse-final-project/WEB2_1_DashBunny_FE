@@ -7,7 +7,7 @@ export default function layout({
 }>) {
   return (
     <>
-      <Header title="주문하기" previousRoute="/main" />
+      <Header title="주문하기" previousRoute="/main" type="prev" />
       {children}
     </>
   )

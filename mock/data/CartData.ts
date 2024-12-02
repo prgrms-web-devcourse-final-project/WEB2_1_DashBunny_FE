@@ -7,22 +7,32 @@ export const cartDummyData: CartData = {
     {
       cartItemId: 1,
       menuId: 101,
-      menuName: "불고기",
+      menuName: "황금올리브치킨",
       menuImage: "https://placehold.co/73x73",
-      price: 15000,
+      price: 18000,
       quantity: 2,
-      totalPrice: 30000,
+      totalPrice: 36000,
     },
     {
       cartItemId: 2,
       menuId: 102,
-      menuName: "김치찌개",
+      menuName: "허니갈릭치킨",
       menuImage: "https://placehold.co/73x73",
-      price: 8000,
+      price: 19000,
       quantity: 1,
-      totalPrice: 8000,
+      totalPrice: 19000,
     },
   ],
   deliveryFee: 3000,
-  totalAmount: 41000,
+  totalAmount: 58000,
 }
+export const paymentOptions = [
+  { value: "card", label: "카드 결제" },
+  { value: "bank", label: "계좌 이체" },
+  { value: "phone", label: "휴대폰 결제" },
+]
+export const couponOptions = [
+  { value: "coupon1", label: "쿠폰 1" },
+  { value: "coupon2", label: "쿠폰 2" },
+  { value: "coupon3", label: "쿠폰 3" },
+]

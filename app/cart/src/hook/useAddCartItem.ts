@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query"
-import { postCartState } from "../api/postCartState"
+import { postCartData } from "../api/cart"
 
-export const usePostCartState = () => {
+export const useAddCartItem = () => {
   const patchCartState = useMutation({
-    mutationFn: postCartState,
+    mutationFn: postCartData,
     onError: (error, variables, context) => {
       console.log(error)
       // An error happened!

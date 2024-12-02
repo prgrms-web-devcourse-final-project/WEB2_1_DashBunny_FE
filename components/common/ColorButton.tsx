@@ -1,6 +1,8 @@
+import { MouseEventHandler } from "react"
+
 interface ColorButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
-  onClick: () => void
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined
   size: "small" | "large"
   icon?: React.ReactNode
 }

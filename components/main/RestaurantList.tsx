@@ -10,14 +10,10 @@ export default function RestaurantList({ category }: RestaurantListProps) {
   const { getMainAddress } = useManageAddress()
   const address = getMainAddress()
 
-  const {
-    data: restaurants,
-    isLoading,
-    isError,
-  } = useGetRestaurantListByCategory(category, address!)
-  console.log("🚀 ~ RestaurantList ~ data:", restaurants)
+  const { data: restaurants, isLoading } = useGetRestaurantListByCategory(category, address!)
 
   if (isLoading) return <div>loading</div>
+  if (!restaurants) return <div>데이터가 없습니다</div>
   return (
     <>
       {restaurants!.map((restaurant, index) => (

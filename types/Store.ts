@@ -34,7 +34,7 @@ export interface UsersMenuGroupDto {
 }
 
 export interface UsersMenuDto {
-  menuId: string
+  menuId: number
   menuName: string
   price: number
   menuContent: string

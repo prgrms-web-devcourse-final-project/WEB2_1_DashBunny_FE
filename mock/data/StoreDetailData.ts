@@ -18,7 +18,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
       groupName: "인기 메뉴",
       menus: [
         {
-          menuId: "101",
+          menuId: 101,
           menuName: "후라이드 치킨",
           price: 18000,
           menuContent: "바삭바삭한 후라이드 치킨",
@@ -27,7 +27,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
           isSoldOut: false,
         },
         {
-          menuId: "102",
+          menuId: 102,
           menuName: "양념 치킨",
           price: 19000,
           menuContent: "매콤달콤한 양념 치킨",
@@ -42,7 +42,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
       groupName: "사이드 메뉴",
       menus: [
         {
-          menuId: "201",
+          menuId: 201,
           menuName: "감자튀김",
           price: 5000,
           menuContent: "바삭한 감자튀김",
@@ -51,7 +51,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
           isSoldOut: false,
         },
         {
-          menuId: "202",
+          menuId: 202,
           menuName: "콜라",
           price: 2000,
           menuContent: "시원한 콜라 500ml",
@@ -64,7 +64,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
   ],
   usersMenus: [
     {
-      menuId: "101",
+      menuId: 101,
       menuName: "후라이드 치킨",
       price: 18000,
       menuContent: "바삭바삭한 후라이드 치킨",
@@ -73,7 +73,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
       isSoldOut: false,
     },
     {
-      menuId: "102",
+      menuId: 102,
       menuName: "양념 치킨",
       price: 19000,
       menuContent: "매콤달콤한 양념 치킨",
@@ -82,7 +82,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
       isSoldOut: false,
     },
     {
-      menuId: "201",
+      menuId: 201,
       menuName: "감자튀김",
       price: 5000,
       menuContent: "바삭한 감자튀김",
@@ -91,7 +91,7 @@ export const mockStoreDetailResponse: UsersStoreDetailResponseDto = {
       isSoldOut: false,
     },
     {
-      menuId: "202",
+      menuId: 202,
       menuName: "콜라",
       price: 2000,
       menuContent: "시원한 콜라 500ml",

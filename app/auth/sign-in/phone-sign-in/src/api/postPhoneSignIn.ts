@@ -1,4 +1,4 @@
-import { api } from "@/shared/axios/axiosInstance"
+import { api, loginApi } from "@/shared/axios/axiosInstance"
 
 import axios, { AxiosError } from "axios"
 // API 에러 타입
@@ -12,7 +12,7 @@ interface postCartStateDto {
 }
 export const postPhoneSignIn = async ({ phone, password }: postCartStateDto): Promise<void> => {
   try {
-    const { data } = await api.post<void>(`/loginForm`, {
+    const { data } = await loginApi.post<void>(`/login`, {
       phone,
       password,
     })
@@ -20,7 +20,7 @@ export const postPhoneSignIn = async ({ phone, password }: postCartStateDto): Pr
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ApiError>
-      throw new Error(axiosError.response?.data?.message || "장바구니 데이터 전송 실패")
+      throw new Error(axiosError.response?.data?.message || "일반 로그인 실패")
     }
     throw error
   }
