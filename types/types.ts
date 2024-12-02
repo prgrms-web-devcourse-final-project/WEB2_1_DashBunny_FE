@@ -52,3 +52,8 @@ export interface NoticeType {
   target: string;
   viewCount: number;
 }
+
+export type CreateNotice = Omit<
+  NoticeType,
+  "noticeId" | "viewCount" | "createdDate"
+>;

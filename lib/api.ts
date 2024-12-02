@@ -1,5 +1,6 @@
 import { CouponType } from "@/types/types";
 import { CreateCouponRequest } from "@/types/types";
+import { CreateNotice } from "@/types/types";
 
 //유저api
 export async function fetchUsers() {
@@ -116,4 +117,14 @@ export async function fetchNotice() {
 export async function fetchNoticeDetail(noticeId: string | number) {
   const response = await fetch(`/api/notice/${noticeId}`);
   return response.json();
+}
+
+export async function createNotice(content: CreateNotice) {
+  await fetch("api/notice/admin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(content),
+  });
 }
