@@ -78,9 +78,10 @@ const Shop = () => {
                     <Image
                       src={shops.storeLogo || "/Icon/NoIMG.svg"}
                       alt="storeLogo"
-                      width={70}
-                      height={70}
+                      width={60}
+                      height={60}
                       className="rounded-full mx-3"
+                      style={{ width: "60px", height: "60px" }}
                     />
                     <div>
                       <p className="font-bold text-sm 2xl:text-base">
