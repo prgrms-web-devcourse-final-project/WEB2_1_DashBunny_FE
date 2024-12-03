@@ -53,7 +53,7 @@ export async function approveShop(storeID: string) {
   );
 }
 
-export async function rejectShop(storeID: string, reason: string) {
+export async function rejectShop(storeID: string, Reject_reason: string) {
   //가게 요청 거절
   await fetch(
     `http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/store/reject/${storeID}`,
@@ -62,7 +62,7 @@ export async function rejectShop(storeID: string, reason: string) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ reason: reason }),
+      body: JSON.stringify({ reason: Reject_reason }),
     }
   );
 }
