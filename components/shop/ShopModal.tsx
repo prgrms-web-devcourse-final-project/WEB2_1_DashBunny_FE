@@ -7,7 +7,7 @@ import { ShopType } from "@/types/types";
 import {
   fetchShopById,
   approveShop,
-  // rejectShop,
+  rejectShop,
   approveClosureShop,
 } from "@/lib/api";
 
@@ -20,7 +20,8 @@ const ShopModal = ({
 }) => {
   const [shopByID, setShopByID] = useState<ShopType>();
   const [Loading, setLoading] = useState(true);
-  // const [reason, setReason] = useState<string>("");
+  const [rejectModal, setRejectModal] = useState(false);
+  const [reason, setReason] = useState<string>("");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -43,15 +44,15 @@ const ShopModal = ({
     }
   };
 
-  // const rejectShopButoon = (ShopID: string | null, reason: string) => {
-  //   if (ShopID) {
-  //     rejectShop(ShopID, reason);
-  //   }
-  // };
+  const rejectShopButoon = (ShopID: string | null, reason: string) => {
+    if (ShopID) {
+      rejectShop(ShopID, reason);
+    }
+  };
 
-  // const rejectResaon = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setReason(e.target.value);
-  // };
+  const rejectResaon = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReason(e.target.value);
+  };
 
   const approveClosure = (ShopID: string | null) => {
     if (ShopID) {
@@ -60,9 +61,11 @@ const ShopModal = ({
   };
 
   return (
-    <div className="fixed inset-0 min-w-full items-center bg-black -top-0 -left-0 bg-opacity-[40%] flex justify-center">
-      <section className=" bg-white w-[50vw] h-[90vh] shadow-2xl rounded-2xl overflow-y-auto">
-        <div className="flex justify-between w-full p-3 border-b-2">
+    <div className="fixed inset-0 min-w-full items-center bg-black -top-0 -left-0 bg-opacity-[30%] flex justify-center">
+      <section
+        className={`bg-white w-[50vw] h-[90vh] shadow-2xl rounded-2xl overflow-y-auto`}
+      >
+        <div className="flex justify-between w-full p-3 border-b-2 right-0 top-0">
           <p className="text-2xl font-bold">가게 상세 정보</p>
           <button
             onClick={() => setModal((prev) => !prev)}
@@ -128,23 +131,25 @@ const ShopModal = ({
                 )}
               </div>
             </div>
-            {shopByID?.storeStatus === "PENDING" && (
-              <div className="flex items-center justify-center p-5 gap-40 ">
-                <button
-                  className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                  onClick={() => approveShopButton(selectedShopID)}
-                >
-                  <div className="bg-green-500 w-3 h-3 rounded-full mx-1"></div>
-                  가게 등록 승인
-                </button>
-                <button
-                  className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                  // onClick={() => rejectShopButoon(selectedShopID, reason)} //거절 사유 창을 따로 만들어야함
-                >
-                  <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
-                  가게 등록 거절
-                </button>
-              </div>
+            {shopByID?.storeStatus === "PENDING" && !rejectModal && (
+              <>
+                <div className="flex items-center justify-center p-5 gap-40 ">
+                  <button
+                    className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
+                    onClick={() => approveShopButton(selectedShopID)}
+                  >
+                    <div className="bg-green-500 w-3 h-3 rounded-full mx-1"></div>
+                    가게 등록 승인
+                  </button>
+                  <button
+                    className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
+                    onClick={() => setRejectModal((prev) => !prev)} //거절 사유 창을 따로 만들어야함
+                  >
+                    <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
+                    가게 등록 거절
+                  </button>
+                </div>
+              </>
             )}
             {shopByID?.storeStatus === "CLOSURE_PENDING" && (
               <div className="w-full flex items-center justify-center p-5">
@@ -154,6 +159,27 @@ const ShopModal = ({
                 >
                   <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
                   폐업 신청 승인
+                </button>
+              </div>
+            )}
+            {rejectModal && (
+              <div className="flex w-full items-center justify-center">
+                <input
+                  className="border my-5 w-2/3 p-2 rounded-xl shadow-md mr-5 outline-BunnyOrange"
+                  placeholder="거절 사유를 간단하게 입력해주세요."
+                  onChange={rejectResaon}
+                />
+                <button
+                  className="border p-2 bg-BunnyOrange font-bold rounded-xl shadow-md w-20 mr-1"
+                  onClick={() => rejectShop(selectedShopID as string, reason)}
+                >
+                  확인
+                </button>
+                <button
+                  className="border p-2 bg-gray-400 font-bold rounded-xl shadow-md w-20"
+                  onClick={() => setRejectModal(false)}
+                >
+                  취소
                 </button>
               </div>
             )}
