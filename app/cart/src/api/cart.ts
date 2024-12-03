@@ -1,57 +1,37 @@
 import { api } from "@/shared/axios/axiosInstance"
 import { CartData } from "@/types/cart"
-import axios, { AxiosError } from "axios"
-// API 에러 타입
-interface ApiError {
-  message: string
-  code: string
-}
+
+//장바구니 데이터 가져오기
 export const getCartData = async (): Promise<CartData> => {
-  try {
-    const response = await api.get<CartData>(`/users/carts`)
-    return response.data
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ApiError>
-      throw new Error(axiosError.response?.data?.message || "장바구니 조회 실패")
-    }
-    throw error
-  }
+  const response = await api.get<CartData>(`/users/carts`)
+  return response.data
 }
+
+//장바구니에 메뉴 추가
 interface postCartDto {
   menuId: number
   quantity: number
 }
 export const postCartData = async ({ menuId, quantity }: postCartDto): Promise<CartData> => {
-  try {
-    const { data } = await api.post<CartData>(`/users/items?menuId=${menuId}?quantity=${quantity}`)
-    return data
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ApiError>
-      throw new Error(axiosError.response?.data?.message || "장바구니 데이터 전송 실패")
-    }
-    throw error
-  }
+  const { data } = await api.post<CartData>(`/users/items?menuId=${menuId}?quantity=${quantity}`)
+  return data
 }
+
+//장바구니 메뉴 수량 변경
 interface updateCartDto {
   menuId: number
   quantity: number
 }
 export const updateCartData = async ({ menuId, quantity }: updateCartDto): Promise<CartData> => {
-  try {
-    const { data } = await api.patch<CartData>(
-      `/users/items/${menuId}?menuId=${menuId}?quantity=${quantity}`,
-    )
-    return data
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ApiError>
-      throw new Error(axiosError.response?.data?.message || "장바구니 데이터 전송 실패")
-    }
-    throw error
-  }
+  const { data } = await api.patch<CartData>(
+    `/users/items/${menuId}?menuId=${menuId}?quantity=${quantity}`,
+  )
+  return data
 }
+
+/**가게 다를 시 confirm후 결과 전송. 기존 장바구니를 삭제하고 새로운 가게의 메뉴를 추가하던가,
+ * 메뉴 추가를 취소하던가.
+ */
 interface updateCartDataWithOverWriteDto extends updateCartDto {
   overwrite: boolean
 }
@@ -60,16 +40,8 @@ export const addCartDataWithOverwrite = async ({
   quantity,
   overwrite,
 }: updateCartDataWithOverWriteDto): Promise<CartData> => {
-  try {
-    const { data } = await api.post<CartData>(
-      `/users/items?menuId=${menuId}?quantity=${quantity}?overwrite=${overwrite}`,
-    )
-    return data
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ApiError>
-      throw new Error(axiosError.response?.data?.message || "장바구니 데이터 전송 실패")
-    }
-    throw error
-  }
+  const { data } = await api.post<CartData>(
+    `/users/items?menuId=${menuId}?quantity=${quantity}?overwrite=${overwrite}`,
+  )
+  return data
 }

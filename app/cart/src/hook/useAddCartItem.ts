@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { postCartData, addCartDataWithOverwrite } from "../api/cart"
 import { useState } from "react"
+import axios, { AxiosError } from "axios"
+import { ApiError } from "next/dist/server/api-utils"
 
 interface PendingItem {
   menuId: number
@@ -18,19 +20,25 @@ export const useAddCartItem = () => {
 
   const { mutate, isPending, isError, isSuccess } = useMutation({
     mutationFn: postCartData,
-    //@=> 가게 다를 때 서버에서 주는 에러랑 아예 요청이 안갔을 때 에러 구분해야.
+    //TODO: 가게 다를 때 서버에서 주는 에러랑 아예 요청이 안갔을 때 에러 구분해야.
     //variables에는 mutation에 전달된 인자가 들어있음
-    onError: async (error: Error, variables) => {
-      if (error.message === "장바구니 데이터 전송 실패") {
-        //모달창 열기
-        setShowConfirmDialog(true)
-        //pendingItem 상태에 요청 데이터 저장
-        setPendingItem({
-          menuId: variables.menuId,
-          quantity: variables.quantity,
-        })
+    onError: async (error: Error | AxiosError<ApiError>, variables) => {
+      if (axios.isAxiosError(error)) {
+        console.log(error.status === 500)
+        //다른 가게를 선택했을 때 서버에서 주는 에러. 아직 서버 연결 전이라 요청이 안갔을 때 에러
+        if (error.status === 500) {
+          setShowConfirmDialog(true)
+          setPendingItem({
+            menuId: variables.menuId,
+            quantity: variables.quantity,
+          })
+          //다른 가게 에러, 네트워크 에러를 제외한 모든 에러
+        } else {
+          console.error("API 요청 실패:", error.response?.data?.message)
+        }
+        //네트워크 에러
       } else {
-        console.error("Cart add failed:", error)
+        console.error("네트워크 에러:", error)
       }
     },
     onSuccess: () => {
