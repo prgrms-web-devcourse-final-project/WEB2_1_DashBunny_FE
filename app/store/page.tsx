@@ -76,25 +76,32 @@ const Shop = () => {
                   <p className={`${FontStyle} w-16`}>{i + 1}</p>
                   <div className="flex w-1/6 items-center justify-center">
                     <Image
-                      src={shops.storeLogo}
+                      src={shops.storeLogo || "/Icon/NoIMG.svg"}
                       alt="storeLogo"
-                      width={70}
-                      height={70}
-                      className="object-cover rounded-full mx-3"
+                      width={60}
+                      height={60}
+                      className="rounded-full mx-3"
+                      style={{ width: "60px", height: "60px" }}
                     />
                     <div>
                       <p className="font-bold text-sm 2xl:text-base">
                         {shops.storeName}
                       </p>
                       <p className="text-gray-400 font-semibold text-sm 2xl:text-base">
-                        {shops.contactNumber}
+                        {shops.contactNumber || "입력된 번호가 없습니다."}
                       </p>
                     </div>
                   </div>
                   <div className="w-1/6 flex items-center justify-center">
-                    <div className="w-4  h-4 rounded-full bg-green-400"></div>
+                    {shops.storeStatus === "OPEN" ? (
+                      <div className="w-4  h-4 rounded-full bg-green-400"></div>
+                    ) : (
+                      <div className="w-4  h-4 rounded-full bg-red-600"></div>
+                    )}
                   </div>
-                  <p className={FontStyle}>{shops.description}</p>
+                  <p className={FontStyle}>
+                    {shops.description || "등록된 소개가 없습니다."}
+                  </p>
                   <p className={FontStyle}>{shops.address}</p>
                   <p className={FontStyle}>{shops.storeStatus}</p>
                   <p className={FontStyle}>{shops.approvedDate}</p>

@@ -22,27 +22,27 @@ const Navigation = () => {
     <div className="flex flex-col static min-h-screen">
       {Nav ? (
         <button
-          className="left-[180px] top-[10px] absolute border p-1 rounded-xl"
+          className="left-[250px] top-[50%] absolute border p-1 border-l-0 bg-gray-50 rounded-r-xl"
           onClick={() => NavOn()}
         >
           <Image
-            src="/Icon/sidebar.svg"
+            src="/Icon/sideclose.svg"
             alt="sidebar Icon"
-            width={20}
-            height={20}
+            width={10}
+            height={10}
             className={ImageProp}
           />
         </button>
       ) : (
         <button
-          className="left-[10px] top-[10px] absolute border p-1 rounded-xl"
+          className="left-[0px] top-[50%] absolute border p-1 border-l-0 bg-gray-50 rounded-r-xl"
           onClick={() => NavOn()}
         >
           <Image
-            src="/Icon/sidebar.svg"
+            src="/Icon/sideopen.svg"
             alt="sidebar Icon"
-            width={20}
-            height={20}
+            width={10}
+            height={10}
             className={ImageProp}
           />
         </button>

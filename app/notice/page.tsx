@@ -16,10 +16,6 @@ const Notice = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(noticeData);
-  }, [noticeData]);
-
   return (
     <>
       <div className="flex">
@@ -77,21 +73,25 @@ const Notice = () => {
         <main className="w-full min-h-[68vh] border-b-4">
           {noticeData &&
             noticeData.map((notice, i) => (
-              <div className="flex p-2 border-b-2" key={i}>
-                <p className="w-20 flex items-center justify-center">{i + 1}</p>
-                <p className="w-1/3 flex items-center justify-center font-bold">
-                  {notice.noticeTitle}
-                </p>
-                <p className="w-1/3 flex items-center justify-center">
-                  {notice.target}
-                </p>
-                <p className="w-1/3 flex items-center justify-center">
-                  {notice.createdDate}
-                </p>
-                <p className="w-20 flex items-center justify-center">
-                  {notice.viewCount}
-                </p>
-              </div>
+              <Link href={`/notice/${notice.noticeId}`} key={notice.noticeId}>
+                <div className="flex p-2 border-b-2">
+                  <p className="w-20 flex items-center justify-center">
+                    {i + 1}
+                  </p>
+                  <p className="w-1/3 flex items-center justify-center font-bold">
+                    {notice.noticeTitle}
+                  </p>
+                  <p className="w-1/3 flex items-center justify-center">
+                    {notice.target}
+                  </p>
+                  <p className="w-1/3 flex items-center justify-center">
+                    {notice.createdDate}
+                  </p>
+                  <p className="w-20 flex items-center justify-center">
+                    {notice.viewCount}
+                  </p>
+                </div>
+              </Link>
             ))}
         </main>
       </section>
