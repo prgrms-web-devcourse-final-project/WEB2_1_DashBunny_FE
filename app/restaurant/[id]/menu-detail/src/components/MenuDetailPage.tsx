@@ -4,9 +4,11 @@ import React from "react"
 import { useSearchParams } from "next/navigation"
 import ColorButton from "@/components/common/ColorButton"
 import Image from "next/image"
-import useCartStore from "@/shared/store/useCartStore"
+import { useAddCartItem } from "@/app/cart/src/hook"
+import AnotherStoreMenuConfirmModal from "./AnotherStoreMenuConfirmModal"
 export default function MenuDetailPage() {
   const searchParams = useSearchParams()
+  //@=>훅으로 뺴기
   const menuDetail = {
     name: searchParams.get("name") || "",
     price: Number(searchParams.get("price")) || 0,
@@ -25,28 +27,22 @@ export default function MenuDetailPage() {
       }
     }
   }
-  const { addToCart } = useCartStore()
+  const { addCart, showConfirmDialog, handleConfirmOverwrite } = useAddCartItem()
+
   const addToCartHandler = (menuId: number, quantity: number) => {
-    addToCart(menuId, quantity)
+    addCart({ menuId, quantity })
   }
   return (
     <div className="flex flex-col  bg-white">
-      {/* 상품 이미지 영역 */}
       <Image alt="" src={menuDetail.image} width={360} height={360} />
-      {/* 상품 정보 영역 */}
       <div className="flex flex-col p-4 space-y-4">
-        {/* 상품명 */}
         <h1 className="text-xl font-medium">{menuDetail.name}</h1>
-        {/* 상품 설명 */}
         <p className="text-gray-600 text-sm">{menuDetail.description}</p>
-
-        {/* 가격 영역 */}
         <div className="flex justify-between items-center">
           <span className="font-medium">가격</span>
           <span className="font-medium">{menuDetail.price}</span>
         </div>
 
-        {/* 수량 선택 */}
         <div className="flex justify-between items-center">
           <span className="font-medium">수량</span>
           <div className="flex items-center space-x-3">
@@ -66,7 +62,6 @@ export default function MenuDetailPage() {
           </div>
         </div>
       </div>
-      {/* 장바구니 버튼 */}{" "}
       <div className="p-3 bg-white fixed bottom-0 max-w-[360px] w-full mx-auto flex justify-center items-center ">
         <ColorButton
           onClick={() => addToCartHandler(menuDetail.menuId, quantity)}
@@ -74,6 +69,9 @@ export default function MenuDetailPage() {
           text={"장바구니 담기"}
         />
       </div>
+      {showConfirmDialog && (
+        <AnotherStoreMenuConfirmModal handleConfirmOverwrite={handleConfirmOverwrite} />
+      )}
     </div>
   )
 }

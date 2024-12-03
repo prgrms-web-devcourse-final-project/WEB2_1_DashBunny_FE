@@ -7,12 +7,17 @@ import { couponOptions, paymentOptions } from "@/mock/data/CartData"
 import PriceSummary from "./PriceSummary"
 import PaymentButton from "./PaymentButton"
 import { useGetCartItem } from "../hook"
+import { detailedStoreData } from "@/constants/storeDetailData"
 
 export default function OrderSheet() {
   const { data, isError, isLoading } = useGetCartItem()
+  if (isLoading) return <div>loading</div>
+  if (isError) return <div>error</div>
+  if (!data) return <div>No data available</div>
+
   return (
     <>
-      <MenuList />
+      <MenuList storeName={data.storeName} cartItems={data.cartItems} />
       <Divider />
       {/* Store Request */}
       <div className="p-5">
@@ -41,12 +46,12 @@ export default function OrderSheet() {
       </div>
       <Divider />
       {/* Price Summary */}
-      <PriceSummary />
+      <PriceSummary deliveryFee={data?.deliveryFee ?? 0} totalAmount={data?.totalAmount ?? 0} />
       {/* Footer Notice */}
       <div className="p-4 text-xs text-gray-500 space-y-1">
         <p>• 개인정보 제3자 제공 내용 및 결제에 동의합니다.</p>
       </div>
-      <PaymentButton text="19500원 결제하기" />
+      <PaymentButton text={`${data?.totalAmount}원 결제하기`} />
     </>
   )
 }

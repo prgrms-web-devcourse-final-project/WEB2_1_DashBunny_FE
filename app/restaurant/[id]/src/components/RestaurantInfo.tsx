@@ -1,9 +1,6 @@
 import Image from "next/image"
-import GoToDetailPageArrowIcon from "../icons/iconComponents/GoToDetailPageArrowIcon"
-import PreviousPageArrowIcon from "../icons/iconComponents/PreviousPageArrow"
-import SaveHeartEmptyIcon from "../icons/iconComponents/SaveHeartEmptyIcon"
-import bigkfc from "@/public/image/bbq.png"
-import BigRatingStarIcon from "../icons/iconComponents/BigRatingStar"
+import GoToDetailPageArrowIcon from "../../../../../components/icons/iconComponents/GoToDetailPageArrowIcon"
+import BigRatingStarIcon from "../../../../../components/icons/iconComponents/BigRatingStar"
 interface RestaurantHeaderProps {
   name: string
   rating: number
@@ -11,7 +8,7 @@ interface RestaurantHeaderProps {
   deliveryFee: number
   storeImage: string
 }
-export const RestaurantHeader = ({
+export const RestaurantInfo = ({
   name,
   rating,
   minOrderAmount,

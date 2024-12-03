@@ -1,27 +1,26 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updateCartData } from "../api/cart"
 
-export const useUpdateCartItem = () => {
-  const patchCartState = useMutation({
-    mutationFn: updateCartData,
+// 쿼리 키를 상수로 관리
+const CART_QUERY_KEY = ["CartData"] as const
 
-    onError: (error, variables, context) => {
-      console.log(error)
-      // An error happened!
-      //   console.log(`rolling back optimistic update with id ${context.id}`)
+export const useUpdateCartItem = () => {
+  const queryClient = useQueryClient()
+
+  const { mutate, isPending, isError, isSuccess } = useMutation({
+    mutationFn: updateCartData,
+    onError: (error) => {
+      console.error("Cart update failed:", error)
     },
-    onSuccess: (data, variables, context) => {
-      // Boom baby!
-    },
-    onSettled: (data, error, variables, context) => {
-      // Error or success... doesn't matter!
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
     },
   })
 
-  return { patchCartState }
+  return {
+    updateCart: mutate,
+    isUpdating: isPending,
+    hasError: isError,
+    isSuccess,
+  }
 }
-/**
- * 쿼리키를 const로 선언하고
- * 장바구니 관려 react query를 한곳에서 관리하면
- *
- */

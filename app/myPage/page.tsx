@@ -6,9 +6,9 @@ import UserActionButtons from "./components/UserActionButtons"
 import Divider from "@/components/common/Divider"
 import MenuList from "./components/MenuList"
 import Link from "next/link"
-import { useCurrentUser, useUserInfo } from "./src/hooks/useUserInfo"
+import { useCurrentUser } from "./src/hooks/useUserInfo"
 
-export default function page() {
+export default function Page() {
   const { data, isLoading } = useCurrentUser()
   if (isLoading) return <div>loading...</div>
   console.log("🚀 ~ page ~ data:", data)

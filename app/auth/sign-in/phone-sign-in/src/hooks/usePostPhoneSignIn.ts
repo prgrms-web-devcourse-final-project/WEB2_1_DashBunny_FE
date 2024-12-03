@@ -12,7 +12,7 @@ export const usePostPhoneSignIn = () => {
     },
     onSuccess: (data, variables, context) => {
       alert("로그인 성공!")
-      // router.push("/")
+      router.push("/")
       // Boom baby!
     },
     onSettled: (data, error, variables, context) => {

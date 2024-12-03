@@ -56,11 +56,7 @@ export default function PhoneSignInForm() {
         {step === 1 ? "휴대폰 번호를\n입력해주세요" : "비밀번호를\n입력해주세요"}
       </h1>
 
-      <form
-        action="http://dashbunny-web-env-1.eba-aehpeuj2.ap-northeast-2.elasticbeanstalk.com/api/login"
-        onSubmit={handleSubmit}
-        className="h-full"
-      >
+      <form onSubmit={handleSubmit} className="h-full">
         <div className="flex flex-col gap-2 mb-4">
           <AnimatePresence mode="popLayout">
             {/* Phone Number Section */}

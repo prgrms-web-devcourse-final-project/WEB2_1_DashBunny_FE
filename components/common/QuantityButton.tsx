@@ -19,9 +19,9 @@ export default function QuantityButton({
 }: QuantityButtonProps) {
   const QUANTITY_CALCULATION = { PLUS: "PLUS", MINUS: "MINUS" }
   const [quantity, setQuantity] = useState(initialQuantity)
-  const { patchCartState } = useUpdateCartItem()
+  const { updateCart } = useUpdateCartItem()
   const patchCartStateHandler = (type: string) => {
-    patchCartState.mutate({
+    updateCart({
       menuId: menuId,
       quantity: type === QUANTITY_CALCULATION.PLUS ? 1 : -1,
     })
