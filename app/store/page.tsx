@@ -7,7 +7,7 @@ import { fetchShop } from "@/lib/api";
 import ShopModal from "@/components/shop/ShopModal";
 
 const Shop = () => {
-  const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl"; //버튼 css
+  const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl transition"; //버튼 css
   const FontStyle =
     "text-gray-500 font-semibold w-1/6 flex items-center justify-center text-sm 2xl:text-base";
 
@@ -15,9 +15,10 @@ const Shop = () => {
   const [Loading, setLoading] = useState(true);
   const [Modal, setModal] = useState(false);
   const [seletedShopID, setSeletedShopID] = useState<string | null>(null);
+  const [shopState, setShopState] = useState("ENTIRE");
 
   useEffect(() => {
-    fetchShop("ENTIRE", 1, 10).then((data) => {
+    fetchShop(shopState, 1, 10).then((data) => {
       setShop(data);
       setLoading(false);
     });
@@ -31,10 +32,41 @@ const Shop = () => {
   return (
     <>
       <div className="w-full flex ">
-        <button className={ButtonProp}>영업중</button>
-        <button className={ButtonProp}> 영업종료</button>
-        <button className={ButtonProp}> 등록신청</button>
-        <button className={ButtonProp}> 폐업신청</button>
+        <button
+          className={`${ButtonProp} ${
+            shopState === "OPEN" ? "border-BunnyOrange border-4" : ""
+          }`}
+          onClick={() => setShopState("OPEN")}
+        >
+          영업중
+        </button>
+        <button
+          className={`${ButtonProp} ${
+            shopState === "CLOSE" ? "border-BunnyOrange border-4" : ""
+          }`}
+          onClick={() => setShopState("CLOSE")}
+        >
+          {" "}
+          영업종료
+        </button>
+        <button
+          className={`${ButtonProp} ${
+            shopState === "PENDING" ? "border-BunnyOrange border-4" : ""
+          }`}
+          onClick={() => setShopState("PENDING")}
+        >
+          {" "}
+          등록신청
+        </button>
+        <button
+          className={`${ButtonProp} ${
+            shopState === "CLOSURE_PENDING" ? "border-BunnyOrange border-4" : ""
+          }`}
+          onClick={() => setShopState("CLOSURE_PENDING")}
+        >
+          {" "}
+          폐업신청
+        </button>
         <div className="ml-auto flex border p-2 w-1/2 items-center border-gray-300 rounded-xl shadow">
           <Image
             src="/Icon/search.svg"

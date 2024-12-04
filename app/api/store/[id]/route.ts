@@ -10,8 +10,7 @@ const mockShopsByID = {
   longitude: 126.978, //경도
   storeRegistrationDocs: "사업자 등록증url", //등록서류(이미지 url)
   categories: ["FOOD", "BEVERAGE"], //가게 카테고리 (리스트로 최대 3개까지)
-  storeBannerImage:
-    "https://i.namu.wiki/i/IpxvfUYFs51Hxzq7j5cO505dVXpqgBkiIG1R4t-OQfrXlOlSIEQiBdzPy-4cZ5IecSzDXECQZy6hvUdkdEbW7uK6zz2zwmPlAHA1LWTbnMtnNKLV7Oh-8M1YePoFzmhyeYNIr9XcdGuJlXWTzAD59g.webp",
+  storeBannerImage: "",
   storeStatus: "PENDING", //가게 상태
   userName: "박장사", //사장님 이름
 };

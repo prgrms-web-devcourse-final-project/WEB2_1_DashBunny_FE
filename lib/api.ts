@@ -5,19 +5,13 @@ import { CreateNotice } from "@/types/types";
 //유저api
 export async function fetchUsers() {
   //전체 유저 정보 불러오기
-  try {
-    const response = await fetch(
-      "http://localhost:3000/api/user"
-      // "http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/user"
+  const response = await fetch("http://localhost:3000/api/user");
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch users ${response.status} ${response.statusText}`
     );
-    if (!response.ok) {
-      throw new Error("Failed to fetch users");
-    }
-    return response.json();
-  } catch (error) {
-    console.log(error);
-    return [];
   }
+  return response.json();
 }
 
 //가게 api
@@ -25,66 +19,82 @@ export async function fetchShop(status: string, page: number, size: number) {
   // 전체 가게 정보 불러오기
   const response = await fetch(
     `/api/store?status=${status}&page=${page}&size=${size}`
-    // `http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/store?status=${status}&page=${page}&size=${size}`
   );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch store ${response.status} ${response.statusText}`
+    );
+  }
+
   return response.json();
 }
 
 export async function fetchShopById(storeID: string | null) {
   //단일 가게 정보 조회
-  const response = await fetch(
-    `/api/store/${storeID}`
-    // 'http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/store/${storeID}'
-  );
+  const response = await fetch(`/api/store/${storeID}`);
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch storeByID ${response.status} ${response.statusText}`
+    );
+  }
+
   return response.json();
 }
 
 export async function approveShop(storeID: string) {
   //가게 요청 승인
-  await fetch(
-    // `http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/store/approve/${storeID}`
-    `api/store/approve/${storeID}`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(`api/store/approve/${storeID}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Failed to approveShop ${response.status} ${response.statusText}`
+    );
+  }
 }
 
 export async function rejectShop(storeID: string, Reject_reason: string) {
   //가게 요청 거절
-  await fetch(
-    `http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/store/reject/${storeID}`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ reason: Reject_reason }),
-    }
-  );
+  const response = await fetch(`/api/store/reject/${storeID}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ reason: Reject_reason }),
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Failed to rejectShop ${response.status} ${response.statusText}`
+    );
+  }
 }
 
 export async function approveClosureShop(storeID: string) {
-  await fetch(
-    // `http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/store/closure/approve/${storeID}`
-    `/api/store/closure/approve/${storeID}`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(`/api/store/closure/approve/${storeID}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error(
+      `Failed to approveClosureShop ${response.status} ${response.statusText}`
+    );
+  }
 }
 
 //쿠폰api
 export async function fetchCoupon() {
   // 전체 쿠폰 정보 불러오기
   const response = await fetch(`api/admin/coupon`);
-  // "http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/admin/coupon"
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch coupon ${response.status} ${response.statusText}`
+    );
+  }
 
   return response.json();
 }
@@ -92,8 +102,7 @@ export async function fetchCoupon() {
 export async function createCoupon(couponData: CreateCouponRequest) {
   //프론트 측에서 빈 값 못넘기도록 하자
   //쿠폰 생성(선착순 , 일반)
-  await fetch(
-    // "http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/admin/coupon"
+  const response = await fetch(
     `/api/admin/coupon`,
 
     {
@@ -104,27 +113,47 @@ export async function createCoupon(couponData: CreateCouponRequest) {
       body: JSON.stringify(couponData),
     }
   );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to create Coupon ${response.status} ${response.statusText}`
+    );
+  }
 }
 
 //공지api
 export async function fetchNotice() {
   // 전체 공지 정보 불러오기
   const response = await fetch(`/api/notice`);
-  // "http://aws-final-project-env-2.eba-vp8n66xx.us-east-1.elasticbeanstalk.com/api/notice"
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch notice ${response.status} ${response.statusText}`
+    );
+  }
   return response.json(); //response 객체에서 body 부분을 json 객체로 가져온다
 }
 
 export async function fetchNoticeDetail(noticeId: string | number) {
   const response = await fetch(`/api/notice/${noticeId}`);
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch noticeDetail ${response.status} ${response.statusText}`
+    );
+  }
   return response.json();
 }
 
 export async function createNotice(content: CreateNotice) {
-  await fetch("api/notice/admin", {
+  const response = await fetch("api/notice/admin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(content),
   });
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to create notice ${response.status} ${response.statusText}`
+    );
+  }
 }
