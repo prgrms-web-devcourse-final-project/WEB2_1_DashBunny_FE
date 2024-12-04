@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import TanStackProvider from "./providers/TanStackProvider";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} antialiased flex`}>
-        <Navigation />
-        {children}
+        <TanStackProvider>
+          <Navigation />
+          {children}
+        </TanStackProvider>
       </body>
     </html>
   );

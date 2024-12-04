@@ -1,4 +1,3 @@
-import { CouponType } from "@/types/types";
 import { CreateCouponRequest } from "@/types/types";
 import { CreateNotice } from "@/types/types";
 
