@@ -20,7 +20,7 @@ export default function RestaurantHeader({ pathname }: RestaurantHeaderProps) {
         <button
           className="flex items-center justify-center w-10 h-10 bg-white rounded-full hover:bg-gray-50"
           onClick={(e) => {
-            e.preventDefault() // preventDefault 추가
+            e.preventDefault()
             e.stopPropagation()
             updateWishMutation.mutate({ storeId: detailStoreData?.storeId ?? "" })
           }}

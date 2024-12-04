@@ -4,6 +4,7 @@ import "./globals.css"
 import GlobalNavBar from "@/components/common/GlobalNavBar"
 import ReactQueryConfigContext from "@/context/ReactQueryConfigContext"
 import { AddressInitializer } from "@/context/AddressContext"
+import OverlayProviderContext from "@/context/OverlayProviderContext"
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -26,9 +27,11 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning={true}>
       <body className={`${pretendard.variable} antialiased mx-auto w-[400px] min-h-screen`}>
         <ReactQueryConfigContext>
-          <AddressInitializer>
-            <div className="overflow-auto w-full h-full no-scrollbar">{children}</div>
-          </AddressInitializer>
+          <OverlayProviderContext>
+            <AddressInitializer>
+              <div className="overflow-auto w-full h-full no-scrollbar">{children}</div>
+            </AddressInitializer>
+          </OverlayProviderContext>
         </ReactQueryConfigContext>
         <GlobalNavBar />
       </body>

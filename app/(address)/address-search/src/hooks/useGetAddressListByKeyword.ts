@@ -5,7 +5,6 @@ import { JusoApiResponse } from "../model/addressResponse"
 export const useGetAddressListByKeyword = (
   keyword: string,
 ): UseQueryResult<JusoApiResponse, Error> => {
-  console.log(keyword)
   return useQuery({
     queryKey: ["juso", keyword],
     queryFn: () => getJusoApi(keyword),

@@ -76,11 +76,6 @@ export const useManageAddress = () => {
       id,
       addressData,
     }
-    // console.log(newAddress.marker)
-    // if (newAddress.marker === "Main") {
-    //   const address = newAddress.addressData.roadAddress + newAddress.addressData.detailAddress
-
-    // }
     // 6. 주소 목록 업데이트 (최대 5개까지)
     const updatedAddresses = [newAddress, ...prevAddresses].slice(0, 5)
     // 7. 저장

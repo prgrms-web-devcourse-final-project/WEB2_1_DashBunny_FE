@@ -8,11 +8,11 @@ export const getCartData = async (): Promise<CartData> => {
 }
 
 //장바구니에 메뉴 추가
-interface postCartDto {
+export interface PostCartDto {
   menuId: number
   quantity: number
 }
-export const postCartData = async ({ menuId, quantity }: postCartDto): Promise<CartData> => {
+export const postCartData = async ({ menuId, quantity }: PostCartDto): Promise<CartData> => {
   const { data } = await api.post<CartData>(`/users/items?menuId=${menuId}?quantity=${quantity}`)
   return data
 }

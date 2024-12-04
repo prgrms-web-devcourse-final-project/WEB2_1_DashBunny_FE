@@ -1,22 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { postCartData, addCartDataWithOverwrite } from "../api/cart"
-import { useState } from "react"
+import { postCartData, addCartDataWithOverwrite, PostCartDto } from "../api/cart"
 import axios, { AxiosError } from "axios"
 import { ApiError } from "next/dist/server/api-utils"
-
-interface PendingItem {
-  menuId: number
-  quantity: number
-}
-
+import { AnotherStoreConfirmDialog } from "@/components/Dialog/AnotherStoreConfirmDialog"
+import { overlay } from "overlay-kit"
 const CART_QUERY_KEY = ["CartData"] as const
 
 export const useAddCartItem = () => {
   const queryClient = useQueryClient()
   //모달 상태
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
-  //장바구니에 다른 가게의 메뉴가 있을 때 요청의 데이터를 임시로 보관하는 상태
-  const [pendingItem, setPendingItem] = useState<PendingItem | null>(null)
 
   const { mutate, isPending, isError, isSuccess } = useMutation({
     mutationFn: postCartData,
@@ -24,17 +16,28 @@ export const useAddCartItem = () => {
     //variables에는 mutation에 전달된 인자가 들어있음
     onError: async (error: Error | AxiosError<ApiError>, variables) => {
       if (axios.isAxiosError(error)) {
-        console.log(error.status === 500)
         //다른 가게를 선택했을 때 서버에서 주는 에러. 아직 서버 연결 전이라 요청이 안갔을 때 에러
-        if (error.status === 500) {
-          setShowConfirmDialog(true)
-          setPendingItem({
-            menuId: variables.menuId,
-            quantity: variables.quantity,
-          })
-          //다른 가게 에러, 네트워크 에러를 제외한 모든 에러
-        } else {
-          console.error("API 요청 실패:", error.response?.data?.message)
+        switch (error.status) {
+          case 500:
+            //모달을 열고 실행할 함수와 모달을 여닫는 함수를 Props로 넘겨준다
+            overlay.open(
+              ({ close, isOpen, unmount }) =>
+                AnotherStoreConfirmDialog({
+                  close,
+                  isOpen,
+                  unmount,
+                  //함수가 Promise를 반환하므로 async, await 사용
+                  handleConfirmOverwrite: async (confirm) => {
+                    await handleConfirmOverwrite(confirm, variables)
+                  },
+                }),
+              {},
+            )
+
+            //다른 가게 에러, 네트워크 에러를 제외한 모든 에러
+            break
+          default:
+            console.error("API 요청 실패:", error.response?.data?.message)
         }
         //네트워크 에러
       } else {
@@ -43,19 +46,26 @@ export const useAddCartItem = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
-      setShowConfirmDialog(false)
-      setPendingItem(null)
     },
   })
-  //모달에서 실행할 함수. 예를 누르면 pendingItem에 overWrite Params가 추가된 요청을 보낸다.
-  const handleConfirmOverwrite = async (confirm: boolean) => {
-    if (!pendingItem) return
-
+  //모달에서 실행할 함수. error variables로 받은 메뉴추가 데이터와 overWrite Params가 추가된 요청을 보낸다.
+  //데이터 요청을 보내고 난 후 쿼리 무효화를 하기 위해 비동기로 처리
+  const handleConfirmOverwrite = async (confirm: boolean, postCardDto: PostCartDto) => {
     if (confirm) {
       try {
         await addCartDataWithOverwrite({
-          ...pendingItem,
+          ...postCardDto,
           overwrite: true,
+        })
+        queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
+      } catch (error) {
+        console.error("Cart overwrite failed:", error)
+      }
+    } else {
+      try {
+        await addCartDataWithOverwrite({
+          ...postCardDto,
+          overwrite: false,
         })
         queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
       } catch (error) {
@@ -63,8 +73,6 @@ export const useAddCartItem = () => {
       }
     }
     //뭘 눌렀건 모달창 닫고 pendingItem 초기화
-    setShowConfirmDialog(false)
-    setPendingItem(null)
   }
 
   return {
@@ -72,7 +80,7 @@ export const useAddCartItem = () => {
     isUpdating: isPending,
     hasError: isError,
     isSuccess,
-    showConfirmDialog,
+
     handleConfirmOverwrite,
   }
 }

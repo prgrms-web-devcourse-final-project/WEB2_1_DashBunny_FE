@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 import ColorButton from "@/components/common/ColorButton"
 import Image from "next/image"
 import { useAddCartItem } from "@/app/cart/src/hook"
-import AnotherStoreMenuConfirmModal from "./AnotherStoreMenuConfirmModal"
+
 export default function MenuDetailPage() {
   const searchParams = useSearchParams()
   //@=>훅으로 뺴기
@@ -27,7 +27,7 @@ export default function MenuDetailPage() {
       }
     }
   }
-  const { addCart, showConfirmDialog, handleConfirmOverwrite } = useAddCartItem()
+  const { addCart } = useAddCartItem()
 
   const addToCartHandler = (menuId: number, quantity: number) => {
     addCart({ menuId, quantity })
@@ -69,9 +69,6 @@ export default function MenuDetailPage() {
           text={"장바구니 담기"}
         />
       </div>
-      {showConfirmDialog && (
-        <AnotherStoreMenuConfirmModal handleConfirmOverwrite={handleConfirmOverwrite} />
-      )}
     </div>
   )
 }
