@@ -19,10 +19,14 @@ const Navigation = () => {
   };
 
   return (
-    <div className="flex flex-col static min-h-screen">
+    <div
+      className={`flex flex-col static ${
+        Nav ? "w-[280px]" : "w-0"
+      } min-h-screen`}
+    >
       {Nav ? (
         <button
-          className="left-[250px] top-[50%] absolute border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+          className="left-[250px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
           onClick={() => NavOn()}
         >
           <Image
@@ -35,7 +39,7 @@ const Navigation = () => {
         </button>
       ) : (
         <button
-          className="left-[0px] top-[50%] absolute border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+          className="left-[0px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
           onClick={() => NavOn()}
         >
           <Image
@@ -48,7 +52,7 @@ const Navigation = () => {
         </button>
       )}
       {Nav && (
-        <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl h-full realtive">
+        <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl h-full fixed overflow-y-auto overflow-x-hidden">
           <header className="text-3xl font-bold mb-5 text-BunnyOrange">
             DASH
           </header>
@@ -154,16 +158,6 @@ const Navigation = () => {
             <div className={Line} />
             <div className={MenuLayout}>
               <Image
-                src="/Icon/support.svg"
-                alt="support Icon"
-                width={30}
-                height={30}
-                className={ImageProp}
-              />{" "}
-              Support
-            </div>
-            <div className={MenuLayout}>
-              <Image
                 src="/Icon/setting.svg"
                 alt="setting Icon"
                 width={30}
@@ -173,6 +167,7 @@ const Navigation = () => {
               Setting
             </div>
           </div>
+          {/* TODO:필요한가 알아보고 다시 넣기 
           <div className="flex flex-col mt-auto">
             <div className={Line} />
             <div className="flex">
@@ -188,7 +183,7 @@ const Navigation = () => {
                 <p className="text-gray-400 text-sm">knr0013@gmail.com</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
       )}
     </div>
