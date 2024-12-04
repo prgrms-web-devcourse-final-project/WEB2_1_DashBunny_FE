@@ -26,7 +26,7 @@ const Navigation = () => {
     >
       {Nav ? (
         <button
-          className="left-[250px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+          className="left-[240px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
           onClick={() => NavOn()}
         >
           <Image
@@ -39,7 +39,7 @@ const Navigation = () => {
         </button>
       ) : (
         <button
-          className="left-[0px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+          className="left-[-10px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
           onClick={() => NavOn()}
         >
           <Image
