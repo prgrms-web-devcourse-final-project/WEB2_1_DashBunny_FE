@@ -32,12 +32,6 @@ const Shop = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    console.log("hasNextPage:", hasNextPage);
-    console.log("isLoading:", isLoading);
-    console.log("isFetching:", isFetching);
-  }, [hasNextPage, isLoading, isFetching]);
-
   const ModalHandler = (ShopID: string) => {
     setSeletedShopID(ShopID); //모달에게 줄 단독 Shop
     setModal((prev) => !prev); // 모달이 열리도록
