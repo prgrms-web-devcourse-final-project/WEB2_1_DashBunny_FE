@@ -1,7 +1,28 @@
 import { CreateCouponRequest } from "@/types/types";
 import { CreateNotice } from "@/types/types";
+import { LoginType } from "@/types/types";
 
 //유저api
+
+export async function Login(LoginForm: LoginType) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/login`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(LoginForm),
+    }
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to Login ${response.status} ${response.statusText}`
+    );
+  }
+  return response.json();
+}
+
 export async function fetchUsers() {
   //전체 유저 정보 불러오기
   const response = await fetch(

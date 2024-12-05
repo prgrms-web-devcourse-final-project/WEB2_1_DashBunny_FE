@@ -57,3 +57,8 @@ export type CreateNotice = Omit<
   NoticeType,
   "noticeId" | "viewCount" | "createdDate"
 >;
+
+export interface LoginType {
+  phone: string;
+  password: string;
+}
