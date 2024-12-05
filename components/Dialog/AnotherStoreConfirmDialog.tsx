@@ -1,9 +1,7 @@
 "use client"
+import MainCartIcon from "../icons/iconComponents/MainCartIcon"
+import { ConfirmModal } from "../modal/ConfirmModal"
 
-import Dialog from "./Dialog"
-import DialogActions from "./DialogActions"
-import DialogButton from "./DialogButton"
-import DialogTitle from "./DialogTitle"
 interface AnotherStoreConfirmDialogProps {
   isOpen: boolean
   close: () => void
@@ -20,19 +18,20 @@ export const AnotherStoreConfirmDialog = ({
   //데이터 요청 후 모달이 닫히게 하기 위해 async, await 사용
   const select = async (select: boolean) => {
     await handleConfirmOverwrite(select)
+
     close()
     unmount()
   }
 
   return (
-    <Dialog isOpen={isOpen} onClose={close}>
-      <DialogTitle>정말로 계속하시겠어요?</DialogTitle>
-      <DialogActions>
-        <DialogButton onClick={() => select(false)} variant="secondary">
-          아니요
-        </DialogButton>
-        <DialogButton onClick={() => select(true)}>네</DialogButton>
-      </DialogActions>
-    </Dialog>
+    <ConfirmModal
+      isOpen={isOpen}
+      promiseClose={() => select(false)}
+      promiseConfirm={() => select(true)}
+      title={`장바구니에는 같은 가게의 메뉴만\n담을 수 있습니다.`}
+      description={`선택하신 메뉴를 장바구니에 담을 경우\n이전에 담은 메뉴가 삭제됩니다.`}
+      icon={<MainCartIcon />}
+      confirmText="담기"
+    />
   )
 }

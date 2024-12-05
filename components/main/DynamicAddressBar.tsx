@@ -13,7 +13,6 @@ export default function DynamicAddressBar() {
     mainAddress?.addressData.roadAddress ?? "" + mainAddress?.addressData.detailAddress
 
   const prevAddressRef = useRef(address)
-  console.log("🚀 ~ DynamicAddressBar ~ prevAddressRef:", prevAddressRef)
 
   useEffect(() => {
     if (address !== prevAddressRef.current) {

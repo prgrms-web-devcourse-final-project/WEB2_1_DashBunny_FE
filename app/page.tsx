@@ -1,6 +1,6 @@
 import Header from "@/components/main/Header"
 import SearchBar from "@/components/main/SearchBar"
-import BottomBannerItem from "./src/components/BottomBannerItem"
+import BottomBanner from "./src/components/BottomBanner"
 import dynamic from "next/dynamic"
 import FoodCategoryList from "./main/components/FoodeCategoryList"
 
@@ -17,7 +17,7 @@ export default function Home() {
         <SearchBar placeholder="무엇을 찾으시나요?" />
         <FoodCategoryList />
       </main>
-      <BottomBannerItem />
+      <BottomBanner />
     </>
   )
 }

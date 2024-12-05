@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
   const body = await request.json()
-
   try {
     return new NextResponse("안녕")
   } catch (error) {
