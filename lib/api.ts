@@ -4,7 +4,9 @@ import { CreateNotice } from "@/types/types";
 //유저api
 export async function fetchUsers() {
   //전체 유저 정보 불러오기
-  const response = await fetch("http://localhost:3000/api/user");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user`
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to fetch users ${response.status} ${response.statusText}`
@@ -17,7 +19,7 @@ export async function fetchUsers() {
 export async function fetchShop(status: string, page: number, size: number) {
   // 전체 가게 정보 불러오기
   const response = await fetch(
-    `/api/store?status=${status}&page=${page}&size=${size}`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store?status=${status}&page=${page}&size=${size}`
   );
   if (!response.ok) {
     throw new Error(
@@ -30,7 +32,9 @@ export async function fetchShop(status: string, page: number, size: number) {
 
 export async function fetchShopById(storeID: string | null) {
   //단일 가게 정보 조회
-  const response = await fetch(`/api/store/${storeID}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/${storeID}`
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to fetch storeByID ${response.status} ${response.statusText}`
@@ -42,12 +46,15 @@ export async function fetchShopById(storeID: string | null) {
 
 export async function approveShop(storeID: string) {
   //가게 요청 승인
-  const response = await fetch(`api/store/approve/${storeID}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/approve/${storeID}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to approveShop ${response.status} ${response.statusText}`
@@ -57,13 +64,16 @@ export async function approveShop(storeID: string) {
 
 export async function rejectShop(storeID: string, Reject_reason: string) {
   //가게 요청 거절
-  const response = await fetch(`/api/store/reject/${storeID}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ reason: Reject_reason }),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/reject/${storeID}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ reason: Reject_reason }),
+    }
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to rejectShop ${response.status} ${response.statusText}`
@@ -72,12 +82,15 @@ export async function rejectShop(storeID: string, Reject_reason: string) {
 }
 
 export async function approveClosureShop(storeID: string) {
-  const response = await fetch(`/api/store/closure/approve/${storeID}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/closure/approve/${storeID}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to approveClosureShop ${response.status} ${response.statusText}`
@@ -88,7 +101,9 @@ export async function approveClosureShop(storeID: string) {
 //쿠폰api
 export async function fetchCoupon() {
   // 전체 쿠폰 정보 불러오기
-  const response = await fetch(`api/admin/coupon`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to fetch coupon ${response.status} ${response.statusText}`
@@ -102,7 +117,7 @@ export async function createCoupon(couponData: CreateCouponRequest) {
   //프론트 측에서 빈 값 못넘기도록 하자
   //쿠폰 생성(선착순 , 일반)
   const response = await fetch(
-    `/api/admin/coupon`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`,
 
     {
       method: "POST",
@@ -122,7 +137,9 @@ export async function createCoupon(couponData: CreateCouponRequest) {
 //공지api
 export async function fetchNotice() {
   // 전체 공지 정보 불러오기
-  const response = await fetch(`/api/notice`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice`
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to fetch notice ${response.status} ${response.statusText}`
@@ -132,7 +149,9 @@ export async function fetchNotice() {
 }
 
 export async function fetchNoticeDetail(noticeId: string | number) {
-  const response = await fetch(`/api/notice/${noticeId}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/${noticeId}`
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to fetch noticeDetail ${response.status} ${response.statusText}`
@@ -142,13 +161,16 @@ export async function fetchNoticeDetail(noticeId: string | number) {
 }
 
 export async function createNotice(content: CreateNotice) {
-  const response = await fetch("api/notice/admin", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(content),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(content),
+    }
+  );
 
   if (!response.ok) {
     throw new Error(

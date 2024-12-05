@@ -1,86 +1,61 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { ShopType } from "@/types/types";
 import { fetchShop } from "@/lib/api";
 import ShopModal from "@/components/shop/ShopModal";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const Shop = () => {
-  const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl transition"; //버튼 css
+  const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl"; //버튼 css
   const FontStyle =
     "text-gray-500 font-semibold w-1/6 flex items-center justify-center text-sm 2xl:text-base";
 
-  const [shop, setShop] = useState<ShopType[]>([]);
-  const [Loading, setLoading] = useState(true);
   const [Modal, setModal] = useState(false);
   const [seletedShopID, setSeletedShopID] = useState<string | null>(null);
-  const [shopState, setShopState] = useState("ENTIRE");
-  const [isClient, setIsClient] = useState(false); // 클라이언트 렌더링 상태를 관리
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetching } =
+    useInfiniteQuery({
+      queryKey: ["shopData"],
+      queryFn: ({ pageParam = 1 }) => fetchShop("ENTIRE", pageParam, 10),
+      getNextPageParam: (lastPage) => {
+        const nextPage = lastPage.pageable.pageNumber + 1;
+        return nextPage <= lastPage.pageable.totalPages ? nextPage : undefined;
+      },
+      initialPageParam: 1,
+    });
 
   useEffect(() => {
-    setIsClient(true); // 클라이언트에서만 데이터 불러오기
-  }, []);
-
-  useEffect(() => {
-    if (isClient) {
-      setLoading(true);
-      fetchShop(shopState, 1, 20)
-        .then((data) => {
-          setShop(data.data);
-          setLoading(false);
-        })
-        .catch((error) => console.log(error));
+    if (data) {
+      console.log("Fetched data:", data);
     }
-  }, [shopState, isClient]);
+  }, [data]);
 
-  if (!isClient || Loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    console.log("hasNextPage:", hasNextPage);
+    console.log("isLoading:", isLoading);
+    console.log("isFetching:", isFetching);
+  }, [hasNextPage, isLoading, isFetching]);
 
   const ModalHandler = (ShopID: string) => {
     setSeletedShopID(ShopID); //모달에게 줄 단독 Shop
     setModal((prev) => !prev); // 모달이 열리도록
   };
 
+  const loadMore = () => {
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  };
+
   return (
     <>
       <div className="w-full flex ">
-        <button
-          className={`${ButtonProp} ${
-            shopState === "OPEN" ? "border-BunnyOrange border-4" : ""
-          }`}
-          onClick={() => setShopState("OPEN")}
-        >
-          영업중
-        </button>
-        <button
-          className={`${ButtonProp} ${
-            shopState === "CLOSE" ? "border-BunnyOrange border-4" : ""
-          }`}
-          onClick={() => setShopState("CLOSE")}
-        >
-          {" "}
-          영업종료
-        </button>
-        <button
-          className={`${ButtonProp} ${
-            shopState === "PENDING" ? "border-BunnyOrange border-4" : ""
-          }`}
-          onClick={() => setShopState("PENDING")}
-        >
-          {" "}
-          등록신청
-        </button>
-        <button
-          className={`${ButtonProp} ${
-            shopState === "CLOSURE_PENDING" ? "border-BunnyOrange border-4" : ""
-          }`}
-          onClick={() => setShopState("CLOSURE_PENDING")}
-        >
-          {" "}
-          폐업신청
-        </button>
+        <button className={ButtonProp}>영업중</button>
+        <button className={ButtonProp}> 영업종료</button>
+        <button className={ButtonProp}> 등록신청</button>
+        <button className={ButtonProp}> 폐업신청</button>
         <div className="ml-auto flex border p-2 w-1/2 items-center border-gray-300 rounded-xl shadow">
           <Image
             src="/Icon/search.svg"
@@ -110,53 +85,61 @@ const Shop = () => {
             <p className={FontStyle}> 등록/폐업 날짜</p>
           </div>
           <div className="w-full border min-h-[65vh]">
-            {shop ? (
-              shop.map((shops, i) => (
-                <div
-                  key={i}
-                  className="flex border-b-2 p-2 transition hover:bg-gray-200 "
-                  onClick={() => ModalHandler(shops.storeId)}
-                >
-                  <p className={`${FontStyle} w-16`}>{i + 1}</p>
-                  <div className="flex w-1/6 items-center justify-center">
-                    <Image
-                      src={shops.storeLogo || "/Icon/NoIMG.svg"}
-                      alt="storeLogo"
-                      width={60}
-                      height={60}
-                      className="rounded-full mx-3"
-                      style={{ width: "60px", height: "60px" }}
-                    />
-                    <div>
-                      <p className="font-bold text-sm 2xl:text-base">
-                        {shops.storeName}
-                      </p>
-                      <p className="text-gray-400 font-semibold text-sm 2xl:text-base">
-                        {shops.contactNumber || "입력된 번호가 없습니다."}
-                      </p>
+            {data?.pages.map((page, index) => (
+              <div key={index}>
+                {page.content.map((shops: ShopType, i: number) => (
+                  <div
+                    key={i}
+                    className="flex border-b-2 p-2 trasition hover:bg-gray-200 "
+                    onClick={() => ModalHandler(shops.storeId)}
+                  >
+                    <p className={`${FontStyle} w-16`}>{i + 1}</p>
+                    <div className="flex w-1/6 items-center justify-center">
+                      <Image
+                        src={shops.storeLogo || "/Icon/NoIMG.svg"}
+                        alt="storeLogo"
+                        width={60}
+                        height={60}
+                        className="rounded-full mx-3"
+                        style={{ width: "60px", height: "60px" }}
+                      />
+                      <div>
+                        <p className="font-bold text-sm 2xl:text-base">
+                          {shops.storeName}
+                        </p>
+                        <p className="text-gray-400 font-semibold text-sm 2xl:text-base">
+                          {shops.contactNumber || "입력된 번호가 없습니다."}
+                        </p>
+                      </div>
                     </div>
+                    <div className="w-1/6 flex items-center justify-center">
+                      {shops.storeStatus === "OPEN" ? (
+                        <div className="w-4 h-4 rounded-full bg-green-400"></div>
+                      ) : (
+                        <div className="w-4 h-4 rounded-full bg-red-600"></div>
+                      )}
+                    </div>
+                    <p className={FontStyle}>
+                      {shops.description || "등록된 소개가 없습니다."}
+                    </p>
+                    <p className={FontStyle}>{shops.address}</p>
+                    <p className={FontStyle}>{shops.storeStatus}</p>
+                    <p className={FontStyle}>{shops.approvedDate}</p>
                   </div>
-                  <div className="w-1/6 flex items-center justify-center">
-                    {shops.storeStatus === "OPEN" ? (
-                      <div className="w-4 h-4 rounded-full bg-green-400"></div>
-                    ) : (
-                      <div className="w-4 h-4 rounded-full bg-red-600"></div>
-                    )}
-                  </div>
-                  <p className={FontStyle}>
-                    {shops.description || "등록된 소개가 없습니다."}
-                  </p>
-                  <p className={FontStyle}>{shops.address}</p>
-                  <p className={FontStyle}>{shops.storeStatus}</p>
-                  <p className={FontStyle}>{shops.approvedDate}</p>
-                </div>
-              ))
-            ) : (
-              <div className="w-full text-center py-10 text-gray-500">
-                등록된 가게가 없습니다.
+                ))}
               </div>
-            )}
+            ))}
           </div>
+
+          {/* 무한 스크롤 처리 */}
+          {hasNextPage && (
+            <div
+              className="w-full text-center p-4 bg-gray-100"
+              onClick={loadMore}
+            >
+              {isFetching ? "불러오는 중..." : "더 불러오기"}
+            </div>
+          )}
         </main>
       </section>
     </>
