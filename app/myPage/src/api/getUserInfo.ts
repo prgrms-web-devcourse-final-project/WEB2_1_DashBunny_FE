@@ -8,7 +8,7 @@ interface ApiError {
 }
 export const getUserInfo = async (): Promise<User> => {
   try {
-    const response = await api.get<User>(`/user/currentUser`)
+    const response = await api.get<User>(`/jwt/getCurrentUser-authorization`)
     return response.data
   } catch (error) {
     if (axios.isAxiosError(error)) {

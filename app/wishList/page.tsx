@@ -5,9 +5,5 @@ import Loading from "./loading"
 
 export default function page() {
   //고도화@=> 헤더 컴포넌트화
-  return (
-    <Suspense fallback={<Loading />}>
-      <WishRestaurantList />
-    </Suspense>
-  )
+  return <WishRestaurantList />
 }

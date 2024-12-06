@@ -6,17 +6,13 @@ export const usePostPhoneSignIn = () => {
   const router = useRouter()
   const postPhoneSignInMutation = useMutation({
     mutationFn: postPhoneSignIn,
-    onError: (error, variables, context) => {
+    onError: (error) => {
       alert("로그인 실패!")
       console.log(error)
     },
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data) => {
       alert("로그인 성공!")
       router.push("/")
-      // Boom baby!
-    },
-    onSettled: (data, error, variables, context) => {
-      // Error or success... doesn't matter!
     },
   })
 

@@ -9,6 +9,12 @@ export default function OrderList() {
   if (isLoading) {
     return <div>로딩중...</div>
   }
+  if (isError) {
+    return <div>에러가 발생했습니다.</div>
+  }
+  if (!orderList) {
+    return <div>주문내역이 없습니다.</div>
+  }
   return (
     <section className=" mt-4">
       {orderList!.map((order, index) => (

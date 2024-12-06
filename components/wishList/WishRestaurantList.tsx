@@ -7,7 +7,8 @@ export default function WishRestaurantList() {
   const { data: stores, isError, isLoading } = useGetWishList()
 
   if (isLoading) return <div>loading</div>
-
+  if (isError) return <div>에러가 발생했습니다.</div>
+  if (!stores) return <div>데이터가 없습니다.</div>
   return (
     <main className="mt-2">
       <div className="space-y-2">

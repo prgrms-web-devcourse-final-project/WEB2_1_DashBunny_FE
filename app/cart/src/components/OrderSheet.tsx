@@ -11,6 +11,7 @@ import { detailedStoreData } from "@/constants/storeDetailData"
 
 export default function OrderSheet() {
   const { data, isError, isLoading } = useGetCartItem()
+
   if (isLoading) return <div>loading</div>
   if (isError) return <div>error</div>
   if (!data) return <div>No data available</div>

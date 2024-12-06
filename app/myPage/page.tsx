@@ -6,14 +6,13 @@ import UserActionButtons from "./components/UserActionButtons"
 import Divider from "@/components/common/Divider"
 import MenuList from "./components/MenuList"
 import Link from "next/link"
-import { useCurrentUser } from "./src/hooks/useUserInfo"
+import { useCurrentUser, useUserInfo } from "./src/hooks/useUserInfo"
 
 export default function Page() {
-  const { data, isLoading } = useCurrentUser()
+  const { data, isLoading } = useUserInfo()
   if (isLoading) return <div>loading...</div>
-  console.log("🚀 ~ page ~ data:", data)
-  // if (isLoading) return <div>loading...</div>
-  // if (!data) return <div>데이터가 없습니다</div>
+  if (isLoading) return <div>loading...</div>
+  if (!data) return <div>데이터가 없습니다</div>
 
   return (
     <>

@@ -22,7 +22,7 @@ export default function AddressList() {
     return new Date(a.id).getTime() - new Date(b.id).getTime()
   })
   const mainAddressHandler = ({ id, addressData }: Omit<AddedAddress, "marker">) => {
-    const address = addressData.roadAddress + addressData.detailAddress
+    const address = addressData.roadAddress
     updateAddress(id)
     sendAddressMutation.mutate(address)
   }
