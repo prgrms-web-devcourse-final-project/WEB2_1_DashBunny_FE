@@ -27,10 +27,6 @@ const LoginPage = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(loginForm);
-  }, [loginForm]);
-
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-BunnyOrange w-full">
@@ -42,14 +38,14 @@ const LoginPage = () => {
           <form className="space-y-4" onSubmit={LoginPost}>
             <div>
               <label
-                htmlFor="email"
+                htmlFor="phone"
                 className="block text-sm font-medium text-gray-700"
               >
                 전화번호
               </label>
               <input
                 name="phone"
-                id="email"
+                id="userPhone"
                 className="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-BunnyOrange focus:border-BunnyOrange"
                 placeholder="01012345678"
                 onChange={FormChange}
@@ -68,6 +64,7 @@ const LoginPage = () => {
                 className="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-BunnyOrange focus:border-BunnyOrange"
                 placeholder="비밀번호 입력"
                 onChange={FormChange}
+                type="password"
               />
             </div>
             <button

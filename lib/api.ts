@@ -76,13 +76,14 @@ export async function fetchShopById(storeID: string | null) {
 
 //가게 요청 승인
 export async function approveShop(storeID: string) {
+  const Token = sessionStorage.getItem("accessToken");
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/approve/${storeID}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
+        Authorization: `Bearer ${Token}`,
       },
     }
   );
@@ -95,13 +96,15 @@ export async function approveShop(storeID: string) {
 
 //가게 요청 거절
 export async function rejectShop(storeID: string, Reject_reason: string) {
+  const Token = sessionStorage.getItem("accessToken");
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/reject/${storeID}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
+        Authorization: `Bearer ${Token}`,
       },
       body: JSON.stringify({ reason: Reject_reason }),
     }
@@ -115,13 +118,15 @@ export async function rejectShop(storeID: string, Reject_reason: string) {
 
 //폐업 신청 승인
 export async function approveClosureShop(storeID: string) {
+  const Token = sessionStorage.getItem("accessToken");
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/closure/approve/${storeID}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
+        Authorization: `Bearer ${Token}`,
       },
     }
   );
@@ -135,8 +140,14 @@ export async function approveClosureShop(storeID: string) {
 //쿠폰api
 // 전체 쿠폰 정보 불러오기
 export async function fetchCoupon() {
+  const Token = sessionStorage.getItem("accessToken");
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`,
+    {
+      headers: {
+        Authorization: `Bearer ${Token}`,
+      },
+    }
   );
   if (!response.ok) {
     throw new Error(
@@ -149,13 +160,14 @@ export async function fetchCoupon() {
 
 //쿠폰 생성(선착순 , 일반)
 export async function createCoupon(couponData: CreateCouponRequest) {
+  const Token = sessionStorage.getItem("accessToken");
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
+        Authorization: `Bearer ${Token}`,
       },
       body: JSON.stringify(couponData),
     }
@@ -170,8 +182,14 @@ export async function createCoupon(couponData: CreateCouponRequest) {
 //공지api
 // 전체 공지 정보 불러오기
 export async function fetchNotice() {
+  const Token = sessionStorage.getItem("accessToken");
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice`,
+    {
+      headers: {
+        Authorization: `Bearer ${Token}`,
+      },
+    }
   );
   if (!response.ok) {
     throw new Error(
@@ -183,8 +201,15 @@ export async function fetchNotice() {
 
 //단일 공지 조회하기
 export async function fetchNoticeDetail(noticeId: string | number) {
+  const Token = sessionStorage.getItem("accessToken");
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/${noticeId}`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/id/${noticeId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${Token}`,
+      },
+    }
   );
   if (!response.ok) {
     throw new Error(
@@ -196,13 +221,15 @@ export async function fetchNoticeDetail(noticeId: string | number) {
 
 //공지 작성하기
 export async function createNotice(content: CreateNotice) {
+  const Token = sessionStorage.getItem("accessToken");
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
+        Authorization: `Bearer ${Token}`,
       },
       body: JSON.stringify(content),
     }

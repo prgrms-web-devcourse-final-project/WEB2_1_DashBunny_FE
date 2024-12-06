@@ -9,7 +9,7 @@ const CreateCoupon = () => {
     couponDescription: " ",
     couponType: "Regula",
     discountPrice: 0,
-    discountType: " ",
+    discountType: "FIXED",
     minOrderPrice: 0,
     expiredDate: " ",
     maximumDiscount: null, // 선착순 쿠폰일때 생기는 값
