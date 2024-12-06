@@ -98,7 +98,7 @@ const ShopModal = ({
                     {shopByID?.userName}
                   </p>
                   <p className="text-gray-500 font-semibold">
-                    {shopByID?.contactNumber || "등록된 번호가 없습니다."}
+                    {shopByID?.userPhone || "등록된 번호가 없습니다."}
                   </p>
                 </div>
               </div>

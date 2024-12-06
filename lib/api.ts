@@ -3,7 +3,7 @@ import { CreateNotice } from "@/types/types";
 import { LoginType } from "@/types/types";
 
 //유저api
-
+//로그인
 export async function Login(LoginForm: LoginType) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/login`,
@@ -20,11 +20,20 @@ export async function Login(LoginForm: LoginType) {
       `Failed to Login ${response.status} ${response.statusText}`
     );
   }
-  return response.json();
+  const data = await response.json();
+  const { accessToken, refreshToken } = data;
+
+  sessionStorage.setItem("accessToken", accessToken);
+  sessionStorage.setItem("refreshToken", refreshToken);
+
+  //TODO 변경해야함
+  window.location.href = "/";
+
+  return data;
 }
 
+//전체 유저 정보 불러오기
 export async function fetchUsers() {
-  //전체 유저 정보 불러오기
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user`
   );
@@ -37,8 +46,8 @@ export async function fetchUsers() {
 }
 
 //가게 api
+// 전체 가게 정보 불러오기
 export async function fetchShop(status: string, page: number, size: number) {
-  // 전체 가게 정보 불러오기
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store?status=${status}&page=${page}&size=${size}`
   );
@@ -51,8 +60,8 @@ export async function fetchShop(status: string, page: number, size: number) {
   return response.json();
 }
 
+//단일 가게 정보 조회
 export async function fetchShopById(storeID: string | null) {
-  //단일 가게 정보 조회
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/${storeID}`
   );
@@ -65,14 +74,15 @@ export async function fetchShopById(storeID: string | null) {
   return response.json();
 }
 
+//가게 요청 승인
 export async function approveShop(storeID: string) {
-  //가게 요청 승인
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/approve/${storeID}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
       },
     }
   );
@@ -83,14 +93,15 @@ export async function approveShop(storeID: string) {
   }
 }
 
+//가게 요청 거절
 export async function rejectShop(storeID: string, Reject_reason: string) {
-  //가게 요청 거절
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/reject/${storeID}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
       },
       body: JSON.stringify({ reason: Reject_reason }),
     }
@@ -102,6 +113,7 @@ export async function rejectShop(storeID: string, Reject_reason: string) {
   }
 }
 
+//폐업 신청 승인
 export async function approveClosureShop(storeID: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/closure/approve/${storeID}`,
@@ -109,6 +121,7 @@ export async function approveClosureShop(storeID: string) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
       },
     }
   );
@@ -120,8 +133,8 @@ export async function approveClosureShop(storeID: string) {
 }
 
 //쿠폰api
+// 전체 쿠폰 정보 불러오기
 export async function fetchCoupon() {
-  // 전체 쿠폰 정보 불러오기
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`
   );
@@ -134,16 +147,15 @@ export async function fetchCoupon() {
   return response.json();
 }
 
+//쿠폰 생성(선착순 , 일반)
 export async function createCoupon(couponData: CreateCouponRequest) {
-  //프론트 측에서 빈 값 못넘기도록 하자
-  //쿠폰 생성(선착순 , 일반)
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon`,
-
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
       },
       body: JSON.stringify(couponData),
     }
@@ -156,8 +168,8 @@ export async function createCoupon(couponData: CreateCouponRequest) {
 }
 
 //공지api
+// 전체 공지 정보 불러오기
 export async function fetchNotice() {
-  // 전체 공지 정보 불러오기
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice`
   );
@@ -169,6 +181,7 @@ export async function fetchNotice() {
   return response.json(); //response 객체에서 body 부분을 json 객체로 가져온다
 }
 
+//단일 공지 조회하기
 export async function fetchNoticeDetail(noticeId: string | number) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/${noticeId}`
@@ -181,6 +194,7 @@ export async function fetchNoticeDetail(noticeId: string | number) {
   return response.json();
 }
 
+//공지 작성하기
 export async function createNotice(content: CreateNotice) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin`,
@@ -188,6 +202,7 @@ export async function createNotice(content: CreateNotice) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("acessToken")}`,
       },
       body: JSON.stringify(content),
     }

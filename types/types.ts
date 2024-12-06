@@ -11,7 +11,7 @@ export interface UserType {
 export interface ShopType {
   storeId: string;
   storeName: string;
-  contactNumber: string;
+  userPhone: string;
   address: string;
   description: string;
   latitude: number;
