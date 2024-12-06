@@ -30,10 +30,6 @@ const CreateCoupon = () => {
     }));
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const handleButtonClick = (name: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
