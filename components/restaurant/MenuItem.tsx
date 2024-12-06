@@ -39,7 +39,7 @@ export const MenuItem = ({ name, price, description, image, menuId, storeId }: M
             <Image
               width={96}
               height={96}
-              src={image}
+              src={"https://placehold.co/100x100"}
               alt={name}
               className="w-full h-full object-cover rounded-lg"
             />

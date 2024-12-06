@@ -17,7 +17,7 @@ export const RestaurantInfo = ({
 }: RestaurantHeaderProps) => (
   <div className="mb-4">
     <Image
-      src={storeImage}
+      src={"https://placehold.co/100x100"}
       alt="KFC"
       width={400}
       height={224}

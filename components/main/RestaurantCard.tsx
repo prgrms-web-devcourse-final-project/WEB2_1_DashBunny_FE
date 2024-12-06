@@ -13,7 +13,7 @@ export default function RestaurantCard({
   storeName,
   rating,
   reviewCount,
-  baseDeliveryTip,
+  deliveryTip,
   discountPrice,
   storeLogo,
 }: UsersStoreListResponseDto) {
@@ -25,7 +25,7 @@ export default function RestaurantCard({
         <Image
           width={84}
           height={84}
-          src={storeLogo}
+          src={"https://placehold.co/100x100"}
           alt={storeName}
           className="w-[84px] h-[84px] rounded-lg object-cover"
         />
@@ -38,10 +38,10 @@ export default function RestaurantCard({
             <span className="text-lg font-semibold text-black-700">{rating}</span>
             <span className="text-black-500 text-sm font-medium">({reviewCount})</span>
             <p className=" text-black-500 text-nowrap text-sm font-medium ">
-              배달비 {baseDeliveryTip.toLocaleString()}원
+              배달비 {deliveryTip.toLocaleString()}원
             </p>
           </div>
-          <CouponBadge amount={discountPrice} />
+          {/* <CouponBadge amount={discountPrice} /> */}
         </div>
         {pathName == "/wishList" && (
           // <WishButton is_wish={true} user_id="imUser" store_id={store_id} />

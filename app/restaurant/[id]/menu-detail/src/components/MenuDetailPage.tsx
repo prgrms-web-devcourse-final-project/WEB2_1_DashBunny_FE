@@ -34,7 +34,7 @@ export default function MenuDetailPage() {
   }
   return (
     <div className="flex flex-col  bg-white">
-      <Image alt="" src={menuDetail.image} width={360} height={360} />
+      <Image alt="" src={"https://placehold.co/100x100"} width={360} height={360} />
       <div className="flex flex-col p-4 space-y-4">
         <h1 className="text-xl font-medium">{menuDetail.name}</h1>
         <p className="text-gray-600 text-sm">{menuDetail.description}</p>

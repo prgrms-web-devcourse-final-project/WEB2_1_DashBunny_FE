@@ -26,7 +26,7 @@ export default function MenuList({ storeName, cartItems }: MenuListProps) {
               <Image
                 width={73}
                 height={73}
-                src={item?.menuImage}
+                src={"https://placehold.co/100x100"}
                 alt="Menu item"
                 className="w-[73px] h-[73px] rounded-md object-cover"
               />

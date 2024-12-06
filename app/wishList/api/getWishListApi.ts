@@ -8,7 +8,7 @@ interface ApiError {
 }
 export const getWishListApi = async (): Promise<UsersStoreListResponseDto[]> => {
   try {
-    const response = await api.get<UsersStoreListResponseDto[]>("/users/wishList")
+    const response = await api.get<UsersStoreListResponseDto[]>("/user/wishList")
     return response.data
   } catch (error) {
     if (axios.isAxiosError(error)) {

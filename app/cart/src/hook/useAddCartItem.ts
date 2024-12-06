@@ -16,9 +16,10 @@ export const useAddCartItem = () => {
     //variables에는 mutation에 전달된 인자가 들어있음
     onError: async (error: Error | AxiosError<ApiError>, variables) => {
       if (axios.isAxiosError(error)) {
+        console.log(error)
         //다른 가게를 선택했을 때 서버에서 주는 에러. 아직 서버 연결 전이라 요청이 안갔을 때 에러
         switch (error.status) {
-          case 500:
+          case 400:
             //모달을 열고 실행할 함수와 모달을 여닫는 함수를 Props로 넘겨준다
             overlay.open(
               ({ close, isOpen, unmount }) =>

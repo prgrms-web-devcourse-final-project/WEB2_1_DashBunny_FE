@@ -13,7 +13,7 @@ export interface PostCartDto {
   quantity: number
 }
 export const postCartData = async ({ menuId, quantity }: PostCartDto): Promise<CartData> => {
-  const { data } = await api.post<CartData>(`/users/items?menuId=${menuId}?quantity=${quantity}`)
+  const { data } = await api.post<CartData>(`/users/items?menuId=${menuId}&quantity=${quantity}`)
   return data
 }
 
@@ -24,7 +24,7 @@ interface updateCartDto {
 }
 export const updateCartData = async ({ menuId, quantity }: updateCartDto): Promise<CartData> => {
   const { data } = await api.patch<CartData>(
-    `/users/items/${menuId}?menuId=${menuId}?quantity=${quantity}`,
+    `/users/items/${menuId}?menuId=${menuId}&quantity=${quantity}`,
   )
   return data
 }
@@ -41,7 +41,7 @@ export const addCartDataWithOverwrite = async ({
   overwrite,
 }: updateCartDataWithOverWriteDto): Promise<CartData> => {
   const { data } = await api.post<CartData>(
-    `/users/items?menuId=${menuId}?quantity=${quantity}?overwrite=${overwrite}`,
+    `/users/items?menuId=${menuId}&quantity=${quantity}&overwrite=${overwrite}`,
   )
   return data
 }

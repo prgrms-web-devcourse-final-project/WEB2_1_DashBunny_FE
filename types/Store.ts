@@ -21,7 +21,7 @@ export interface UsersStoreListResponseDto {
   storeName: string
   rating: number
   reviewCount: number
-  baseDeliveryTip: number
+  deliveryTip: number
   minDeliveryTime: string
   maxDeliveryTime: string
   discountPrice: number
