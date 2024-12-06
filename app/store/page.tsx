@@ -26,7 +26,6 @@ const Shop = () => {
         const totalPages = lastPage.totalPages; // 총 페이지 수
         const nextPage = currentPage + 1;
 
-        console.log("다음 페이지", currentPage, totalPages, nextPage);
         return nextPage < totalPages ? nextPage : undefined;
       },
       initialPageParam: 1,
@@ -157,7 +156,7 @@ const Shop = () => {
                     <p className={`${FontStyle} w-16`}>{i + 1}</p>
                     <div className="flex w-1/6 items-center justify-center">
                       <Image
-                        src={"/Icon/NoIMG.svg"}
+                        src={shops.storeLogo || "/Icon/NoIMG.svg"}
                         alt="storeLogo"
                         width={60}
                         height={60}

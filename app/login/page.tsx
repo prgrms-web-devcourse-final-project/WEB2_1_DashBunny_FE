@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { Login } from "@/lib/api";
 import { LoginType } from "@/types/types";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const [loginForm, setLoginForm] = useState<LoginType>({
     phone: "",
     password: "",
-    //TODO:피드백 다시 살펴보기
   });
 
   const FormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +24,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await Login(loginForm);
+      router.replace("/");
     } catch (error) {
       console.error("로그인 실패:", error);
     }

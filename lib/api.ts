@@ -26,9 +26,6 @@ export async function Login(LoginForm: LoginType) {
   sessionStorage.setItem("accessToken", accessToken);
   sessionStorage.setItem("refreshToken", refreshToken);
 
-  //TODO 변경해야함
-  window.location.href = "/";
-
   return data;
 }
 

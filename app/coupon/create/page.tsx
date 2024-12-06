@@ -30,16 +30,16 @@ const CreateCoupon = () => {
     }));
   };
 
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   const handleButtonClick = (name: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   return (
     <>
@@ -140,7 +140,7 @@ const CreateCoupon = () => {
             <p className={FontStyle}>쿠폰 만료 기한</p>
             <input
               name="expiredDate"
-              type="date"
+              type="datetime-local"
               className="border w-full h-12 rounded-xl p-2"
               onChange={handleInputChange}
             />
@@ -154,7 +154,7 @@ const CreateCoupon = () => {
                 <p className={FontStyle}>쿠폰 다운로드 시작일</p>
                 <input
                   name="downloadStartDate"
-                  type="date"
+                  type="datetime-local"
                   className="border w-full h-12 rounded-xl p-2"
                   onChange={handleInputChange}
                 />
