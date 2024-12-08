@@ -45,8 +45,15 @@ export async function fetchUsers() {
 //가게 api
 // 전체 가게 정보 불러오기
 export async function fetchShop(status: string, page: number, size: number) {
+  const Token = sessionStorage.getItem("accessToken");
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store?status=${status}&page=${page}&size=${size}`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store?status=${status}&page=${page}&size=${size}`,
+    {
+      headers: {
+        Authorization: `Bearer ${Token}`,
+      },
+    }
   );
   if (!response.ok) {
     throw new Error(
@@ -59,8 +66,15 @@ export async function fetchShop(status: string, page: number, size: number) {
 
 //단일 가게 정보 조회
 export async function fetchShopById(storeID: string | null) {
+  const Token = sessionStorage.getItem("accessToken");
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/${storeID}`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/store/${storeID}`,
+    {
+      headers: {
+        Authorization: `Bearer ${Token}`,
+      },
+    }
   );
   if (!response.ok) {
     throw new Error(
