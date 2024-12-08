@@ -25,13 +25,11 @@ const Navigation = () => {
         <></>
       ) : (
         <div
-          className={`flex flex-col ${
-            Nav ? "w-[280px]" : "w-0"
-          } min-h-screen transition-all duration-500 ease-in-out`}
+          className={`flex flex-col ${Nav ? "w-[280px]" : "w-0"} min-h-screen`}
         >
           {Nav ? (
             <button
-              className="left-[240px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl hover:bg-BunnyOrange/20 transition-all duration-300"
+              className="left-[240px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl hover:bg-BunnyOrange/20"
               onClick={() => NavOn()}
             >
               <Image
@@ -44,7 +42,7 @@ const Navigation = () => {
             </button>
           ) : (
             <button
-              className="left-[-10px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl hover:bg-BunnyOrange/20 transition-all duration-300"
+              className="left-[-10px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl hover:bg-BunnyOrange/20"
               onClick={() => NavOn()}
             >
               <Image
