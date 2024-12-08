@@ -16,6 +16,10 @@ const Notice = () => {
     });
   }, []);
 
+  const recentNoticeData = noticeData?.sort(
+    (a: NoticeType, b: NoticeType) => b.noticeId - a.noticeId //최신순으로 정렬하기 위해
+  );
+
   return (
     <>
       <div className="flex">
@@ -71,8 +75,8 @@ const Notice = () => {
           </p>
         </div>
         <main className="w-full min-h-[68vh] border-b-4">
-          {noticeData &&
-            noticeData.map((notice, i) => (
+          {recentNoticeData &&
+            recentNoticeData.map((notice, i) => (
               <Link href={`/notice/${notice.noticeId}`} key={notice.noticeId}>
                 <div className="flex p-2 border-b-2">
                   <p className="w-20 flex items-center justify-center">

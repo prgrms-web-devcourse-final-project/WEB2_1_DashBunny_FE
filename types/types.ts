@@ -11,7 +11,7 @@ export interface UserType {
 export interface ShopType {
   storeId: string;
   storeName: string;
-  contactNumber: string;
+  userPhone: string;
   address: string;
   description: string;
   latitude: number;
@@ -57,3 +57,8 @@ export type CreateNotice = Omit<
   NoticeType,
   "noticeId" | "viewCount" | "createdDate"
 >;
+
+export interface LoginType {
+  phone: string;
+  password: string;
+}

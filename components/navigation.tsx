@@ -19,179 +19,195 @@ const Navigation = () => {
   };
 
   return (
-    <div className="flex flex-col static min-h-screen">
-      {Nav ? (
-        <button
-          className="left-[250px] top-[50%] absolute border p-1 border-l-0 bg-gray-50 rounded-r-xl"
-          onClick={() => NavOn()}
-        >
-          <Image
-            src="/Icon/sideclose.svg"
-            alt="sidebar Icon"
-            width={10}
-            height={10}
-            className={ImageProp}
-          />
-        </button>
+    <>
+      {pathname === "/login" ? (
+        <></>
       ) : (
-        <button
-          className="left-[0px] top-[50%] absolute border p-1 border-l-0 bg-gray-50 rounded-r-xl"
-          onClick={() => NavOn()}
+        <div
+          className={`flex flex-col static ${
+            Nav ? "w-[280px]" : "w-0"
+          } min-h-screen`}
         >
-          <Image
-            src="/Icon/sideopen.svg"
-            alt="sidebar Icon"
-            width={10}
-            height={10}
-            className={ImageProp}
-          />
-        </button>
-      )}
-      {Nav && (
-        <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl h-full realtive">
-          <header className="text-3xl font-bold mb-5 text-BunnyOrange">
-            DASH
-          </header>
-          <div className="flex border h-11 p-1 rounded-xl w-full bg-white border-gray-300">
-            <Image
-              src="/Icon/search.svg"
-              alt="search Icon"
-              width={30}
-              height={30}
-              className={ImageProp}
-            />{" "}
-            <input placeholder="Search" className="outline-none w-[150px]" />
-            {/* 필요한가 다시 의논 */}
-          </div>
-          <div>
-            <div className={Line} />
-            <Link href="/">
-              <div className={pathname === "/" ? SelectMenu : MenuLayout}>
+          {Nav ? (
+            <button
+              className="left-[240px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+              onClick={() => NavOn()}
+            >
+              <Image
+                src="/Icon/sideclose.svg"
+                alt="sidebar Icon"
+                width={10}
+                height={10}
+                className={ImageProp}
+              />
+            </button>
+          ) : (
+            <button
+              className="left-[-10px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+              onClick={() => NavOn()}
+            >
+              <Image
+                src="/Icon/sideopen.svg"
+                alt="sidebar Icon"
+                width={10}
+                height={10}
+                className={ImageProp}
+              />
+            </button>
+          )}
+          {Nav && (
+            <section className="flex flex-col items-center w-[250px] bg-gray-50 p-5 shadow-xl h-full fixed overflow-y-auto overflow-x-hidden">
+              <header className="text-3xl font-bold mb-5 text-BunnyOrange">
+                DASH
+              </header>
+              <div className="flex border h-11 p-1 rounded-xl w-full bg-white border-gray-300">
                 <Image
-                  src="/Icon/Dashboard.svg"
-                  alt="Dashboard Icon"
+                  src="/Icon/search.svg"
+                  alt="search Icon"
                   width={30}
                   height={30}
                   className={ImageProp}
+                />{" "}
+                <input
+                  placeholder="Search"
+                  className="outline-none w-[150px]"
                 />
-                대시보드
+                {/* 필요한가 다시 의논 */}
               </div>
-            </Link>
-            <Link href="/user">
-              <div className={pathname === "/user" ? SelectMenu : MenuLayout}>
-                <Image
-                  src="/Icon/User.svg"
-                  alt="User Icon"
-                  width={30}
-                  height={30}
-                  className={ImageProp}
-                />{" "}
-                고객관리
-              </div>
-            </Link>
-            <Link href="/store">
-              <div className={pathname === "/store" ? SelectMenu : MenuLayout}>
-                <Image
-                  src="/Icon/shop.svg"
-                  alt="shop Icon"
-                  width={30}
-                  height={30}
-                  className={ImageProp}
-                />{" "}
-                가게관리
-              </div>
-            </Link>
-            <Link href="/coupon">
-              <div className={pathname === "/coupon" ? SelectMenu : MenuLayout}>
-                <Image
-                  src="/Icon/coupon.svg"
-                  alt="coupon Icon"
-                  width={30}
-                  height={30}
-                  className={ImageProp}
-                />{" "}
-                쿠폰관리
-              </div>
-            </Link>
-            <Link href="/notice">
-              <div className={pathname === "/notice" ? SelectMenu : MenuLayout}>
-                <Image
-                  src="/Icon/notice.svg"
-                  alt="notice Icon"
-                  width={30}
-                  height={30}
-                  className={ImageProp}
-                />{" "}
-                공지관리
-              </div>
-            </Link>
-            <Link href="/review">
-              <div className={pathname === "/review" ? SelectMenu : MenuLayout}>
-                <Image
-                  src="/Icon/review.svg"
-                  alt="review Icon"
-                  width={30}
-                  height={30}
-                  className={ImageProp}
-                />{" "}
-                리뷰관리
-              </div>
-            </Link>
-            <Link href="/report">
-              <div className={pathname === "/report" ? SelectMenu : MenuLayout}>
-                <Image
-                  src="/Icon/warning.svg"
-                  alt="warning Icon"
-                  width={30}
-                  height={30}
-                  className={ImageProp}
-                />{" "}
-                신고 및 문의 관리
-              </div>
-            </Link>
-          </div>
-          <div>
-            <div className={Line} />
-            <div className={MenuLayout}>
-              <Image
-                src="/Icon/support.svg"
-                alt="support Icon"
-                width={30}
-                height={30}
-                className={ImageProp}
-              />{" "}
-              Support
-            </div>
-            <div className={MenuLayout}>
-              <Image
-                src="/Icon/setting.svg"
-                alt="setting Icon"
-                width={30}
-                height={30}
-                className={ImageProp}
-              />{" "}
-              Setting
-            </div>
-          </div>
-          <div className="flex flex-col mt-auto">
-            <div className={Line} />
-            <div className="flex">
-              <Image
-                src="/Icon/profile.svg"
-                alt="profile Icon"
-                width={45}
-                height={45}
-                className={ImageProp}
-              />{" "}
               <div>
-                <p className="font-bold">관리자</p>
-                <p className="text-gray-400 text-sm">knr0013@gmail.com</p>
+                <div className={Line} />
+                <Link href="/">
+                  <div className={pathname === "/" ? SelectMenu : MenuLayout}>
+                    <Image
+                      src="/Icon/Dashboard.svg"
+                      alt="Dashboard Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />
+                    대시보드
+                  </div>
+                </Link>
+                <Link href="/user">
+                  <div
+                    className={pathname === "/user" ? SelectMenu : MenuLayout}
+                  >
+                    <Image
+                      src="/Icon/User.svg"
+                      alt="User Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />{" "}
+                    고객관리
+                  </div>
+                </Link>
+                <Link href="/store">
+                  <div
+                    className={pathname === "/store" ? SelectMenu : MenuLayout}
+                  >
+                    <Image
+                      src="/Icon/shop.svg"
+                      alt="shop Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />{" "}
+                    가게관리
+                  </div>
+                </Link>
+                <Link href="/coupon">
+                  <div
+                    className={pathname === "/coupon" ? SelectMenu : MenuLayout}
+                  >
+                    <Image
+                      src="/Icon/coupon.svg"
+                      alt="coupon Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />{" "}
+                    쿠폰관리
+                  </div>
+                </Link>
+                <Link href="/notice">
+                  <div
+                    className={pathname === "/notice" ? SelectMenu : MenuLayout}
+                  >
+                    <Image
+                      src="/Icon/notice.svg"
+                      alt="notice Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />{" "}
+                    공지관리
+                  </div>
+                </Link>
+                <Link href="/review">
+                  <div
+                    className={pathname === "/review" ? SelectMenu : MenuLayout}
+                  >
+                    <Image
+                      src="/Icon/review.svg"
+                      alt="review Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />{" "}
+                    리뷰관리
+                  </div>
+                </Link>
+                <Link href="/report">
+                  <div
+                    className={pathname === "/report" ? SelectMenu : MenuLayout}
+                  >
+                    <Image
+                      src="/Icon/warning.svg"
+                      alt="warning Icon"
+                      width={30}
+                      height={30}
+                      className={ImageProp}
+                    />{" "}
+                    신고 및 문의 관리
+                  </div>
+                </Link>
               </div>
-            </div>
-          </div>
-        </section>
+              <div>
+                <div className={Line} />
+                <div className={MenuLayout}>
+                  <Image
+                    src="/Icon/setting.svg"
+                    alt="setting Icon"
+                    width={30}
+                    height={30}
+                    className={ImageProp}
+                  />{" "}
+                  Setting
+                </div>
+              </div>
+              {/* TODO:필요한가 알아보고 다시 넣기 
+              <div className="flex flex-col mt-auto">
+                <div className={Line} />
+                <div className="flex">
+                  <Image
+                    src="/Icon/profile.svg"
+                    alt="profile Icon"
+                    width={45}
+                    height={45}
+                    className={ImageProp}
+                  />{" "}
+                  <div>
+                    <p className="font-bold">관리자</p>
+                    <p className="text-gray-400 text-sm">knr0013@gmail.com</p>
+                  </div>
+                </div>
+              </div> */}
+            </section>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

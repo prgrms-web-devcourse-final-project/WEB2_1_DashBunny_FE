@@ -12,7 +12,11 @@ const QuillNoSSRWrapper = dynamic(() => import(`react-quill-new`), {
 });
 
 const NoticeWrite = () => {
-  const [formdata, setFormdata] = useState<CreateNotice>();
+  const [formdata, setFormdata] = useState<CreateNotice>({
+    noticeTitle: "",
+    noticeContent: "",
+    target: "ENTIRE",
+  });
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

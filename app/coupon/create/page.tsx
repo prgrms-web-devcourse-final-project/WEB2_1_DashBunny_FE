@@ -9,7 +9,7 @@ const CreateCoupon = () => {
     couponDescription: " ",
     couponType: "Regula",
     discountPrice: 0,
-    discountType: " ",
+    discountType: "FIXED",
     minOrderPrice: 0,
     expiredDate: " ",
     maximumDiscount: null, // 선착순 쿠폰일때 생기는 값
@@ -36,10 +36,6 @@ const CreateCoupon = () => {
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   return (
     <>
@@ -140,7 +136,7 @@ const CreateCoupon = () => {
             <p className={FontStyle}>쿠폰 만료 기한</p>
             <input
               name="expiredDate"
-              type="date"
+              type="datetime-local"
               className="border w-full h-12 rounded-xl p-2"
               onChange={handleInputChange}
             />
@@ -154,7 +150,7 @@ const CreateCoupon = () => {
                 <p className={FontStyle}>쿠폰 다운로드 시작일</p>
                 <input
                   name="downloadStartDate"
-                  type="date"
+                  type="datetime-local"
                   className="border w-full h-12 rounded-xl p-2"
                   onChange={handleInputChange}
                 />

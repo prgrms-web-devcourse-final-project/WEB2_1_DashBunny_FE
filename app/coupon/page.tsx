@@ -19,7 +19,6 @@ const Coupon = () => {
 
   const expandCoupon = (couponId: number) => {
     setCouponID((prev) => (prev === couponId ? null : couponId));
-    console.log(couponID);
   };
 
   const NavText = "w-1/4 font-semibold text-md text-center ";

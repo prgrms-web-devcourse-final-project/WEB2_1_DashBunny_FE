@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchNoticeDetail } from "@/lib/api";
 import { NoticeType } from "@/types/types";
+import DOMPurify from "dompurify";
 
 const NoticeDetail = () => {
   const [noticeData, setNoticeData] = useState<NoticeType>();
@@ -20,6 +21,10 @@ const NoticeDetail = () => {
         alert("문제가 발생했습니다. 다시 시도하세요.");
       });
   }, [id]);
+
+  const sanitizedContent = DOMPurify.sanitize(
+    noticeData?.noticeContent || "내용이 없습니다."
+  );
 
   return (
     <div className="border-y-2 min-h-[80vh]">
@@ -38,7 +43,12 @@ const NoticeDetail = () => {
           <p>{noticeData?.createdDate}</p>
         </div>
       </article>
-      <article className="text-2xl p-10">{noticeData?.noticeContent}</article>
+      <article
+        className="text-2xl p-10"
+        dangerouslySetInnerHTML={{
+          __html: sanitizedContent,
+        }}
+      ></article>{" "}
     </div>
   );
 };
