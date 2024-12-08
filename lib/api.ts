@@ -273,3 +273,23 @@ export async function createNotice(content: CreateNotice) {
     );
   }
 }
+
+//공지 삭제하기
+export async function deleteNotice(noticeId: string) {
+  const Token = sessionStorage.getItem("accessToken");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin/${noticeId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token}`,
+      },
+    }
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to Delete notice ${response.status} ${response.statusText}`
+    );
+  }
+}

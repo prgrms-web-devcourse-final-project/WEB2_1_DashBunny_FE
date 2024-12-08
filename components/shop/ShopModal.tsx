@@ -41,12 +41,14 @@ const ShopModal = ({
   const approveShopButton = (ShopID: string | null) => {
     if (ShopID) {
       approveShop(ShopID);
+      setModal(false);
     }
   };
 
-  const rejectShopButoon = (ShopID: string | null, reason: string) => {
+  const rejectShopButton = (ShopID: string | null, reason: string) => {
     if (ShopID) {
       rejectShop(ShopID, reason);
+      setModal(false);
     }
   };
 
@@ -57,6 +59,7 @@ const ShopModal = ({
   const approveClosure = (ShopID: string | null) => {
     if (ShopID) {
       approveClosureShop(ShopID);
+      setModal(false);
     }
   };
 
@@ -65,7 +68,7 @@ const ShopModal = ({
       <section
         className={`bg-white w-[60vw] h-[90vh] shadow-xl rounded-2xl overflow-y-auto`}
       >
-        <div className="flex justify-between w-full p-3 border-b-2 right-0 top-0 bg-gradient-to-r to-BunnyOrange from-white shadow-md">
+        <div className="flex justify-between w-full p-3 border-b-2 right-0 top-0 bg-gradient-to-r  shadow-md">
           <p className="text-2xl font-bold text-BunnyOrange animate-fadeIn">
             가게 상세 정보
           </p>
@@ -174,7 +177,9 @@ const ShopModal = ({
                 <div className="flex gap-4">
                   <button
                     className="px-4 py-2 font-bold text-white bg-BunnyOrange rounded-md hover:bg-orange-500"
-                    onClick={() => rejectShop(selectedShopID as string, reason)}
+                    onClick={() =>
+                      rejectShopButton(selectedShopID as string, reason)
+                    }
                   >
                     확인
                   </button>

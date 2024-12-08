@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import motion from "framer-motion";
 
 const Navigation = () => {
   const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-BunnyOrange/20 font-semibold text-gray-500 transition-colors duration-300 ease-in-out`;

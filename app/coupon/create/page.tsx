@@ -5,6 +5,8 @@ import { createCoupon } from "@/lib/api";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { CreateCouponRequest } from "@/types/types";
+import SuccessMessageModal from "@/components/successMessageModal";
+
 const CreateCoupon = () => {
   const [formData, setFormData] = useState({
     couponName: "",
@@ -57,14 +59,7 @@ const CreateCoupon = () => {
   return (
     <>
       {successMessage && ( //쿠폰 생성 완료 후 알람 창 */}
-        <motion.div
-          className="fixed top-[1%] right-[35%] border-green-300 border-4 p-10 font-bold rounded-xl bg-white text-center shadow-xl flex flex-row items-center justify-center"
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-        >
-          <div className="bg-green-300 w-3 h-3 rounded-full mx-5"></div>
-          쿠폰이 성공적으로 발급 되었습니다!
-        </motion.div>
+        <SuccessMessageModal text={"쿠폰이 정상적으로 생성 되었습니다!"} />
       )}
       <p className="text-BunnyOrange font-semibold text-2xl mb-5">
         쿠폰 생성하기
