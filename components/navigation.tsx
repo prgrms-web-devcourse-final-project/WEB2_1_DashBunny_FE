@@ -6,10 +6,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const Navigation = () => {
-  const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-white font-semibold text-gray-500`; //메뉴 레이아웃 잡기
-  const SelectMenu = `flex items-center p-1 w-full my-1 h-16 rounded-xl bg-white font-semibold text-gray-500 border-2 `; //선택시 레이아웃
-  const Line = "bg-gray-200 h-0.5 w-[230px] my-5"; //라인
-  const ImageProp = "object-contain mx-3";
+  const MenuLayout = `flex items-center p-1 w-full my-1 h-16 rounded-xl hover:border hover:bg-BunnyOrange/20 font-semibold text-gray-500 transition-colors duration-300 ease-in-out`;
+  const SelectMenu = `flex items-center p-1 w-full my-1 h-16 rounded-xl bg-BunnyOrange/10 text-BunnyOrange font-semibold border-2 border-BunnyOrange transition-transform duration-300 ease-in-out`;
+  const Line = "bg-gray-200 h-0.5 w-[230px] my-5";
+  const ImageProp =
+    "object-contain mx-3 transition-transform duration-300 ease-in-out transform hover:scale-105";
   const pathname = usePathname();
 
   const [Nav, setNav] = useState(true);
@@ -24,13 +25,13 @@ const Navigation = () => {
         <></>
       ) : (
         <div
-          className={`flex flex-col static ${
+          className={`flex flex-col ${
             Nav ? "w-[280px]" : "w-0"
-          } min-h-screen`}
+          } min-h-screen transition-all duration-500 ease-in-out`}
         >
           {Nav ? (
             <button
-              className="left-[240px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+              className="left-[240px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl hover:bg-BunnyOrange/20 transition-all duration-300"
               onClick={() => NavOn()}
             >
               <Image
@@ -43,7 +44,7 @@ const Navigation = () => {
             </button>
           ) : (
             <button
-              className="left-[-10px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl"
+              className="left-[-10px] top-[50%] fixed border p-1 border-l-0 bg-gray-50 rounded-r-xl hover:bg-BunnyOrange/20 transition-all duration-300"
               onClick={() => NavOn()}
             >
               <Image
@@ -72,7 +73,6 @@ const Navigation = () => {
                   placeholder="Search"
                   className="outline-none w-[150px]"
                 />
-                {/* 필요한가 다시 의논 */}
               </div>
               <div>
                 <div className={Line} />
@@ -186,23 +186,6 @@ const Navigation = () => {
                   Setting
                 </div>
               </div>
-              {/* TODO:필요한가 알아보고 다시 넣기 
-              <div className="flex flex-col mt-auto">
-                <div className={Line} />
-                <div className="flex">
-                  <Image
-                    src="/Icon/profile.svg"
-                    alt="profile Icon"
-                    width={45}
-                    height={45}
-                    className={ImageProp}
-                  />{" "}
-                  <div>
-                    <p className="font-bold">관리자</p>
-                    <p className="text-gray-400 text-sm">knr0013@gmail.com</p>
-                  </div>
-                </div>
-              </div> */}
             </section>
           )}
         </div>

@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { fetchCoupon } from "@/lib/api";
+import { fetchCoupon, updateCouponStatus } from "@/lib/api"; // 상태 업데이트 API 추가
 import { CouponType } from "@/types/types";
 import { useEffect, useState } from "react";
 
 const Coupon = () => {
   const [coupons, setCoupons] = useState<CouponType[]>();
-  const [Loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [couponID, setCouponID] = useState<null | number>(null);
 
   useEffect(() => {
@@ -21,6 +21,25 @@ const Coupon = () => {
     setCouponID((prev) => (prev === couponId ? null : couponId));
   };
 
+  const handleCouponStatusChange = async (
+    couponId: number,
+    newStatus: string
+  ) => {
+    try {
+      await updateCouponStatus(couponId, newStatus); // 상태 변경
+      // 상태 변경 후, coupons 배열을 업데이트
+      setCoupons((prevCoupons) =>
+        prevCoupons?.map((coupon) =>
+          coupon.couponId === couponId
+            ? { ...coupon, couponStatus: newStatus }
+            : coupon
+        )
+      );
+    } catch (error) {
+      console.error("쿠폰 상태 변경 실패:", error);
+    }
+  };
+
   const NavText = "w-1/4 font-semibold text-md text-center ";
 
   return (
@@ -29,7 +48,6 @@ const Coupon = () => {
         <div className="flex items-center mb-5">
           <p className="font-semibold text-2xl ">전체 쿠폰</p>
           <p className="font-semibold text-2xl mx-3 text-BunnyOrange">
-            {" "}
             {coupons?.length}
           </p>
           <p className="text-md text-gray-500 font-semibold">
@@ -50,14 +68,14 @@ const Coupon = () => {
             <p className={NavText}>CouponStatus</p>
           </div>
           <main className="w-full">
-            {Loading ? (
+            {loading ? (
               <div>로딩중입니다.</div>
             ) : (
               coupons &&
               coupons.map((value, i) => (
                 <div key={i}>
                   <div
-                    className="flex w-full items-center justify-center p-5 border-b"
+                    className="flex w-full items-center justify-center p-5 border-b cursor-pointer"
                     onClick={() => expandCoupon(value.couponId)}
                   >
                     <p className="font-semibold text-md text-center w-20">
@@ -66,13 +84,19 @@ const Coupon = () => {
                     <p className={NavText}>{value.couponName}</p>
                     <p className={NavText}>{value.couponDescription}</p>
                     <p className={NavText}>{value.couponType}</p>
-                    <p className={NavText}>{value.couponStatus}</p>
+                    <p className="w-1/4 flex items-center justify-center">
+                      {value.couponStatus === "ACTIVE" ? (
+                        <div className="w-4 h-4 rounded-full bg-green-400"></div>
+                      ) : (
+                        <div className="w-4 h-4 rounded-full bg-red-600"></div>
+                      )}
+                    </p>
                   </div>
                   {value.couponId === couponID && (
-                    <div className="w-full  p-5">
+                    <div className="w-full p-5">
                       <div className="flex items-center w-full justify-center border-4 border-b-0 bg-gray-200">
                         <p className="text-2xl text-BunnyOrange font-bold">
-                          {value.couponName}{" "}
+                          {value.couponName}
                         </p>
                         <p className="text-xl font-bold mx-2">쿠폰 상세정보</p>
                       </div>
@@ -103,7 +127,7 @@ const Coupon = () => {
                             </p>
                           </div>
                           <div className="flex flex-col items-center justify-center">
-                            <p className="font-bold text-sm 2xl:text-xl ">
+                            <p className="font-bold text-sm 2xl:text-xl">
                               발급한도
                             </p>
                             <p className="text-sm 2xl:text-xl">
@@ -125,6 +149,27 @@ const Coupon = () => {
                             <p className="text-sm 2xl:text-xl">
                               {value.downloadStartDate}
                             </p>
+                          </div>
+                          <div className="flex flex-col items-center justify-center border p-2 shadow-lg rounded-xl">
+                            <p className="font-bold text-sm 2xl:text-xl">
+                              쿠폰 상태
+                            </p>
+                            <select
+                              className="border rounded-md p-2 text-sm mt-2 outline-BunnyOrange"
+                              value={value.couponStatus}
+                              onChange={(e) =>
+                                handleCouponStatusChange(
+                                  value.couponId,
+                                  e.target.value
+                                )
+                              }
+                            >
+                              <option value="PENDING">PENDING</option>
+                              <option value="ACTIVE">ACTIVE</option>
+                              <option value="EARLY_TERMINATED">
+                                EARLY_TERMINATED
+                              </option>
+                            </select>
                           </div>
                         </div>
                       </div>

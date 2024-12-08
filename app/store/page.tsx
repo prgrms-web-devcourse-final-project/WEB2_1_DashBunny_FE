@@ -6,12 +6,12 @@ import { ShopType } from "@/types/types";
 import { fetchShop } from "@/lib/api";
 import ShopModal from "@/components/shop/ShopModal";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import next from "next";
 
 const Shop = () => {
-  const ButtonProp = "border-2 p-1 w-24 shadow mx-1 rounded-xl"; //버튼 css
+  const ButtonProp =
+    "border-2 p-2 w-28 shadow mx-1 rounded-lg text-sm font-medium hover:bg-orange-100 transition-all";
   const FontStyle =
-    "text-gray-500 font-semibold w-1/6 flex items-center justify-center text-sm 2xl:text-base";
+    "text-gray-600 font-medium w-1/6 flex items-center justify-center text-sm lg:text-base";
 
   const [Modal, setModal] = useState(false);
   const [seletedShopID, setSeletedShopID] = useState<string | null>(null);
@@ -72,9 +72,9 @@ const Shop = () => {
 
   return (
     <>
-      <div className="w-full flex ">
+      <div className="w-full flex">
         <button
-          className={`${ButtonProp} transition ${
+          className={`${ButtonProp} ${
             filterShop === "ENTIRE" ? "bg-BunnyOrange font-bold" : ""
           }`}
           onClick={() => setFilterShop("ENTIRE")}
@@ -82,7 +82,7 @@ const Shop = () => {
           전체
         </button>
         <button
-          className={`${ButtonProp} transition ${
+          className={`${ButtonProp} ${
             filterShop === "OPEN" ? "bg-BunnyOrange font-bold" : ""
           }`}
           onClick={() => setFilterShop("OPEN")}
@@ -90,33 +90,30 @@ const Shop = () => {
           영업중
         </button>
         <button
-          className={`${ButtonProp} transition ${
+          className={`${ButtonProp} ${
             filterShop === "CLOSE" ? "bg-BunnyOrange font-bold" : ""
           }`}
           onClick={() => setFilterShop("CLOSE")}
         >
-          {" "}
           영업종료
         </button>
         <button
-          className={`${ButtonProp} transition ${
+          className={`${ButtonProp} ${
             filterShop === "PENDING" ? "bg-BunnyOrange font-bold" : ""
           }`}
           onClick={() => setFilterShop("PENDING")}
         >
-          {" "}
           등록신청
         </button>
         <button
-          className={`${ButtonProp} transition ${
+          className={`${ButtonProp} ${
             filterShop === "CLOSURE_PENDING" ? "bg-BunnyOrange font-bold" : ""
           }`}
           onClick={() => setFilterShop("CLOSURE_PENDING")}
         >
-          {" "}
           폐업신청
         </button>
-        <div className="ml-auto flex border p-2 w-1/2 items-center border-gray-300 rounded-xl shadow">
+        <div className="ml-auto flex border p-2 w-1/2 items-center border-gray-300 rounded-lg shadow">
           <Image
             src="/Icon/search.svg"
             alt="search icon"
@@ -135,14 +132,14 @@ const Shop = () => {
           <ShopModal setModal={setModal} selectedShopID={seletedShopID} />
         )}
         <main>
-          <div className="w-full bg-gray-100 h-12 border border-b-4 rounded-t-2xl flex items-center p-2">
+          <div className="w-full bg-white h-14 border border-gray-300 rounded-t-lg flex items-center px-3 shadow-md">
             <p className={`${FontStyle} w-16`}>ID</p>
             <p className={FontStyle}>가게 정보</p>
-            <p className={FontStyle}> 영업 정보</p>
-            <p className={FontStyle}> 가게 소개</p>
-            <p className={FontStyle}> 위치</p>
-            <p className={FontStyle}> 등록 상태</p>
-            <p className={FontStyle}> 등록/폐업 날짜</p>
+            <p className={FontStyle}>영업 정보</p>
+            <p className={FontStyle}>가게 소개</p>
+            <p className={FontStyle}>위치</p>
+            <p className={FontStyle}>등록 상태</p>
+            <p className={FontStyle}>등록/폐업 날짜</p>
           </div>
           <div className="w-full border min-h-[65vh]">
             {data?.pages.map((page, index) => (
@@ -150,7 +147,7 @@ const Shop = () => {
                 {page.content.map((shops: ShopType, i: number) => (
                   <div
                     key={shops.storeId}
-                    className="flex border-b-2 p-2 trasition hover:bg-gray-200 "
+                    className="flex border-b p-3 transition hover:bg-gray-100 rounded-lg"
                     onClick={() => ModalHandler(shops.storeId)}
                   >
                     <p className={`${FontStyle} w-16`}>{i + 1}</p>
@@ -160,14 +157,14 @@ const Shop = () => {
                         alt="storeLogo"
                         width={60}
                         height={60}
-                        className="rounded-full mx-3"
+                        className="rounded-lg shadow-sm mx-3"
                         style={{ width: "60px", height: "60px" }}
                       />
                       <div>
-                        <p className="font-bold text-sm 2xl:text-base">
+                        <p className="font-bold text-sm lg:text-base text-gray-700">
                           {shops.storeName}
                         </p>
-                        <p className="text-gray-400 font-semibold text-sm 2xl:text-base">
+                        <p className="text-gray-500 font-medium text-xs lg:text-sm">
                           {shops.userPhone || "입력된 번호가 없습니다."}
                         </p>
                       </div>

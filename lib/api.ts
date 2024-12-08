@@ -190,6 +190,27 @@ export async function createCoupon(couponData: CreateCouponRequest) {
   }
 }
 
+//쿠폰 상태 변경 api
+export async function updateCouponStatus(couponId: number, status: string) {
+  const Token = sessionStorage.getItem("accessToken");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/coupon/${couponId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token}`,
+      },
+      body: JSON.stringify({ couponStatus: status }),
+    }
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Failed change couponStatus ${response.status} ${response.statusText}`
+    );
+  }
+}
+
 //공지api
 // 전체 공지 정보 불러오기
 export async function fetchNotice() {

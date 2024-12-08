@@ -61,68 +61,75 @@ const ShopModal = ({
   };
 
   return (
-    <div className="fixed inset-0 min-w-full items-center bg-black -top-0 -left-0 bg-opacity-[30%] flex justify-center">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <section
-        className={`bg-white w-[50vw] h-[90vh] shadow-2xl rounded-2xl overflow-y-auto`}
+        className={`bg-white w-[60vw] h-[90vh] shadow-xl rounded-2xl overflow-y-auto`}
       >
-        <div className="flex justify-between w-full p-3 border-b-2 right-0 top-0">
-          <p className="text-2xl font-bold">가게 상세 정보</p>
+        <div className="flex justify-between w-full p-3 border-b-2 right-0 top-0 bg-gradient-to-r to-BunnyOrange from-white shadow-md">
+          <p className="text-2xl font-bold text-BunnyOrange animate-fadeIn">
+            가게 상세 정보
+          </p>
           <button
             onClick={() => setModal((prev) => !prev)}
-            className="text-2xl font-semibold"
+            className="text-2xl font-semibold text-gray-600 hover:text-red-500 transition duration-300"
           >
-            X
+            ✖
           </button>
         </div>
         {Loading ? (
-          <div>로딩중입니다.</div>
+          <div className="flex items-center justify-center h-full text-xl font-semibold">
+            로딩중입니다...
+          </div>
         ) : (
           <>
             <div className="relative w-full h-60">
               {shopByID && (
                 <Image
                   src={shopByID.storeBannerImage || "/Icon/NoIMG_detail.svg"}
-                  alt="Image"
+                  alt="가게 이미지"
                   layout="fill"
                   objectFit="cover"
+                  className="rounded-t-2xl"
                 />
               )}
             </div>
-            <div className="flex items-center h-20 p-2 border-b-2 justify-between">
-              <div className="flex items-center justify-center">
-                <p className="text-3xl font-bold text-BunnyOrange mx-2">
+            <div className="flex items-center justify-between h-20 p-5 border-b-2">
+              <div className="flex items-center">
+                <p className="text-3xl font-bold text-BunnyOrange mr-4">
                   {shopByID?.storeName}
                 </p>
                 <div>
-                  <p className=" text-gray-500 font-semibold">
+                  <p className="text-gray-600 font-semibold">
                     {shopByID?.userName}
                   </p>
-                  <p className="text-gray-500 font-semibold">
+                  <p className="text-gray-600 font-semibold">
                     {shopByID?.userPhone || "등록된 번호가 없습니다."}
                   </p>
                 </div>
               </div>
-              <div className="font-bold p-2">{shopByID?.storeStatus}</div>
+              <div className="font-bold text-gray-500">
+                {shopByID?.storeStatus}
+              </div>
             </div>
             <div className="border-b-2 p-5">
-              <p className="text-2xl font-bold mx-2">사장님 말씀</p>
-              <p className="p-5 font-semibold text-xl text-gray-500">
+              <p className="text-2xl font-bold mb-3">사장님 말씀</p>
+              <p className="p-5 text-xl text-gray-500">
                 {shopByID?.description || "등록된 소개글이 없습니다."}
               </p>
             </div>
-            <div className="border-b-2">
-              <div className="flex items-center p-5">
+            <div className="border-b-2 p-5">
+              <div className="flex items-center mb-4">
                 <Image
                   src="/Icon/location.svg"
-                  alt="location icon"
-                  width={20}
-                  height={20}
-                  className="mx-1"
+                  alt="위치 아이콘"
+                  width={24}
+                  height={24}
+                  className="mr-2"
                 />
-                <p className="text-2xl font-bold mx-1 ">위치</p>
-                <p className="text-md text-gray-500">{shopByID?.address}</p>
+                <p className="text-2xl font-bold">위치</p>
               </div>
-              <div className="flex items-center justify-center p-2">
+              <p className="text-gray-500 mb-4">{shopByID?.address}</p>
+              <div className="flex items-center justify-center">
                 {shopByID && (
                   <ReactKakaoMap
                     latitude={shopByID?.latitude}
@@ -132,55 +139,52 @@ const ShopModal = ({
               </div>
             </div>
             {shopByID?.storeStatus === "PENDING" && !rejectModal && (
-              <>
-                <div className="flex items-center justify-center p-5 gap-40 ">
-                  <button
-                    className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                    onClick={() => approveShopButton(selectedShopID)}
-                  >
-                    <div className="bg-green-500 w-3 h-3 rounded-full mx-1"></div>
-                    가게 등록 승인
-                  </button>
-                  <button
-                    className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                    onClick={() => setRejectModal((prev) => !prev)} //거절 사유 창을 따로 만들어야함
-                  >
-                    <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
-                    가게 등록 거절
-                  </button>
-                </div>
-              </>
+              <div className="flex items-center justify-around p-5">
+                <button
+                  className="flex items-center px-8 py-4 font-bold text-white bg-green-500 rounded-xl hover:bg-green-600"
+                  onClick={() => approveShopButton(selectedShopID)}
+                >
+                  가게 등록 승인
+                </button>
+                <button
+                  className="flex items-center px-8 py-4 font-bold text-white bg-red-500 rounded-xl hover:bg-red-600"
+                  onClick={() => setRejectModal(true)}
+                >
+                  가게 등록 거절
+                </button>
+              </div>
             )}
             {shopByID?.storeStatus === "CLOSURE_PENDING" && (
-              <div className="w-full flex items-center justify-center p-5">
+              <div className="flex justify-center p-5">
                 <button
-                  className="flex items-center border p-5 shadow rounded-2xl font-bold w-60 justify-center"
-                  onClick={() => approveClosure(selectedShopID)} //거절 사유 창을 따로 만들어야함
+                  className="px-8 py-4 font-bold text-white bg-BunnyOrange rounded-xl hover:bg-orange-500"
+                  onClick={() => approveClosure(selectedShopID)}
                 >
-                  <div className="bg-red-500 w-3 h-3 rounded-full mx-1"></div>
                   폐업 신청 승인
                 </button>
               </div>
             )}
             {rejectModal && (
-              <div className="flex w-full items-center justify-center">
+              <div className="flex flex-col items-center p-5">
                 <input
-                  className="border my-5 w-2/3 p-2 rounded-xl shadow-md mr-5 outline-BunnyOrange"
-                  placeholder="거절 사유를 간단하게 입력해주세요."
+                  className="w-full p-3 mb-3 border rounded-lg shadow-md outline-none focus:ring-2 focus:ring-BunnyOrange"
+                  placeholder="거절 사유를 입력하세요."
                   onChange={rejectResaon}
                 />
-                <button
-                  className="border p-2 bg-BunnyOrange font-bold rounded-xl shadow-md w-20 mr-1"
-                  onClick={() => rejectShop(selectedShopID as string, reason)}
-                >
-                  확인
-                </button>
-                <button
-                  className="border p-2 bg-gray-400 font-bold rounded-xl shadow-md w-20"
-                  onClick={() => setRejectModal(false)}
-                >
-                  취소
-                </button>
+                <div className="flex gap-4">
+                  <button
+                    className="px-4 py-2 font-bold text-white bg-BunnyOrange rounded-md hover:bg-orange-500"
+                    onClick={() => rejectShop(selectedShopID as string, reason)}
+                  >
+                    확인
+                  </button>
+                  <button
+                    className="px-4 py-2 font-bold text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400"
+                    onClick={() => setRejectModal(false)}
+                  >
+                    취소
+                  </button>
+                </div>
               </div>
             )}
           </>
