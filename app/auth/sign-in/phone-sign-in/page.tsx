@@ -6,7 +6,6 @@ export default function page() {
   return (
     <>
       <Header previousRoute="/auth/sign-in" type="exit" />
-
       <PhoneSignInForm />
     </>
   )

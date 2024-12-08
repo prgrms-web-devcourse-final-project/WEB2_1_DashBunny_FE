@@ -16,7 +16,7 @@ export default function UserActionButtons() {
 
   return (
     <>
-      <div className=" mt-5 mx-5 rounded-t-xl p-1.5 ">
+      <div className=" mx-5 rounded-t-xl p-1.5 ">
         <div className="flex justify-evenly items-center pt-4  rounded-lg mb-4 ">
           <button className="flex flex-col items-center gap-1">
             <SaveHeartNavEmptyIcon />

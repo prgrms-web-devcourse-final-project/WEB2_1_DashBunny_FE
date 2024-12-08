@@ -28,8 +28,8 @@ export const useAddCartItem = () => {
                   isOpen,
                   unmount,
                   //함수가 Promise를 반환하므로 async, await 사용
-                  handleConfirmOverwrite: async (confirm) => {
-                    await handleConfirmOverwrite(confirm, variables)
+                  handleConfirmOverwrite: (confirm) => {
+                    handleConfirmOverwrite(confirm, variables)
                   },
                 }),
               {},
@@ -51,20 +51,21 @@ export const useAddCartItem = () => {
   })
   //모달에서 실행할 함수. error variables로 받은 메뉴추가 데이터와 overWrite Params가 추가된 요청을 보낸다.
   //데이터 요청을 보내고 난 후 쿼리 무효화를 하기 위해 비동기로 처리
-  const handleConfirmOverwrite = async (confirm: boolean, postCardDto: PostCartDto) => {
+  const handleConfirmOverwrite = (confirm: boolean, postCardDto: PostCartDto) => {
     if (confirm) {
       try {
-        await addCartDataWithOverwrite({
+        addCartDataWithOverwrite({
           ...postCardDto,
           overwrite: true,
         })
         queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
+        console.log("최신화")
       } catch (error) {
         console.error("Cart overwrite failed:", error)
       }
     } else {
       try {
-        await addCartDataWithOverwrite({
+        addCartDataWithOverwrite({
           ...postCardDto,
           overwrite: false,
         })

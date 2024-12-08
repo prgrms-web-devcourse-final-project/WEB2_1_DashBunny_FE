@@ -43,5 +43,6 @@ export const addCartDataWithOverwrite = async ({
   const { data } = await api.post<CartData>(
     `/users/items?menuId=${menuId}&quantity=${quantity}&overwrite=${overwrite}`,
   )
+  console.log("데이터 전송")
   return data
 }

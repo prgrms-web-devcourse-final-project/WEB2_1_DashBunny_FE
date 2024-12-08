@@ -6,9 +6,18 @@ interface ApiError {
   message: string
   code: string
 }
-export const sendMainAddress = async (address: string): Promise<void> => {
+interface SendMainAddressDto {
+  address: string
+  detailAddress: string
+}
+export const sendMainAddress = async ({
+  address,
+  detailAddress,
+}: SendMainAddressDto): Promise<void> => {
   try {
-    await api.post<string>(`/users/stores/checking?address=${address}`)
+    await api.post<string>(
+      `/users/stores/checking?address=${address}&detailAddress=${detailAddress}`,
+    )
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ApiError>

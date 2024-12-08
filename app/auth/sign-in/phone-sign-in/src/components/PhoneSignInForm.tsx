@@ -7,16 +7,26 @@ import useForm from "@/hooks/useForm"
 
 import InfoForm from "@/components/common/InfoForm"
 import ColorButton from "@/components/common/ColorButton"
-import { PhoneSignInInfo, PhoneSignUpInfo } from "@/types/phoneSignUp"
+import { PhoneSignInInfo } from "@/types/phoneSignUp"
 import validateSignIn from "@/validation/PhoneSignInValidation"
-import Link from "next/link"
 import { usePostPhoneSignIn } from "../hooks/usePostPhoneSignIn"
 
 export default function PhoneSignInForm() {
-  //@=> 예외처리 더 필요함. 엔터 치면 다음 스텝으로 넘어가벼려서..
+  const phoneInputRef = useRef<HTMLInputElement>(null)
+  const passwordInputRef = useRef<HTMLInputElement>(null)
+  const getNextInputRef = (currentStep: number) => {
+    switch (currentStep) {
+      case 1:
+        return phoneInputRef
+      case 2:
+        return passwordInputRef
+      default:
+        return null
+    }
+  }
+
   const [step, setStep] = useState(1)
-  // const inputRef1 = useRef<HTMLInputElement>(null)
-  // const inputRef2 = useRef<HTMLInputElement>(null)
+
   const login = useForm<PhoneSignInInfo>({
     initialValues: {
       phone: "",
@@ -27,7 +37,13 @@ export default function PhoneSignInForm() {
   const { postPhoneSignInMutation } = usePostPhoneSignIn()
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (step < 3) setStep((prev) => prev + 1)
+    if (step < 3) {
+      setStep((prev) => prev + 1)
+      const currentRef = getNextInputRef(step + 1)
+      setTimeout(() => {
+        currentRef?.current?.focus()
+      }, 100)
+    }
     postPhoneSignInMutation.mutate(login.values)
   }
 
@@ -36,20 +52,17 @@ export default function PhoneSignInForm() {
       if (e.key === "Enter") {
         e.preventDefault()
 
-        // alert("inputRef2")
-        // inputRef2.current!.focus()
-
         if (step === currentStep && step < 3) {
           setStep((prev) => prev + 1)
+          const currentRef = getNextInputRef(step + 1)
+          console.log("🚀 ~ PhoneSignInForm ~ currentRef:", currentRef)
+          setTimeout(() => {
+            currentRef?.current?.focus()
+          }, 100)
         }
       }
     }
 
-  // useEffect(() => {
-  //   if (inputRef1.current) {
-  //     inputRef1.current.focus()
-  //   }
-  // }, [])
   return (
     <div className="p-6 flex flex-col h-full">
       <h1 className="text-2xl font-bold mb-6 whitespace-pre-wrap">
@@ -59,9 +72,6 @@ export default function PhoneSignInForm() {
       <form onSubmit={handleSubmit} className="h-full">
         <div className="flex flex-col gap-2 mb-4">
           <AnimatePresence mode="popLayout">
-            {/* Phone Number Section */}
-
-            {/* Birth Registration Section */}
             {step >= 2 && (
               <motion.div
                 key="birth-section"
@@ -71,7 +81,7 @@ export default function PhoneSignInForm() {
                 transition={{ duration: 0.3 }}
               >
                 <InfoForm
-                  // ref={inputRef2}
+                  ref={passwordInputRef}
                   type="password"
                   onKeyDown={createKeyDownHandler(2)}
                   errorMessage={login.errors.password}
@@ -85,10 +95,8 @@ export default function PhoneSignInForm() {
               </motion.div>
             )}
 
-            {/* Name Section */}
-
             <InfoForm
-              // ref={inputRef1}
+              ref={phoneInputRef}
               onKeyDown={createKeyDownHandler(1)}
               errorMessage={login.errors.phone}
               label="휴대폰 번호"

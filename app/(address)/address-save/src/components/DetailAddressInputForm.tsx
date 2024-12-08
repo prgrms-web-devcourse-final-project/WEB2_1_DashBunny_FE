@@ -33,8 +33,10 @@ export default function DetailAddressInputForm() {
       id: Date.now().toString(),
     }
     saveAddress(newAddress)
-    const address = newAddress.addressData.roadAddress + newAddress.addressData.detailAddress
-    sendAddressMutation.mutate(address)
+    sendAddressMutation.mutate({
+      address: newAddress.addressData.roadAddress,
+      detailAddress: newAddress.addressData.detailAddress,
+    })
 
     router.push("/address") // 저장 후 이동할 페이지
   }

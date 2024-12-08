@@ -1,10 +1,6 @@
 import React from "react"
-import dynamic from "next/dynamic"
+import RestaurantList from "@/components/main/RestaurantList"
 
-const DynamicRestaurantList = dynamic(() => import("@/components/main/RestaurantList"), {
-  ssr: false,
-  loading: () => <div>loading...</div>,
-})
 export default function page({ params }: { params: { category: string } }) {
-  return <DynamicRestaurantList category={params.category} />
+  return <RestaurantList category={params.category} />
 }

@@ -5,7 +5,7 @@ interface SearchBarProps {
 }
 export default function SearchBar({ height, placeholder }: SearchBarProps) {
   return (
-    <div className={`relative ${height === "low" && "px-4"}`}>
+    <div className={`relative ${height === "low" && "px-4"} pt-2`}>
       <input
         type="search"
         placeholder={placeholder}

@@ -1,9 +1,8 @@
-import { Store } from "@/shared/model/restaurant"
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { getOrderList } from "../api/orderList"
-import { OrderHistory } from "../model/order"
+import { Order } from "../model/order"
 
-export const useGetWishList = (): UseQueryResult<OrderHistory[], Error> => {
+export const useGetWishList = (): UseQueryResult<Order[], Error> => {
   return useQuery({
     queryKey: ["orderList"],
     queryFn: getOrderList,

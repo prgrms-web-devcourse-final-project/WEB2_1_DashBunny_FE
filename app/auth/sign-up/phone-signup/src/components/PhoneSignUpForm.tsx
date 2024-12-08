@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 import useForm from "@/hooks/useForm"
@@ -10,9 +10,34 @@ import { PhoneSignUpInfo } from "@/types/phoneSignUp"
 import validateSignUp from "@/validation/PhoneSignUpValidation"
 import { usePhoneSignUpMutation } from "../hooks/usePhoneSignUpMutaion"
 import { useRouter } from "next/navigation"
-
+import PhoneSignUpHeader from "./PhoneSignUpHeader"
+//TODO: 주민번호 6자리 입력하면 genNum으로 포커스 가게.
 export default function PhoneSignUpForm() {
-  const router = useRouter()
+  // input에 대한 ref 생성
+  const nameInputRef = useRef<HTMLInputElement>(null)
+  const phoneInputRef = useRef<HTMLInputElement>(null)
+  const birthInputRef = useRef<HTMLInputElement>(null)
+  const genNumInputRef = useRef<HTMLInputElement>(null)
+  const passwordInputRef = useRef<HTMLInputElement>(null)
+  const passwordConfirmInputRef = useRef<HTMLInputElement>(null)
+
+  // 현재 step에 따라 적절한 ref를 반환하는 함수
+  const getNextInputRef = (currentStep: number) => {
+    switch (currentStep) {
+      case 1:
+        return nameInputRef
+      case 2:
+        return phoneInputRef
+      case 3:
+        return birthInputRef
+      case 4:
+        return passwordInputRef
+      case 5:
+        return passwordConfirmInputRef
+      default:
+        return null
+    }
+  }
   //@=> 예외처리 더 필요함. 엔터 치면 다음 스텝으로 넘어가벼려서..
   const [step, setStep] = useState(1)
   const login = useForm<PhoneSignUpInfo>({
@@ -28,12 +53,15 @@ export default function PhoneSignUpForm() {
   })
   const { postPhoneSignUpRequest } = usePhoneSignUpMutation(login.values.phone)
 
-  const handleForm = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (step < 6) setStep((prev) => prev + 1)
+    if (step < 6) {
+      setStep((prev) => prev + 1)
+      setTimeout(() => {
+        const nextRef = getNextInputRef(step + 1)
+        nextRef?.current?.focus()
+      }, 100)
+    }
     if (!login.isValid) {
       return console.log("error", login.errors)
     }
@@ -51,30 +79,21 @@ export default function PhoneSignUpForm() {
         e.preventDefault()
         if (step === currentStep && step < 6) {
           setStep((prev) => prev + 1)
+          setTimeout(() => {
+            const nextRef = getNextInputRef(step + 1)
+            nextRef?.current?.focus()
+          }, 100)
         }
       }
     }
 
   return (
     <div className="p-6 flex flex-col h-full">
-      <h1 className="text-2xl font-bold mb-6 whitespace-pre-wrap">
-        {step === 1
-          ? "이름을\n입력해주세요"
-          : step === 2
-            ? "휴대폰 번호를\n입력해주세요"
-            : step === 3
-              ? "주민번호 앞 7자리를\n입력해주세요"
-              : step === 4
-                ? "비밀번호를\n입력해주세요"
-                : step === 5
-                  ? "비밀번호를 다시 \n입력해주세요"
-                  : "정보가 맞다면\n인증하기 버튼을 눌러주세요"}
-      </h1>
+      <PhoneSignUpHeader step={step} />
 
-      <form className="h-full" onSubmit={handleForm}>
+      <form className="h-full">
         <div className="flex flex-col gap-2 mb-4">
           <AnimatePresence mode="popLayout">
-            {/* Phone Number Section */}
             {step >= 5 && (
               <motion.div
                 key="phone-confirm-section"
@@ -84,6 +103,7 @@ export default function PhoneSignUpForm() {
                 transition={{ duration: 0.3 }}
               >
                 <InfoForm
+                  ref={passwordConfirmInputRef}
                   type="password"
                   onKeyDown={createKeyDownHandler(5)}
                   errorMessage={login.errors.passwordConfirm}
@@ -97,7 +117,6 @@ export default function PhoneSignUpForm() {
               </motion.div>
             )}
 
-            {/* Birth Registration Section */}
             {step >= 4 && (
               <motion.div
                 key="password-section"
@@ -107,6 +126,7 @@ export default function PhoneSignUpForm() {
                 transition={{ duration: 0.3 }}
               >
                 <InfoForm
+                  ref={passwordInputRef}
                   type="password"
                   onKeyDown={createKeyDownHandler(4)}
                   errorMessage={login.errors.password}
@@ -130,6 +150,7 @@ export default function PhoneSignUpForm() {
               >
                 <div className="flex gap-2 items-start">
                   <InfoForm
+                    ref={birthInputRef}
                     onKeyDown={createKeyDownHandler(3)}
                     errorMessage={login.errors.birth}
                     label="주민등록번호"
@@ -164,6 +185,7 @@ export default function PhoneSignUpForm() {
                 transition={{ duration: 0.3 }}
               >
                 <InfoForm
+                  ref={phoneInputRef}
                   onKeyDown={createKeyDownHandler(2)}
                   errorMessage={login.errors.phone}
                   label="휴대폰 번호"
@@ -176,6 +198,7 @@ export default function PhoneSignUpForm() {
               </motion.div>
             )}
             <InfoForm
+              ref={nameInputRef}
               onKeyDown={createKeyDownHandler(1)}
               errorMessage={login.errors.name}
               label="이름"
@@ -192,11 +215,6 @@ export default function PhoneSignUpForm() {
           size="large"
           text={`${step < 6 ? "확인" : "본인 인증하기"}`}
         />
-        {/* <ColorButton
-          onClick={() => router.push("/auth/message-authentication")}
-          size="large"
-          text={`${step < 6 ? "확인" : "본인 인증하기"}`}
-        /> */}
       </form>
     </div>
   )

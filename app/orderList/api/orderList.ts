@@ -1,15 +1,15 @@
 import { api } from "@/shared/axios/axiosInstance"
 import { Store } from "@/shared/model/restaurant"
 import axios, { AxiosError } from "axios"
-import { OrderHistory } from "../model/order"
+import { Order } from "../model/order"
 // API 에러 타입
 interface ApiError {
   message: string
   code: string
 }
-export const getOrderList = async (): Promise<OrderHistory[]> => {
+export const getOrderList = async (): Promise<Order[]> => {
   try {
-    const response = await api.get<OrderHistory[]>("/order/history")
+    const response = await api.get<Order[]>("/order/list")
     return response.data
   } catch (error) {
     if (axios.isAxiosError(error)) {

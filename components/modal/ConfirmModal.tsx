@@ -8,10 +8,8 @@ interface ConfirmModalProps {
   description: string
   confirmText?: string
   cancelText?: string
-  onClose?: () => void | Promise<void>
-  onConfirm?: () => void | Promise<void>
-  promiseClose?: () => Promise<void>
-  promiseConfirm?: () => Promise<void>
+  onClose: () => void
+  onConfirm: () => void
 }
 
 export function ConfirmModal({
@@ -23,22 +21,12 @@ export function ConfirmModal({
   cancelText = "취소",
   onClose,
   onConfirm,
-  promiseClose,
-  promiseConfirm,
 }: ConfirmModalProps) {
-  const handleConfirm = () => {
-    if (promiseConfirm) {
-      promiseConfirm()
-    } else if (onConfirm) {
-      onConfirm()
-    }
+  const handleConfirm = async () => {
+    await onConfirm()
   }
   const handleClose = async () => {
-    if (promiseClose) {
-      promiseClose()
-    } else if (onClose) {
-      onClose()
-    }
+    await onClose()
   }
   return (
     <BaseModal>

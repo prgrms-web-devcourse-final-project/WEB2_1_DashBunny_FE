@@ -7,15 +7,39 @@ import { couponOptions, paymentOptions } from "@/mock/data/CartData"
 import PriceSummary from "./PriceSummary"
 import PaymentButton from "./PaymentButton"
 import { useGetCartItem } from "../hook"
-import { detailedStoreData } from "@/constants/storeDetailData"
-
+import { usePostPayment } from "../hook/usePostPayment"
+import { useState } from "react"
+import EmptyCart from "./EmptyCart"
+interface OrderRequest {
+  storeRequirement: string
+  deliveryRequirement: string
+}
 export default function OrderSheet() {
   const { data, isError, isLoading } = useGetCartItem()
+  console.log("🚀 ~ OrderSheet ~ data:", data)
 
+  const { postPayment } = usePostPayment()
+  const [orderRequest, setOrderRequest] = useState<OrderRequest>({
+    storeRequirement: "",
+    deliveryRequirement: "",
+  })
   if (isLoading) return <div>loading</div>
+  if (!data) return <EmptyCart />
   if (isError) return <div>error</div>
-  if (!data) return <div>No data available</div>
 
+  const handleRequestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setOrderRequest((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const paymentHandler = () => {
+    postPayment({
+      ...orderRequest,
+    })
+  }
   return (
     <>
       <MenuList storeName={data.storeName} cartItems={data.cartItems} />
@@ -25,7 +49,22 @@ export default function OrderSheet() {
         <p className="text-black-700 text-h3 font-semibold">가게 요청사항</p>
         <input
           type="text"
+          name="storeRequirement"
+          value={orderRequest.storeRequirement}
+          onChange={handleRequestChange}
           placeholder="예) 견과류 빼주세요"
+          className="w-full mt-2 p-2 bg-gray-50 rounded-md"
+        />
+      </div>
+      <Divider />
+      <div className="p-5">
+        <p className="text-black-700 text-h3 font-semibold">기사님 요청사항</p>
+        <input
+          type="text"
+          name="deliveryRequirement"
+          value={orderRequest.deliveryRequirement}
+          onChange={handleRequestChange}
+          placeholder="예) 문 앞에 놔주세요"
           className="w-full mt-2 p-2 bg-gray-50 rounded-md"
         />
       </div>
@@ -47,12 +86,20 @@ export default function OrderSheet() {
       </div>
       <Divider />
       {/* Price Summary */}
-      <PriceSummary deliveryFee={data?.deliveryFee ?? 0} totalAmount={data?.totalAmount ?? 0} />
+      <PriceSummary
+        deliveryFee={data?.deliveryFee ?? 0}
+        totalAmount={data?.totalAmount ?? 0}
+        totalItemsPrice={data.totalItemsPrice}
+      />
       {/* Footer Notice */}
       <div className="p-4 text-xs text-gray-500 space-y-1">
         <p>• 개인정보 제3자 제공 내용 및 결제에 동의합니다.</p>
       </div>
-      <PaymentButton text={`${data?.totalAmount}원 결제하기`} />
+      <PaymentButton onClick={paymentHandler} text={`${data?.totalAmount}원 결제하기`} />
     </>
   )
 }
+/**
+ * 결제 api 만들고, 성공 시 url채취해서 이동하기.
+ *
+ */

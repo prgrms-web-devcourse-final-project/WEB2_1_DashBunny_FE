@@ -22,9 +22,11 @@ export default function AddressList() {
     return new Date(a.id).getTime() - new Date(b.id).getTime()
   })
   const mainAddressHandler = ({ id, addressData }: Omit<AddedAddress, "marker">) => {
-    const address = addressData.roadAddress
     updateAddress(id)
-    sendAddressMutation.mutate(address)
+    sendAddressMutation.mutate({
+      address: addressData.roadAddress,
+      detailAddress: addressData.detailAddress,
+    })
   }
   return (
     <div className="flex flex-col ">

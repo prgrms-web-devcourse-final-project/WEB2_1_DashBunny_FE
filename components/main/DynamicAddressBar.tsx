@@ -16,7 +16,10 @@ export default function DynamicAddressBar() {
 
   useEffect(() => {
     if (address !== prevAddressRef.current) {
-      sendAddressMutation.mutate(address)
+      sendAddressMutation.mutate({
+        address: mainAddress?.addressData.roadAddress ?? "",
+        detailAddress: mainAddress?.addressData.detailAddress ?? "",
+      })
       prevAddressRef.current = address
     }
   }, [address, sendAddressMutation])
