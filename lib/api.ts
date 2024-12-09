@@ -291,3 +291,26 @@ export async function deleteNotice(noticeId: string) {
     );
   }
 }
+
+//시각화를 위한 API
+export async function userCount() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin/user`
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to Get userCount ${response.status} ${response.statusText}`
+    );
+  }
+}
+
+export async function categoryCount() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin/category`
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to Get categoryCount ${response.status} ${response.statusText}`
+    );
+  }
+}
