@@ -293,6 +293,7 @@ export async function deleteNotice(noticeId: string) {
 }
 
 //시각화를 위한 API
+//유저와 점주의 수
 export async function userCount() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin/user`
@@ -303,7 +304,7 @@ export async function userCount() {
     );
   }
 }
-
+//카테고리 별 가게 수
 export async function categoryCount() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/notice/admin/category`
