@@ -157,20 +157,6 @@ const Navigation = () => {
                     리뷰관리
                   </div>
                 </Link>
-                <Link href="/report">
-                  <div
-                    className={pathname === "/report" ? SelectMenu : MenuLayout}
-                  >
-                    <Image
-                      src="/Icon/warning.svg"
-                      alt="warning Icon"
-                      width={30}
-                      height={30}
-                      className={ImageProp}
-                    />{" "}
-                    신고 및 문의 관리
-                  </div>
-                </Link>
               </div>
               <div>
                 <div className={Line} />

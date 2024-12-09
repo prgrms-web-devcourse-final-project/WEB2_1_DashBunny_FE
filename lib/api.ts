@@ -31,9 +31,7 @@ export async function Login(LoginForm: LoginType) {
 
 //전체 유저 정보 불러오기
 export async function fetchUsers() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user`
-  );
+  const response = await fetch(`http://localhost:3000/api/user`);
   if (!response.ok) {
     throw new Error(
       `Failed to fetch users ${response.status} ${response.statusText}`

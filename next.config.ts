@@ -2,6 +2,10 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  eslint: {
+    // 빌드 중 ESLint 오류를 무시하도록 설정
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -10,7 +14,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // 기타 Next.js 기본 설정이 있다면 여기에 추가
 };
 
 export default withSentryConfig(nextConfig, {

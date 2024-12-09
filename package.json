@@ -24,7 +24,8 @@
     "react-kakao-maps-sdk": "^1.1.27",
     "react-query": "^3.39.3",
     "react-quill": "^2.0.0",
-    "react-quill-new": "^3.3.3"
+    "react-quill-new": "^3.3.3",
+    "recharts": "^2.14.1"
   },
   "devDependencies": {
     "@types/node": "^20",

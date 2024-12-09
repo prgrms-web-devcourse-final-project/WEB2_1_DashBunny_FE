@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 const Notice = () => {
   const Line = "bg-gray-200 h-0.5 w-full my-5"; //라인
   const [noticeData, setNoticeData] = useState<NoticeType[]>();
-  const [successMessage, setSuccessMessage] = useState(false);
 
   useEffect(() => {
     fetchNotice().then((data) => {
