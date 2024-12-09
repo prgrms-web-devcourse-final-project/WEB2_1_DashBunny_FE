@@ -23,10 +23,7 @@ export default function OrderList() {
     return <div>에러가 발생했습니다.</div>
   }
 
-  // if (!orderList || orderList.length === 0) {
-  //   return <div>주문내역이 없습니다.</div>
-  // }
-  if (1) {
+  if (!orderList || orderList.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 px-4">
         <div className="w-16 h-16 mb-4 text-gray-300">
@@ -46,7 +43,7 @@ export default function OrderList() {
     )
   }
   return (
-    <section className=" mt-4">
+    <section className=" mt-4 pb-12">
       {orderList!.map((order, index) => (
         <div key={index}>
           <OrderCard key={index} {...order} />

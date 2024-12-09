@@ -2,7 +2,6 @@
 import { useGetWishList } from "@/app/wishList/hooks/useGetWishList"
 import RestaurantCard from "../main/RestaurantCard"
 import Divider from "../common/Divider"
-import Link from "next/link"
 import NoWishList from "@/app/wishList/components/NoWishList"
 import OrderSkeleton from "@/app/orderList/components/OrderCardSkeleton"
 

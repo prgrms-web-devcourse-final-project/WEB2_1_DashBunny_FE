@@ -46,5 +46,5 @@ const InfoForm = forwardRef<HTMLInputElement, UserInformation>(
     )
   },
 )
-
+InfoForm.displayName = "InfoForm"
 export default InfoForm

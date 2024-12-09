@@ -5,8 +5,11 @@ import Divider from "@/components/common/Divider"
 import MapPinEmptyIcon from "@/components/icons/iconComponents/MapPinEmptyIcon"
 import { useSendAddress } from "@/app/(address)/address-save/src/hooks/useSendAddress"
 import { AddedAddress } from "@/app/(address)/address-save/src/model/addedAddress"
+import ColorButton from "@/components/common/ColorButton"
+import { useRouter } from "next/navigation"
 
 export default function AddressList() {
+  const router = useRouter()
   const { getItem, deleteAddress, updateAddress } = useManageAddress()
   const { sendAddressMutation } = useSendAddress()
 
@@ -29,7 +32,7 @@ export default function AddressList() {
     })
   }
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       {sortedAddress.map(({ addressData, id, marker }, index) => (
         <div key={index} className="pt-7">
           <div className="flex items-start gap-2">
@@ -73,6 +76,10 @@ export default function AddressList() {
           <Divider />
         </div>
       ))}
+
+      <div className="mt-10">
+        <ColorButton onClick={() => router.push("/")} size="large" text="확인" />
+      </div>
     </div>
   )
 }

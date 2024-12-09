@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <>
       <main className="p-5 ">
+        <div className="h-20 w-20 fixed left-0 top-0"></div>
         <Header />
         <DynamicAddressBar />
         <SearchBar placeholder="무엇을 찾으시나요?" />

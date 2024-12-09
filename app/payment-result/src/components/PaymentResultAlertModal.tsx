@@ -1,4 +1,5 @@
 "use client"
+import { useGetCartItem } from "@/app/cart/src/hook"
 import SuccessCircleIcon from "@/components/icons/iconComponents/\bSuccessCircleIcon"
 import AlertCircleIcon from "@/components/icons/iconComponents/AlertCircleIcon"
 import { NotificationModal, NotificationType } from "@/components/modal/NotificationModal"
@@ -19,7 +20,6 @@ export const PaymentResultAlertModal = ({
   description,
   title,
 }: PaymentResultAlertModalProps) => {
-  //데이터 요청 후 모달이 닫히게 하기 위해 async, await 사용
   return (
     <NotificationModal
       close={close}

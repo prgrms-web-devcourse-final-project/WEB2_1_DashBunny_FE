@@ -10,6 +10,7 @@ interface ApiError {
 export const getOrderList = async (): Promise<Order[]> => {
   try {
     const response = await api.get<Order[]>("/order/list")
+    console.log(response.data)
     return response.data
   } catch (error) {
     if (axios.isAxiosError(error)) {

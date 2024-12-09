@@ -16,7 +16,6 @@ interface OrderRequest {
 }
 export default function OrderSheet() {
   const { data, isError, isLoading } = useGetCartItem()
-  console.log("🚀 ~ OrderSheet ~ data:", data)
 
   const { postPayment } = usePostPayment()
   const [orderRequest, setOrderRequest] = useState<OrderRequest>({
@@ -24,8 +23,7 @@ export default function OrderSheet() {
     deliveryRequirement: "",
   })
   if (isLoading) return <div>loading</div>
-  if (!data) return <EmptyCart />
-  if (isError) return <div>error</div>
+  if (!data || isError) return <EmptyCart />
 
   const handleRequestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

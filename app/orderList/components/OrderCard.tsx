@@ -2,6 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { type Order } from "../model/order"
 import GoToDetailPageArrowIcon from "@/components/icons/iconComponents/GoToDetailPageArrowIcon"
+import StarRating from "./StarRating"
+import { useState } from "react"
 
 type OrderCardProps = Order & {
   className?: string
@@ -30,6 +32,14 @@ export default function OrderCard({
       .replace(/\. /g, "-")
       .replace(".", "")
   }
+  const [formData, setFormData] = useState({ rating: 5 })
+  const [hover, setHover] = useState(0)
+
+  const ratingHandler = (rating: number) => {
+    const newFormData = { rating }
+    setFormData(newFormData)
+  }
+
   return (
     <Link href={`/stores/${storeId}`}>
       <article className={"p-4 pt-2 hover:bg-gray-50 "}>
@@ -39,6 +49,12 @@ export default function OrderCard({
               {formatDate(orderDate)}
             </time>
             <span className="text-orange-500">{orderStatus}</span>
+            <StarRating
+              hover={hover}
+              setHover={setHover}
+              rating={formData.rating}
+              setFormData={ratingHandler}
+            />
           </div>
         </header>
 

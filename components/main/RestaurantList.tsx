@@ -18,6 +18,7 @@ export default function RestaurantList({ category }: RestaurantListProps) {
   }, [])
 
   const { data: restaurants, isLoading } = useGetRestaurantListByCategory(category, address)
+  console.log("🚀 ~ RestaurantList ~ restaurants:", restaurants)
 
   if (isLoading) return <div>loading</div>
   if (!restaurants) return <div>데이터가 없습니다</div>

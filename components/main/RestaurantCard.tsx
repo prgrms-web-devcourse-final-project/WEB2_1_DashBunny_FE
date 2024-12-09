@@ -16,6 +16,9 @@ export default function RestaurantCard({
   deliveryTip,
   discountPrice,
   storeLogo,
+  maxDeliveryTime,
+  minDeliveryTime,
+  status,
 }: UsersStoreListResponseDto) {
   const pathName = usePathname()
   const { updateWishMutation } = useUpdateWish()
@@ -41,13 +44,11 @@ export default function RestaurantCard({
               배달비 {deliveryTip.toLocaleString()}원
             </p>
           </div>
-          {/* <CouponBadge amount={discountPrice} /> */}
         </div>
         {pathName == "/wishList" && (
-          // <WishButton is_wish={true} user_id="imUser" store_id={store_id} />
           <button
             onClick={(e) => {
-              e.preventDefault() // preventDefault 추가
+              e.preventDefault()
               e.stopPropagation()
               updateWishMutation.mutate({ storeId })
             }}

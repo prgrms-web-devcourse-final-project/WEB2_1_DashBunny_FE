@@ -1,6 +1,10 @@
-import React from "react"
+import React, { Suspense } from "react"
 import PaymentResult from "./src/components/PaymentResult"
 
 export default function page() {
-  return <PaymentResult />
+  return (
+    <Suspense fallback={"loading..."}>
+      <PaymentResult />
+    </Suspense>
+  )
 }

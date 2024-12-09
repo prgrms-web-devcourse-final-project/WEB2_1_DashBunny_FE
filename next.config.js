@@ -18,7 +18,20 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
 
-    domains: ["placehold.co", "product-image.kurly.com"],
+    domains: ["placehold.co", "product-image.kurly.com", "www.youtube.com"],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ]
   },
 }
 

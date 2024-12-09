@@ -5,8 +5,11 @@ import { foodCategories } from "@/constants/FoodCategories"
 import FoodListExtendsIcon from "@/components/icons/iconComponents/FoodListExtendsIcon"
 import FoodCategoryButton from "@/app/src/components/FoodCategoryButton"
 import { getCategoryIcon } from "@/components/icons/foodIconComponents"
+import { usePathname } from "next/navigation"
 export default function FoodCategoryList() {
-  const [showMore, setShowMore] = useState(false)
+  const pathName = usePathname()
+
+  const [showMore, setShowMore] = useState(pathName === "/" ? true : false)
 
   // 1~5번째 요소
   const tenCategories = foodCategories.slice(0, 4)

@@ -4,6 +4,7 @@ import axios, { AxiosError } from "axios"
 import { ApiError } from "next/dist/server/api-utils"
 import { AnotherStoreConfirmDialog } from "@/components/Dialog/AnotherStoreConfirmDialog"
 import { overlay } from "overlay-kit"
+import { NavigateToCartDialog } from "@/components/Dialog/NavigateToCartDialog"
 const CART_QUERY_KEY = ["CartData"] as const
 
 export const useAddCartItem = () => {
@@ -16,7 +17,6 @@ export const useAddCartItem = () => {
     //variables에는 mutation에 전달된 인자가 들어있음
     onError: async (error: Error | AxiosError<ApiError>, variables) => {
       if (axios.isAxiosError(error)) {
-        console.log(error)
         //다른 가게를 선택했을 때 서버에서 주는 에러. 아직 서버 연결 전이라 요청이 안갔을 때 에러
         switch (error.status) {
           case 400:
@@ -28,8 +28,8 @@ export const useAddCartItem = () => {
                   isOpen,
                   unmount,
                   //함수가 Promise를 반환하므로 async, await 사용
-                  handleConfirmOverwrite: (confirm) => {
-                    handleConfirmOverwrite(confirm, variables)
+                  handleConfirmOverwrite: async (confirm) => {
+                    await handleConfirmOverwrite(confirm, variables)
                   },
                 }),
               {},
@@ -45,16 +45,25 @@ export const useAddCartItem = () => {
         console.error("네트워크 에러:", error)
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY })
+      overlay.open(
+        ({ close, isOpen, unmount }) =>
+          NavigateToCartDialog({
+            close,
+            isOpen,
+            unmount,
+          }),
+        {},
+      )
     },
   })
   //모달에서 실행할 함수. error variables로 받은 메뉴추가 데이터와 overWrite Params가 추가된 요청을 보낸다.
   //데이터 요청을 보내고 난 후 쿼리 무효화를 하기 위해 비동기로 처리
-  const handleConfirmOverwrite = (confirm: boolean, postCardDto: PostCartDto) => {
+  const handleConfirmOverwrite = async (confirm: boolean, postCardDto: PostCartDto) => {
     if (confirm) {
       try {
-        addCartDataWithOverwrite({
+        await addCartDataWithOverwrite({
           ...postCardDto,
           overwrite: true,
         })

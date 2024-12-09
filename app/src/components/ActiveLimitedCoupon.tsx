@@ -37,7 +37,7 @@ export default function ActiveLimitedCoupon({
         {discountType === "FIXED" && (
           <div className=" grid grid-cols-3 w-full h-full">
             <div className="text-nowrap font-bold text-coupon h-full">선착순 쿠폰</div>
-            <div className="text-2xl font-bold flex items-end  text-coupon h-full">
+            <div className="text-2xl text-nowrap font-bold flex items-end  text-coupon h-full">
               {discountPrice + "원"}
             </div>
             <div className="text-2xl font-bold flex items-center justify-center text-coupon">

@@ -6,7 +6,7 @@ interface AnotherStoreConfirmDialogProps {
   isOpen: boolean
   close: () => void
   unmount: () => void
-  handleConfirmOverwrite: (confirm: boolean) => void
+  handleConfirmOverwrite: (confirm: boolean) => Promise<void>
 }
 export const AnotherStoreConfirmDialog = ({
   isOpen,
