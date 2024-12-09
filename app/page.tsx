@@ -25,9 +25,9 @@ export default function Home() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(Coupon);
-  }, [Coupon]);
+  const FilterCoupon = Coupon?.filter(
+    (coupon) => coupon.couponStatus === "ACTIVE"
+  );
 
   return (
     <div className="flex flex-col w-full p-11">
@@ -67,21 +67,22 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-row w-full h-1/2 bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 p-5 rounded-2xl shadow-2xl mt-5">
-        <div className="w-1/3 border mt-10 flex flex-col rounded-xl bg-orange-100 border-BunnyOrange shadow-md">
+        <div className="w-1/3 border mt-10 flex flex-col rounded-xl bg-white border-BunnyOrange shadow-md">
           <p className="border-orange-200 p-2 text-md font-bold bg-orange-200 shadow-md rounded-t-xl">
             새로운 가게 신청
           </p>
-          <p className="text-center font-bold text-red-600 border-b border-gray-400">
-            New!
-          </p>
+
           {pendingShop === undefined ? (
             <div>로딩중입니다.</div>
           ) : (
             pendingShop.map((shop) => (
               <div
-                className="flex border-b  border-gray-400 p-2"
+                className="flex border-b  border-gray-400 p-2 justify-center items-center"
                 key={shop.storeId}
               >
+                <p className="text-center font-bold text-red-600 border-gray-400">
+                  New!
+                </p>
                 <p className="font-bold w-1/3 text-center">{shop.storeName}</p>
                 <p className="w-1/3 text-center">{shop.address}</p>
                 <p className="w-1/3 text-center text-green-500 font-bold">
@@ -98,8 +99,8 @@ export default function Home() {
           {Coupon === undefined ? (
             <div>로딩중입니다.</div>
           ) : (
-            Coupon.map((coupon) => (
-              <div className="flex flex-row items-center justify-center border-b p-5 gap-10 border-gray-400">
+            FilterCoupon?.map((coupon) => (
+              <div className="flex flex-row items-center justify-between border-b p-5 gap-10 border-gray-400">
                 <p className="font-bold">{coupon.couponId}</p>
                 <p className="font-bold text-BunnyOrange">
                   {coupon.couponName}
