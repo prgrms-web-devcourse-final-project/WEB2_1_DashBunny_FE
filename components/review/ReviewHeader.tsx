@@ -9,17 +9,15 @@ const ReviewHeader = () => {
       <header>
         <div className="flex items-center">
           <Image
-            src="/Icon/shop.svg"
+            src="/Icon/review.svg"
             alt="shop icon"
             width={40}
             height={40}
             className="object-contain"
           />
-          <p className="text-3xl font-bold mx-2">가게 관리</p>
+          <p className="text-3xl font-bold mx-2">리뷰 관리</p>
         </div>
-        <p className="mt-2">
-          가게 목록을 조회하고,영업 상태,등록 상태를 확인 할 수 있습니다.
-        </p>
+        <p className="mt-2">신고된 리뷰를 확인하고, 처리 할 수 있습니다.</p>
       </header>
       <div className={Line}></div>
     </section>

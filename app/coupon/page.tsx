@@ -85,7 +85,11 @@ const Coupon = () => {
                     </p>
                     <p className={NavText}>{value.couponName}</p>
                     <p className={NavText}>{value.couponDescription}</p>
-                    <p className={NavText}>{value.couponType}</p>
+                    <p className={NavText}>
+                      {value.couponType === "FirstCome"
+                        ? "선착순 쿠폰"
+                        : "일반 쿠폰"}
+                    </p>
                     <p className="w-1/4 flex items-center justify-center">
                       {value.couponStatus === "ACTIVE" ? (
                         <div className="w-4 h-4 rounded-full bg-green-400 transition"></div>

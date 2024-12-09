@@ -12,16 +12,16 @@ import {
 } from "recharts";
 
 const mockData = [
-  { month: "2024-01", users: 5 },
-  { month: "2024-02", users: 8 },
-  { month: "2024-03", users: 12 },
-  { month: "2024-04", users: 15 },
-  { month: "2024-05", users: 10 },
-  { month: "2024-06", users: 18 },
-  { month: "2024-07", users: 20 },
-  { month: "2024-08", users: 25 },
-  { month: "2024-09", users: 22 },
-  { month: "2024-10", users: 30 },
+  { month: "2024-01", users: 1 },
+  { month: "2024-02", users: 2 },
+  { month: "2024-03", users: 4 },
+  { month: "2024-04", users: 3 },
+  { month: "2024-05", users: 5 },
+  { month: "2024-06", users: 1 },
+  { month: "2024-07", users: 7 },
+  { month: "2024-08", users: 3 },
+  { month: "2024-09", users: 6 },
+  { month: "2024-10", users: 5 },
 ];
 
 const UserChart = () => {
@@ -40,7 +40,7 @@ const UserChart = () => {
             borderColor: "#f97316",
             boxShadow: "0px 0px 10px #f97316",
             backgroundColor: "#fff",
-            borderRadius: "5px",
+            borderRadius: "10px",
           }}
           contentStyle={{ borderColor: "#f97316" }}
         />

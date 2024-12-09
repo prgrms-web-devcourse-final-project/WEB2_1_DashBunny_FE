@@ -13,26 +13,39 @@ const Review = () => {
   const initialReviews: ReviewType[] = [
     {
       id: 1,
-      userName: "User1",
-      content: "정말 나쁜 경험이었어요. 쓰레기 같아요.",
+      userName: "김지연",
+      content: "개 쓰레기 같은 맛;; 다시는 가지마라 ㅗㅗ",
       isBlind: false,
     },
     {
       id: 2,
-      userName: "User2",
-      content: "맛은 괜찮았지만 서비스가 정말 형편없었어요.",
+      userName: "이지선",
+      content: "그지 같다 진짜.",
       isBlind: false,
     },
     {
       id: 3,
-      userName: "User3",
-      content: "최악의 음식이었어요. 다시는 오지 않을거에요.",
+      userName: "한승진",
+      content: "ㅅㅂ 이딴거 누가 먹냐 먹어보고 장사해라.",
       isBlind: false,
     },
     {
       id: 4,
-      userName: "User4",
-      content: "아주 불쾌한 경험이었습니다. 다시는 가고 싶지 않네요.",
+      userName: "지연주",
+      content:
+        "극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐극혐.",
+      isBlind: false,
+    },
+    {
+      id: 5,
+      userName: "하진우",
+      content: "ㅈ같음.",
+      isBlind: false,
+    },
+    {
+      id: 6,
+      userName: "김성욱",
+      content: "죽어라 걍.",
       isBlind: false,
     },
   ];
@@ -48,10 +61,12 @@ const Review = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-5">
-      <h1 className="text-3xl font-bold mb-6">리뷰 관리</h1>
+    <div className=" flex flex-col items-center justify-center px-4 sm:px-8">
+      <h1 className="text-3xl font-bold mb-6 text-BunnyOrange border-2 w-[70vw] text-center p-5 shadow-xl rounded-xl">
+        신고된 리뷰 관리
+      </h1>
 
-      <div className="w-full max-w-3xl bg-white p-6 border-2 rounded-xl shadow-lg">
+      <div className="w-[70vw] bg-white p-6 border-2 rounded-xl shadow-lg overflow-y-auto">
         {reviews.map((review) => (
           <div
             key={review.id}
@@ -59,11 +74,14 @@ const Review = () => {
           >
             <p className="text-lg font-semibold">{review.userName}</p>
             <p
-              className={`mt-2 text-md ${
+              className={`mt-2 text-xl ${
                 review.isBlind ? "blur-sm bg-white" : ""
               } transition duration-300`}
               style={{
                 borderRadius: "5px",
+                whiteSpace: "normal", // 텍스트가 줄 바꿈 되도록 설정
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               {review.content}

@@ -9,7 +9,7 @@ import { ShopType, CouponType } from "@/types/types";
 import UserChart from "@/components/userChart";
 
 export default function Home() {
-  const Line = "bg-gray-200 h-0.5 w-full my-5"; //라인
+  const Line = "bg-gray-300 h-0.5 w-full my-5"; //라인
   const [pendingShop, setPendingShop] = useState<ShopType[] | undefined>(
     undefined
   );
@@ -50,73 +50,84 @@ export default function Home() {
         </header>
         <div className={Line}></div>
       </section>
-      <div className="flex flex-row w-full h-1/2 bg-gradient-to-r from-orange-200 via-BunnyOrange to-orange-200 p-5 rounded-2xl shadow-2xl">
+      <div className="flex flex-row w-full h-1/2 bg-gradient-to-r from-orange-100 via-BunnyOrange to-orange-200 p-5 rounded-2xl shadow-2xl">
         {/* 카테고리 차트 */}
-        <div className="flex items-center flex-col p-10 rounded-2xl shadow-xl w-3/4 bg-gradient-to-t from-white to-orange-100 border-4 border-BunnyOrange">
+        <div className="flex items-center flex-col p-10  shadow-xl w-3/4 bg-gradient-to-t from-white to-orange-100 ">
           <p className="font-bold text-md mb-10  text-BunnyOrange">
             카테고리 별 등록 가게 수
           </p>
           <CategoryChart />
         </div>
         {/* 원형 그래프 */}
-        <div className="flex items-center justify-center p-10  flex-col shadow-xl rounded-2xl w-1/4 ml-5 bg-white bg-gradient-to-t from-white to-orange-50 border-4 border-BunnyOrange">
+        <div className="flex items-center justify-center p-10  flex-col shadow-xl  w-1/4 ml-5 bg-white bg-gradient-to-t from-white to-orange-50  ">
           <p className="font-bold text-md  text-BunnyOrange mb-5">
             DashBunny 이용자
           </p>
           <CircleGraph />
         </div>
       </div>
-      <div className="flex flex-row w-full h-1/2 bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 p-5 rounded-2xl shadow-2xl mt-5">
-        <div className="w-1/3 border mt-10 flex flex-col rounded-xl bg-white border-BunnyOrange shadow-md">
-          <p className="border-orange-200 p-2 text-md font-bold bg-orange-200 shadow-md rounded-t-xl">
+      <div className="flex">
+        <div className="w-1/3 border mt-10 flex flex-col bg-white rounded-lg shadow-lg">
+          <p className="p-4 text-lg font-bold bg-gradient-to-r from-orange-50 to-white text-BunnyOrange rounded-t-lg shadow-md border-b">
             새로운 가게 신청
           </p>
-
           {pendingShop === undefined ? (
-            <div>로딩중입니다.</div>
+            <div className="p-4 text-center text-gray-500">로딩중입니다.</div>
           ) : (
-            pendingShop.map((shop) => (
-              <div
-                className="flex border-b  border-gray-400 p-2 justify-center items-center"
-                key={shop.storeId}
-              >
-                <p className="text-center font-bold text-red-600 border-gray-400">
-                  New!
-                </p>
-                <p className="font-bold w-1/3 text-center">{shop.storeName}</p>
-                <p className="w-1/3 text-center">{shop.address}</p>
-                <p className="w-1/3 text-center text-green-500 font-bold">
-                  신청 대기 중
-                </p>
-              </div>
-            ))
+            <div className="p-4 grid grid-cols-1 gap-4">
+              {pendingShop.map((shop) => (
+                <div
+                  className="flex items-center bg-white border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"
+                  key={shop.storeId}
+                >
+                  <p className="text-center font-bold text-red-500 bg-red-100 px-2 py-1 rounded-full mr-4">
+                    New!
+                  </p>
+                  <div className="flex-1">
+                    <p className="font-bold text-lg">{shop.storeName}</p>
+                    <p className="text-gray-600">{shop.address}</p>
+                  </div>
+                  <p className="text-green-600 font-bold text-sm">
+                    신청 대기 중
+                  </p>
+                </div>
+              ))}
+            </div>
           )}
         </div>
-        <div className="w-1/4 border mt-10 flex flex-col rounded-xl mx-5 bg-white border-BunnyOrange">
-          <p className="border-orange-200 p-2 text-md font-bold bg-orange-200 shadow-md rounded-t-xl">
-            활성 중인 쿠폰
+
+        <div className="w-1/4 mt-10 flex flex-col mx-5 bg-white rounded-lg shadow-lg">
+          <p className="p-4 text-lg font-bold bg-gradient-to-r from-orange-50 to-white text-BunnyOrange rounded-t-lg shadow-md border-b">
+            현재 활성 중인 쿠폰
           </p>
           {Coupon === undefined ? (
-            <div>로딩중입니다.</div>
+            <div className="p-4 text-center text-gray-500">로딩중입니다.</div>
           ) : (
-            FilterCoupon?.map((coupon) => (
-              <div className="flex flex-row items-center justify-between border-b p-5 gap-10 border-gray-400">
-                <p className="font-bold">{coupon.couponId}</p>
-                <p className="font-bold text-BunnyOrange">
-                  {coupon.couponName}
-                </p>
-                <div className="text-center bg-green-500 font-bold w-3 h-3 rounded-full"></div>
-              </div>
-            ))
+            <div className="p-4 grid grid-cols-1 gap-4">
+              {FilterCoupon?.map((coupon) => (
+                <div
+                  className="flex items-center bg-white border border-gray-300 p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"
+                  key={coupon.couponId}
+                >
+                  <p className="font-bold text-gray-800">{coupon.couponId}</p>
+                  <p className="font-bold text-BunnyOrange flex-1 text-center">
+                    {coupon.couponName}
+                  </p>
+                  <div className="text-center bg-green-500 font-bold w-3 h-3 rounded-full"></div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
-        <div className="w-1/2 border mt-10 flex flex-col rounded-xl bg-white border-BunnyOrange p-5">
-          <p className="font-bold text-md  text-BunnyOrange mb-5">
+
+        <div className="w-1/2  mt-10 flex flex-col bg-white border-BunnyOrange p-5 shadow-xl rounded-xl">
+          <p className="font-bold text-md  text-BunnyOrange mb-5 text-center w-full">
             월 별 가입자 추이
           </p>
           <UserChart />
         </div>
       </div>
+      <div className={`${Line}`}></div>
     </div>
   );
 }

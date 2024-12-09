@@ -11,8 +11,8 @@ import {
 
 const CircleGraph = () => {
   const rawData: { [key: string]: number } = {
-    userCount: 1,
-    ownerCount: 1,
+    소비자: 5,
+    점주: 2,
   };
 
   const formattedData = Object.keys(rawData).map((key) => ({

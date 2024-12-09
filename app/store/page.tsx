@@ -194,11 +194,25 @@ const Shop = () => {
                   )}
                 </div>
                 <p className={FontStyle}>
-                  {shops.description || "등록된 소개가 없습니다."}
+                  {shops.description
+                    ? shops.description.length > 10
+                      ? `${shops.description.slice(0, 10)}...`
+                      : shops.description
+                    : "등록된 소개가 없습니다."}
                 </p>
-                <p className={FontStyle}>{shops.address}</p>
+                <p className={FontStyle}>
+                  {shops.address
+                    ? shops.address.length > 10
+                      ? `${shops.address.slice(0, 10)}...`
+                      : shops.address
+                    : "등록된 주소가 없습니다."}
+                </p>
                 <p className={FontStyle}>{shops.storeStatus}</p>
-                <p className={FontStyle}>{shops.approvedDate}</p>
+                <p className={FontStyle}>
+                  {shops.approvedDate
+                    ? shops.approvedDate.split("T")[0] // 'T'를 기준으로 날짜와 시간 분리, 날짜만 추출
+                    : "등록된 날짜가 없습니다."}
+                </p>{" "}
               </div>
             ))}
             <div ref={lastItemRef}></div>

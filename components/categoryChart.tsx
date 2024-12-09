@@ -12,34 +12,34 @@ import {
 
 type CategoryData = {
   [key in
-    | "korean"
-    | "japanese"
-    | "western"
-    | "chinese"
-    | "asian"
-    | "lateNightFood"
-    | "koreanSnacks"
-    | "chicken"
-    | "pizza"
-    | "barbecue"
-    | "cafeDessert"
-    | "fastFood"]: number;
+    | "한식"
+    | "일식"
+    | "양식"
+    | "중식"
+    | "아시안푸드"
+    | "야식"
+    | "과자"
+    | "치킨"
+    | "피자"
+    | "바베큐"
+    | "디저트"
+    | "패스트푸드"]: number;
 };
 
 const CategoryChart = () => {
   const rawData: CategoryData = {
-    korean: 353,
-    japanese: 150,
-    western: 22,
-    chinese: 123,
-    asian: 23,
-    lateNightFood: 63,
-    koreanSnacks: 75,
-    chicken: 300,
-    pizza: 23,
-    barbecue: 35,
-    cafeDessert: 63,
-    fastFood: 235,
+    한식: 353,
+    일식: 150,
+    양식: 22,
+    중식: 123,
+    아시안푸드: 23,
+    야식: 63,
+    과자: 75,
+    치킨: 300,
+    피자: 23,
+    바베큐: 35,
+    디저트: 63,
+    패스트푸드: 235,
   };
 
   const formattedData = Object.keys(rawData).map((key) => ({

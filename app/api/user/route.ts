@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 const mockUsers = [
   {
     id: 1,
-    name: "Alice",
+    name: "한승철",
     phone: "010-1234-5678",
     role: "Admin",
     email: "alice@example.com",
@@ -12,15 +12,15 @@ const mockUsers = [
   },
   {
     id: 2,
-    name: "Bob",
+    name: "한승희",
     phone: "010-9876-5432",
-    role: "Owner",
+    role: "Customer",
     email: "bob@example.com",
     createdDate: "2024-02-01",
   },
   {
     id: 3,
-    name: "Charlie",
+    name: "김용환",
     phone: "010-4567-8901",
     role: "Owner",
     email: "charlie@example.com",
@@ -28,7 +28,7 @@ const mockUsers = [
   },
   {
     id: 4,
-    name: "Diana",
+    name: "도승우",
     phone: "010-6789-0123",
     role: "Customer",
     email: "diana@example.com",
@@ -36,7 +36,7 @@ const mockUsers = [
   },
   {
     id: 5,
-    name: "Ethan",
+    name: "김근태",
     phone: "010-5678-1234",
     role: "Customer",
     email: "ethan@example.com",
@@ -44,7 +44,7 @@ const mockUsers = [
   },
   {
     id: 6,
-    name: "Fiona",
+    name: "최수진",
     phone: "010-2345-6789",
     role: "Owner",
     email: "fiona@example.com",
@@ -52,7 +52,7 @@ const mockUsers = [
   },
   {
     id: 7,
-    name: "George",
+    name: "채호정",
     phone: "010-7890-1234",
     role: "Customer",
     email: "george@example.com",
@@ -60,27 +60,11 @@ const mockUsers = [
   },
   {
     id: 8,
-    name: "Hannah",
+    name: "김강우",
     phone: "010-3456-7890",
-    role: "Owner",
+    role: "Customer",
     email: "hannah@example.com",
     createdDate: "2024-08-01",
-  },
-  {
-    id: 9,
-    name: "Ian",
-    phone: "010-8901-2345",
-    role: "Customer",
-    email: "ian@example.com",
-    createdDate: "2024-09-01",
-  },
-  {
-    id: 10,
-    name: "Julia",
-    phone: "010-1234-5678",
-    role: "Customer",
-    email: "julia@example.com",
-    createdDate: "2024-10-01",
   },
 ];
 
