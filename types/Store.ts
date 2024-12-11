@@ -21,10 +21,10 @@ export interface UsersStoreListResponseDto {
   storeName: string
   rating: number
   reviewCount: number
-  deliveryTip: number
-  minDeliveryTime: string
-  maxDeliveryTime: string
-  discountPrice: number
+
+  minDeliveryTime: null
+  maxDeliveryTime: null
+  discountPrice: null
   status: StoreStatus
 }
 

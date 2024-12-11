@@ -18,6 +18,7 @@ export default function Home() {
         <SearchBar placeholder="무엇을 찾으시나요?" />
         <FoodCategoryList />
       </main>
+
       <BottomBanner />
     </>
   )

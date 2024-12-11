@@ -17,7 +17,7 @@ export const RestaurantInfo = ({
 }: RestaurantHeaderProps) => (
   <div className="mb-4">
     <Image
-      src={"https://placehold.co/100x100"}
+      src={storeImage}
       alt="KFC"
       width={400}
       height={224}
@@ -38,11 +38,11 @@ export const RestaurantInfo = ({
       <div className="space-y-2 text-gray-600">
         <div className="flex text-sm text-black-500">
           <span className="font-bold min-w-24">최소주문금액</span>
-          <span className="font-medium">{minOrderAmount.toLocaleString()}원</span>
+          <span className="font-medium">{minOrderAmount}원</span>
         </div>
         <div className="flex text-sm text-black-500">
           <span className="font-bold min-w-24">배달팁</span>
-          <span className="font-medium">무료 ~ {deliveryFee.toLocaleString()}원</span>
+          <span className="font-medium">무료 ~ {deliveryFee}원</span>
         </div>
       </div>
     </div>

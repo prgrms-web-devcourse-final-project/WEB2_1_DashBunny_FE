@@ -23,14 +23,10 @@ export const useAddCartItem = () => {
             //모달을 열고 실행할 함수와 모달을 여닫는 함수를 Props로 넘겨준다
             overlay.open(
               ({ close, isOpen, unmount }) =>
-                AnotherStoreConfirmDialog({
+                NavigateToCartDialog({
                   close,
                   isOpen,
                   unmount,
-                  //함수가 Promise를 반환하므로 async, await 사용
-                  handleConfirmOverwrite: async (confirm) => {
-                    await handleConfirmOverwrite(confirm, variables)
-                  },
                 }),
               {},
             )

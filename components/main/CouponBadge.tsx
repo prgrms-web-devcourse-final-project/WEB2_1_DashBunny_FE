@@ -32,7 +32,7 @@ export default function CouponBadge({ amount }: CouponBadgeProps) {
           rounded-full text-xs h-7
         `}
     >
-      {amount.toLocaleString()}원 쿠폰
+      {amount}원 쿠폰
     </span>
   )
 }

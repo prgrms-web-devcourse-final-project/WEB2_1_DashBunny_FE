@@ -1,4 +1,3 @@
-import React from "react"
 import RestaurantList from "@/components/main/RestaurantList"
 
 export default function page({ params }: { params: { category: string } }) {

@@ -7,13 +7,13 @@ type FoodCategory = {
     | "WESTERN"
     | "CHINESE"
     | "ASIAN"
-    | "LATE_NIGHT_FOOD"
-    | "KOREAN_SNACKS"
+    | "LATENIGHTFOOD"
+    | "KOREANSNACKS"
     | "CHICKEN"
     | "PIZZA"
     | "BARBECUE"
-    | "CAFE_AND_DESSERT"
-    | "FAST_FOOD"
+    | "CAFEANDDESSERT"
+    | "FASTFOOD"
   name: string
   englishName: string
   icon: IconComponent
@@ -50,13 +50,13 @@ export const foodCategories: FoodCategory[] = [
     icon: AlertIcon,
   },
   {
-    key: "LATE_NIGHT_FOOD",
+    key: "LATENIGHTFOOD",
     name: "야식",
     englishName: "Late Night Food",
     icon: AlertIcon,
   },
   {
-    key: "KOREAN_SNACKS",
+    key: "KOREANSNACKS",
     name: "분식",
     englishName: "Korean Snacks",
     icon: AlertIcon,
@@ -80,13 +80,13 @@ export const foodCategories: FoodCategory[] = [
     icon: AlertIcon,
   },
   {
-    key: "CAFE_AND_DESSERT",
+    key: "CAFEANDDESSERT",
     name: "카페디저트",
     englishName: "Cafe & Dessert",
     icon: AlertIcon,
   },
   {
-    key: "FAST_FOOD",
+    key: "FASTFOOD",
     name: "패스트푸드",
     englishName: "Fast Food",
     icon: AlertIcon,

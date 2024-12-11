@@ -8,10 +8,10 @@ interface FoodCategoryButtonProps {
 export default function FoodCategoryButton({
   category,
   icon,
-  searchParamCategory,
+  searchParamCategory = "KOREANSNACKS",
 }: FoodCategoryButtonProps) {
   return (
-    <Link href={`/main/${searchParamCategory}`}>
+    <Link href={`/main/KOREANSNACKS`}>
       <div className=" h-[82px] w-16 flex flex-col items-center justify-between pt-2">
         {icon}
         <div className="text-[14px]  text-black-700 text-center font-bold">{category}</div>

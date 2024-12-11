@@ -17,21 +17,12 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-
-    domains: ["placehold.co", "product-image.kurly.com", "www.youtube.com"],
-  },
-  async headers() {
-    return [
+    remotePatterns: [
       {
-        source: "/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
+        protocol: "https",
+        hostname: "**", // 모든 도메인 허용
       },
-    ]
+    ],
   },
 }
 

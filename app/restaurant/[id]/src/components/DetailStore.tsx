@@ -17,7 +17,6 @@ interface DetailStoreProps {
 //@=>ssr
 export default function DetailStore({ pathname }: DetailStoreProps) {
   const { data: detailStoreData, error, isLoading } = useDetailStoreData(pathname)
-  console.log("🚀 ~ DetailStore ~ detailStoreData:", detailStoreData)
 
   const menus: UsersMenuDto[] =
     detailStoreData?.usersMenuGroup.flatMap((group) => group.menus) ?? []

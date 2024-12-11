@@ -28,8 +28,8 @@ export const PaymentResultAlertModal = ({
       type={type}
       unmount={unmount}
       icon={type === "success" ? <SuccessCircleIcon /> : <AlertCircleIcon />}
-      closeText={type === "success" ? "주문내역으로" : "홈으로"}
-      nextUrl={type === "success" ? "/orderList" : "/"}
+      closeText={type === "success" ? "홈으로" : "홈으로"}
+      nextUrl={type === "success" ? "/" : "/"}
     />
   )
 }

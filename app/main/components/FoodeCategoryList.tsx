@@ -24,7 +24,7 @@ export default function FoodCategoryList() {
         key={index}
         category={category.name}
         icon={getCategoryIcon(category.name)}
-        searchParamCategory={category.key}
+        searchParamCategory={"KOREANSNACKS"}
       />
     )
   })
@@ -35,7 +35,7 @@ export default function FoodCategoryList() {
       key={index}
       category={category.name}
       icon={getCategoryIcon(category.name)}
-      searchParamCategory={category.key}
+      searchParamCategory={"KOREANSNACKS"}
     />
   ))
 

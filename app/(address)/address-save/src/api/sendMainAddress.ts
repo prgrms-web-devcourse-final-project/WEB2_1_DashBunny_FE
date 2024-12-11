@@ -1,5 +1,5 @@
 import { api } from "@/shared/axios/axiosInstance"
-import { Store } from "@/shared/model/restaurant"
+
 import axios, { AxiosError } from "axios"
 // API 에러 타입
 interface ApiError {
@@ -14,6 +14,7 @@ export const sendMainAddress = async ({
   address,
   detailAddress,
 }: SendMainAddressDto): Promise<void> => {
+  console.log("asdf", { address, detailAddress })
   try {
     await api.post<string>(
       `/users/stores/checking?address=${address}&detailAddress=${detailAddress}`,

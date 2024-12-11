@@ -7,10 +7,10 @@ interface ApiError {
 }
 export const getRestaurantListByCategory = async (
   category: string,
-  address: string | null,
+  address: string,
 ): Promise<UsersStoreListResponseDto[]> => {
   const response = await api.get<UsersStoreListResponseDto[]>(
-    `/users/stores/${category}?address=${address}`,
+    `/users/stores/${category}?address=서울특별시 중구 세종대로 110`,
   )
   return response.data
 }
