@@ -11,6 +11,53 @@ import {
   approveClosureShop,
 } from "@/lib/api";
 
+const randomLogos = [
+  "/food/Rectangle 1.svg",
+  "/food/Rectangle 2.svg",
+  "/food/Rectangle 3.svg",
+  "/food/Rectangle 4.svg",
+  "/food/Rectangle 5.svg",
+  "/food/Rectangle 6.svg",
+  "/food/Rectangle 7.svg",
+  "/food/Rectangle 8.svg",
+  "/food/Rectangle 9.svg",
+  "/food/Rectangle 10.svg",
+  "/food/Rectangle 11.svg",
+  "/food/Rectangle 12.svg",
+  "/food/Rectangle 13.svg",
+  "/food/Rectangle 14.svg",
+  "/food/Rectangle 15.svg",
+  "/food/Rectangle 16.svg",
+  "/food/Rectangle 17.svg",
+  "/food/Rectangle 18.svg",
+  "/food/Rectangle 19.svg",
+  "/food/Rectangle 20.svg",
+  "/food/Rectangle 21.svg",
+  "/food/Rectangle 22.svg",
+  "/food/Rectangle 23.svg",
+  "/food/Rectangle 24.svg",
+  "/food/Rectangle 25.svg",
+  "/food/Rectangle 26.svg",
+  "/food/Rectangle 27.svg",
+  "/food/Rectangle 28.svg",
+  "/food/Rectangle 29.svg",
+  "/food/Rectangle 30.svg",
+  "/food/Rectangle 31.svg",
+  "/food/Rectangle 32.svg",
+  "/food/Rectangle 33.svg",
+  "/food/Rectangle 34.svg",
+  "/food/Rectangle 35.svg",
+  "/food/Rectangle 37.svg",
+  "/food/Rectangle 38.svg",
+  "/food/Rectangle 39.svg",
+  "/food/Rectangle 40.svg",
+  "/food/Rectangle 41.svg",
+  "/food/Rectangle 42.svg",
+  "/food/Rectangle 43.svg",
+  "/food/Rectangle 44.svg",
+  "/food/Rectangle 45.svg",
+];
+
 const ShopModal = ({
   setModal,
   selectedShopID,
@@ -30,6 +77,11 @@ const ShopModal = ({
       document.body.style.overflow = "";
     };
   }, []);
+
+  const getRandomLogo = () => {
+    const randomIndex = Math.floor(Math.random() * randomLogos.length);
+    return randomLogos[randomIndex];
+  };
 
   useEffect(() => {
     fetchShopById(selectedShopID).then((data) => {
@@ -88,7 +140,7 @@ const ShopModal = ({
             <div className="relative w-full h-60">
               {shopByID && (
                 <Image
-                  src={shopByID.storeBannerImage || "/Icon/NoIMG_detail.svg"}
+                  src={shopByID.storeBannerImage}
                   alt="가게 이미지"
                   layout="fill"
                   objectFit="cover"

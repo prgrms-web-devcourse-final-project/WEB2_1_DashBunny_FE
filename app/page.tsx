@@ -50,7 +50,7 @@ export default function Home() {
         </header>
         <div className={Line}></div>
       </section>
-      <div className="flex flex-row w-full h-1/2 bg-gradient-to-r from-orange-100 via-BunnyOrange to-orange-200 p-5 rounded-2xl shadow-2xl">
+      <div className="flex flex-row w-full h-1/2 bg-gradient-to-r from-orange-100 via-BunnyOrange to-orange-200 p-5 rounded-2xl">
         {/* 카테고리 차트 */}
         <div className="flex items-center flex-col p-10  shadow-xl w-3/4 bg-gradient-to-t from-white to-orange-100 ">
           <p className="font-bold text-md mb-10  text-BunnyOrange">
@@ -120,7 +120,7 @@ export default function Home() {
           )}
         </div>
 
-        <div className="w-1/2  mt-10 flex flex-col bg-white border-BunnyOrange p-5 shadow-xl rounded-xl">
+        <div className="w-1/2  mt-10 flex flex-col bg-white border-BunnyOrange p-5 shadow-xl rounded-xl h-[30vh]">
           <p className="font-bold text-md  text-BunnyOrange mb-5 text-center w-full">
             월 별 가입자 추이
           </p>

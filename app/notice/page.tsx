@@ -12,6 +12,7 @@ const Notice = () => {
 
   useEffect(() => {
     fetchNotice().then((data) => {
+      console.log(data);
       setNoticeData(data);
     });
   }, []);

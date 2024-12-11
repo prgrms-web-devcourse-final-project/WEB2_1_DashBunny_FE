@@ -33,6 +33,58 @@ const Shop = () => {
       initialPageParam: 1,
     });
 
+  const randomLogos = [
+    "/food/Rectangle 1.svg",
+    "/food/Rectangle 2.svg",
+    "/food/Rectangle 3.svg",
+    "/food/Rectangle 4.svg",
+    "/food/Rectangle 5.svg",
+    "/food/Rectangle 6.svg",
+    "/food/Rectangle 7.svg",
+    "/food/Rectangle 8.svg",
+    "/food/Rectangle 9.svg",
+    "/food/Rectangle 10.svg",
+    "/food/Rectangle 11.svg",
+    "/food/Rectangle 12.svg",
+    "/food/Rectangle 13.svg",
+    "/food/Rectangle 14.svg",
+    "/food/Rectangle 15.svg",
+    "/food/Rectangle 16.svg",
+    "/food/Rectangle 17.svg",
+    "/food/Rectangle 18.svg",
+    "/food/Rectangle 19.svg",
+    "/food/Rectangle 20.svg",
+    "/food/Rectangle 21.svg",
+    "/food/Rectangle 22.svg",
+    "/food/Rectangle 23.svg",
+    "/food/Rectangle 24.svg",
+    "/food/Rectangle 25.svg",
+    "/food/Rectangle 26.svg",
+    "/food/Rectangle 27.svg",
+    "/food/Rectangle 28.svg",
+    "/food/Rectangle 29.svg",
+    "/food/Rectangle 30.svg",
+    "/food/Rectangle 31.svg",
+    "/food/Rectangle 32.svg",
+    "/food/Rectangle 33.svg",
+    "/food/Rectangle 34.svg",
+    "/food/Rectangle 35.svg",
+    "/food/Rectangle 37.svg",
+    "/food/Rectangle 38.svg",
+    "/food/Rectangle 39.svg",
+    "/food/Rectangle 40.svg",
+    "/food/Rectangle 41.svg",
+    "/food/Rectangle 42.svg",
+    "/food/Rectangle 43.svg",
+    "/food/Rectangle 44.svg",
+    "/food/Rectangle 45.svg",
+  ];
+
+  const getRandomLogo = () => {
+    const randomIndex = Math.floor(Math.random() * randomLogos.length);
+    return randomLogos[randomIndex];
+  };
+
   useEffect(() => {
     refetch();
   }, [filterShop, refetch]);
@@ -153,7 +205,9 @@ const Shop = () => {
         <main>
           <div className="w-full bg-white h-14 border border-gray-300 rounded-t-lg flex items-center px-3 shadow-md">
             <p className={`${FontStyle} w-16`}>ID</p>
-            <p className={FontStyle}>가게 정보</p>
+            <p className="text-gray-600 font-medium w-1/6 flex items-center justify-center text-sm lg:text-base">
+              가게 정보
+            </p>
             <p className={FontStyle}>영업 정보</p>
             <p className={FontStyle}>가게 소개</p>
             <p className={FontStyle}>위치</p>
@@ -168,9 +222,9 @@ const Shop = () => {
                 onClick={() => ModalHandler(shops.storeId)}
               >
                 <p className={`${FontStyle} w-16`}>{i + 1}</p>
-                <div className="flex w-1/6 items-center justify-center">
+                <div className="flex w-1/6 items-center justify-start">
                   <Image
-                    src={shops.storeLogo || "/Icon/NoIMG.svg"}
+                    src={shops.storeLogo}
                     alt="storeLogo"
                     width={60}
                     height={60}

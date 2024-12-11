@@ -28,11 +28,11 @@ const ReactKakaoMap = ({
     <div>
       {scriptLoad ? (
         <Map
-          center={{ lat: latitude, lng: longitude }}
+          center={{ lat: 37.55, lng: 126.97 }}
           style={{ width: "45vw", height: "40vh" }}
           level={3}
         >
-          <MapMarker position={{ lat: latitude, lng: longitude }}></MapMarker>
+          <MapMarker position={{ lat: 37.55, lng: 126.97 }}></MapMarker>
         </Map>
       ) : (
         <div></div>
