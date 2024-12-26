@@ -43,7 +43,7 @@
 </details>
 
 <details>
-<summary><h3>일정</h3></summary>
+<summary>일정</summary>
 
 ![일정운영](readme_image/timetable.jpg)
 
