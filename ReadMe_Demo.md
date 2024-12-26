@@ -8,11 +8,13 @@
 |<img src="https://private-avatars.githubusercontent.com/u/12750452?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIwNjAsIm5iZiI6MTczNDYxMDg2MCwicGF0aCI6Ii91LzEyNzUwNDUyIn0.dJUND6txUNBsYXe-qdfLEfAqrXIkeZXG2c3HWScxrfU&v=4" width="100" height="100"/>|<img src="https://private-avatars.githubusercontent.com/u/175578211?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIxMjAsIm5iZiI6MTczNDYxMDkyMCwicGF0aCI6Ii91LzE3NTU3ODIxMSJ9.TUnGMsXPkTZEudTKJ6Ch0VyduAIsAztLCdaTkDjhxds&v=4" width="100" height="100"/>|<img src="https://private-avatars.githubusercontent.com/u/101388379?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIzMDAsIm5iZiI6MTczNDYxMTEwMCwicGF0aCI6Ii91LzEwMTM4ODM3OSJ9.iQoiALQAEwTQRTc8ifKZvFnmvX1pDZM8RnVJ4HKPQiM&v=4" width="100" height="100"/>
 
 ## 🗓️ 작업기간 
+
 2024/11/15 ~ 2024/12/9
 
 ## 📔 기획문서
+
 <details>
-<summary>전체프로젝트 기획서</summary>
+<summary>전체 프로젝트 기획서(Gitbook)</summary>
 
 [🔗 GitBook 바로가기](https://team1-4.gitbook.io/team1)
 
