@@ -12,7 +12,7 @@
 
 ![벤치마킹](./readme_image/reference.jpg)
 
-## 📔개발문서
+## 📔기획문서
 
 <details>
 <summary>유저스토리</summary>
