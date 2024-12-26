@@ -8,14 +8,14 @@
 
 ### 🔍벤치마킹
 
-본 시스템은 배달의 민족 플랫폼을 벤치마킹하여 설계되었습니다. 다양한 플랫폼의 장점들을 분석하고 통합하여, 소비자 중심의 UX/UI를 구현하는 데 초점을 맞추었습니다. 이를 통해 직관적이고 편리한 사용자 경험을 제공하고자 노력하였습니다.
+본 시스템은 배달의 민족 플랫폼을 벤치마킹하여 설계되었습니다. 다양한 배달 플랫폼의 장점들을 분석하고 통합하여, 소비자 중심의 UX/UI를 구현하는 데 초점을 맞추었습니다. 이를 통해 직관적이고 편리한 사용자 경험을 제공하고자 노력하였습니다.
 
 ![벤치마킹](./readme_image/reference.jpg)
 
 ## 📔개발문서
 
 <details>
-<summary>### 유저스토리</summary>
+<summary><h3>유저스토리</h3></summary>
 
 유저스토리는 소비자와 관리자/사장님 두 그룹으로 나누어 작성하였습니다. 각 플랫폼의 유저 니즈와 핵심 기능을 연계하여, 구현해야 할 기능의 우선순위를 체계적으로 고려하였습니다.
 
@@ -25,7 +25,7 @@
 </details>
 
 <details>
-<summary>### 요구사항 명세서</summary>
+<summary><h3>요구사항 명세서</h3></summary>
 
 이미지 클릭시 이동합니다.
 
@@ -34,7 +34,7 @@
 </details>
 
 <details>
-<summary>### FIGMA</summary>
+<summary><h3>FIGMA</h3></summary>
 
 이미지 클릭시 이동합니다.
 
@@ -43,14 +43,14 @@
 </details>
 
 <details>
-<summary>### 일정</summary>
+<summary><h3>일정</h3></summary>
 
 ![일정운영](readme_image/timetable.jpg)
 
 </details>
 
 <details>
-<summary>### 협업방식 - 이슈보드</summary>
+<summary><h3>협업방식 - 이슈보드</h3></summary>
 
 ![이슈보드](readme_image/issue_board.jpg)
 
