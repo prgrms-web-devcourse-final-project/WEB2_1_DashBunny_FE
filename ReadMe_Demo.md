@@ -4,7 +4,7 @@
 
 | 팀장 | 팀원 | 팀원 | 
 |:---:|:---:|:---:|
-[최수진](https://github.com/tomatto0) | [김용환](https://github.com/yonghwna) | [한승철](https://github.com/HSCHEOL) | 
+[한승철](https://github.com/HSCHEOL)| [최수진](https://github.com/tomatto0) | [김용환](https://github.com/yonghwna)  | 
 |<img src="https://private-avatars.githubusercontent.com/u/12750452?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIwNjAsIm5iZiI6MTczNDYxMDg2MCwicGF0aCI6Ii91LzEyNzUwNDUyIn0.dJUND6txUNBsYXe-qdfLEfAqrXIkeZXG2c3HWScxrfU&v=4" width="100" height="100"/>|<img src="https://private-avatars.githubusercontent.com/u/175578211?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIxMjAsIm5iZiI6MTczNDYxMDkyMCwicGF0aCI6Ii91LzE3NTU3ODIxMSJ9.TUnGMsXPkTZEudTKJ6Ch0VyduAIsAztLCdaTkDjhxds&v=4" width="100" height="100"/>|<img src="https://private-avatars.githubusercontent.com/u/101388379?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIzMDAsIm5iZiI6MTczNDYxMTEwMCwicGF0aCI6Ii91LzEwMTM4ODM3OSJ9.iQoiALQAEwTQRTc8ifKZvFnmvX1pDZM8RnVJ4HKPQiM&v=4" width="100" height="100"/>
 
 ## 🗓️ 작업기간 
@@ -67,4 +67,12 @@
 | **사장님** | 최수진 | [DashBunny 사장님 도메인 FE Repo](https://github.com/neulrain/WEB2_1_DashBunny_FE) |
 | **관리자** | 한승철 | [DashBunny 관리자 도메인 FE Repo](https://github.com/HSCHEOL/DashBunny_FE) |
 ## skills
-
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
