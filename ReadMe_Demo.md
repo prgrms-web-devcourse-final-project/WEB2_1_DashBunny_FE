@@ -1,17 +1,21 @@
 ![1](https://github.com/user-attachments/assets/194df610-addf-4a25-9292-68ec10ccfbf5)
 
-## 팀원 소개
+## 역할
+| 담당도메인 | 담당자 | 역할 | 레포지토리 링크 |
+| :---: | --- | --- | --- |
+| **소비자** | 김용환 | 팀원 |[DashBunny 소비자 도메인 FE Repo](https://github.com/yonghwna/WEB2_1_DashBunny_FE) |
+| **사장님** | 최수진 | 팀원 |[DashBunny 사장님 도메인 FE Repo](https://github.com/neulrain/WEB2_1_DashBunny_FE) |
+| **관리자** | 한승철 | 팀장 |[DashBunny 관리자 도메인 FE Repo](https://github.com/HSCHEOL/DashBunny_FE) |
 
-| 팀장 | 팀원 | 팀원 | 
-|:---:|:---:|:---:|
-[한승철](https://github.com/HSCHEOL)| [최수진](https://github.com/tomatto0) | [김용환](https://github.com/yonghwna)  | 
-|<img src="https://avatars.githubusercontent.com/u/101388379?v=4" width="100" height="100"/>|<img src="https://avatars.githubusercontent.com/u/12750452?v=4" width="100" height="100"/>|<img src="https://avatars.githubusercontent.com/u/175578211?v=4" width="100" height="100"/>
 
-## 🗓️ 작업기간 
+
+## 작업기간 
 
 2024/11/15 ~ 2024/12/9
 
-## 📔 기획문서
+
+
+## 기획문서
 
 <details>
 <summary>전체 프로젝트 기획서(Gitbook)</summary>
@@ -60,18 +64,15 @@
 </details>
 
 
-## 역할
-| 담당도메인 | 담당자 | 레포지토리 링크 |
-| --- | --- | --- |
-| **소비자** | 김용환 | [DashBunny 소비자 도메인 FE Repo](https://github.com/yonghwna/WEB2_1_DashBunny_FE) |
-| **사장님** | 최수진 | [DashBunny 사장님 도메인 FE Repo](https://github.com/neulrain/WEB2_1_DashBunny_FE) |
-| **관리자** | 한승철 | [DashBunny 관리자 도메인 FE Repo](https://github.com/HSCHEOL/DashBunny_FE) |
-## skills
+
+## Skills
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+
+</br>
 
 ## 📌서비스 소개 및 기획의도
 
@@ -87,7 +88,7 @@
 
 본 프로젝트 시스템은 배달의 민족 플랫폼을 벤치마킹하여 설계되었습니다. 다양한 배달 플랫폼의 장점들을 분석하고 통합하여, 사용자 중심의 UX/UI를 구현하는 데 초점을 맞추었습니다. 이를 통해 직관적이고 편리한 사용자 경험을 제공하고자 노력하였습니다.
 
-## 🗓️작업 관리
+## 작업 관리
 
 <details>
 <summary>일정</summary>
